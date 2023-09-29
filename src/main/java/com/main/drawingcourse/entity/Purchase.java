@@ -18,6 +18,9 @@ public class Purchase {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pruchaseId;
 	
+	@Column(unique = true)
+	private String pruchaseCode;
+	
 	@Column
 	private LocalDate purchaseDate;
 
