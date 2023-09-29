@@ -34,5 +34,6 @@ public class DependencyUser {
 	private User user;
 	
 	@OneToMany(mappedBy = "dependencyUser")
-	private Collection<CustomerCourse> customerCourses;
+	private Collection<Purchase> purchases;
+	
 }

@@ -1,13 +1,12 @@
 package com.main.drawingcourse.entity;
 
-import java.util.Collection;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +19,7 @@ public class Role {
 	@Column
 	private String roleName;
 	
-	@ManyToMany(mappedBy = "roles")
-	private Collection<User> users;
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
 }

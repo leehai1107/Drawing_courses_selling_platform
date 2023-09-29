@@ -9,8 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -32,10 +30,7 @@ public class Post {
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@ManyToMany
-	@JoinTable(name = "Post_Category",
-	joinColumns = @JoinColumn(name="postId"),
-	inverseJoinColumns = @JoinColumn(name="postCategoryId"))
+	@OneToMany(mappedBy = "post")
 	private Collection<PostCategory> postCategories;
 	
 	@OneToMany(mappedBy = "post")

@@ -1,13 +1,12 @@
 package com.main.drawingcourse.entity;
 
-import java.util.Collection;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,7 +19,8 @@ public class DrawingCategory {
 	@Column
 	private String drawCategoryName;
 	
-	@ManyToMany(mappedBy = "drawingCategories")
-	private Collection<Course> courses;
+	@ManyToOne
+	@JoinColumn(name = "courseId")
+	private Course course;
 
 }

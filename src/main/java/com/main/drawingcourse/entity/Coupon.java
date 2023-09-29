@@ -1,35 +1,36 @@
 package com.main.drawingcourse.entity;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Reviews")
-public class Review {
+@Table(name = "Coupons")
+public class Coupon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reviewId;
+	private int couponId;
+	
+	@Column(unique = true)
+	private String couponCode;
 	
 	@Column
-	private String comment;
+	private int discountPercentage;
 	
 	@Column
-	private int rating;
+	private LocalDate expiryDate;
 	
 	@Column
-	private LocalDate reviewDate;
+	private int quantity;
 	
-	@ManyToOne
-	@JoinColumn(name = "purchaseId")
-	private Purchase purchase;
-	
+	@OneToMany(mappedBy = "coupon")
+	private Collection<Purchase> purchases;
 
 }
