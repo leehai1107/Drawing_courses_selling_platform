@@ -38,8 +38,8 @@ public class Purchase {
 	private Course course;
 	
 	@ManyToOne
-	@JoinColumn(name = "dependencyUserId")
-	private DependencyUser dependencyUser;
+	@JoinColumn(name = "userId")
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name = "couponId")

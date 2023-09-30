@@ -56,7 +56,7 @@ public class User {
 	private Collection<Course> course;
 	
 	@OneToMany(mappedBy = "user")
-	private Collection<DependencyUser> dependencyUsers;
+	private Collection<Purchase> purchases;
 	
 	@OneToMany(mappedBy = "user")
 	private Collection<Post> posts;
