@@ -1,7 +1,5 @@
 package com.main.drawingcourse.entity;
 
-
-
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -50,6 +48,8 @@ public class User {
 	
 	@Column(unique = true)
 	private String email;
+	
+	private Boolean status;
 	
 	@ManyToOne
 	@JoinColumn(name = "roleId")
