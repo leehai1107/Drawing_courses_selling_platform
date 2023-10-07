@@ -19,7 +19,7 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int courseId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 	
 	@Column(columnDefinition = "nvarchar(MAX) not null")
@@ -46,9 +46,10 @@ public class Course {
 	
 	@OneToMany(mappedBy = "course")
 	private Collection<Unit> units;
-			
-	@OneToMany(mappedBy = "course")
-	private Collection<Purchase> purchases;
+	
+	@ManyToOne
+	@JoinColumn(name = "orderId")
+	private Order order;
 	
 	@OneToMany(mappedBy = "course")
 	private Collection<CourseImage> courseImages;

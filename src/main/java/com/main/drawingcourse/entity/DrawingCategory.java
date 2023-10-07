@@ -16,7 +16,7 @@ public class DrawingCategory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int drawCategoryId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(50) not null")
 	private String drawCategoryName;
 	
 	@ManyToOne

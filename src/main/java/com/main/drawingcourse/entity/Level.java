@@ -16,7 +16,7 @@ public class Level {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int levelId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(20) not null")
 	private String levelName;
 	
 	@ManyToOne

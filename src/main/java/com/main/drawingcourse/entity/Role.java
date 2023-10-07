@@ -23,7 +23,7 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleId;
 	
-	@Column
+	@Column(columnDefinition = "varchar(20) not null")
 	private String roleName;
 	
 	@OneToMany(mappedBy = "role")

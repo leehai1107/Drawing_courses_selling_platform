@@ -18,7 +18,7 @@ public class Coupon {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int couponId;
 	
-	@Column(unique = true)
+	@Column(unique = true,columnDefinition = "varchar(12) not null")
 	private String couponCode;
 	
 	@Column
@@ -31,6 +31,6 @@ public class Coupon {
 	private int quantity;
 	
 	@OneToMany(mappedBy = "coupon")
-	private Collection<Purchase> purchases;
+	private Collection<Order> orders;
 
 }
