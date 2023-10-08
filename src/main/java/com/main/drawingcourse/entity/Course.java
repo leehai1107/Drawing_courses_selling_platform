@@ -38,11 +38,13 @@ public class Course {
 	@JoinColumn(name = "instructorId")
 	private User user;
 	
-	@OneToMany(mappedBy = "course")
-	private Collection<Level> levels;
+	@ManyToOne
+	@JoinColumn(name = "levelId")
+	private Level level;
 	
-	@OneToMany(mappedBy = "course")
-	private Collection<DrawingCategory> drawingCategories;
+	@ManyToOne
+	@JoinColumn(name = "drawCategoryId")
+	private DrawingCategory drawingCategory;
 	
 	@OneToMany(mappedBy = "course")
 	private Collection<Unit> units;
