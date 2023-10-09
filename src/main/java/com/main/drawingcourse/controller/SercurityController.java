@@ -80,7 +80,8 @@ public class SercurityController {
 	}
 	
 	@PostMapping("/signup")
-    public String addNewUser(@RequestBody UserModel userInfo) {
+    public String addCustomer(@RequestBody UserModel userInfo) {
+		userInfo.setRoleId(3);//customer roleId = 3
         return userService.addUser(converter.toEntity(userInfo));
     }
 	
@@ -109,4 +110,11 @@ public class SercurityController {
 		refreshTokenService.removeFromInstance((refreshTokenRepository.findByUser(userService.findUserByUserName(userName))));
 		return ResponseEntity.ok("Logout successful!");
 	}
+	
+	@PostMapping("/addStaff")
+    public String addStaff(@RequestBody UserModel userInfo) {
+		userInfo.setRoleId(2);//Staff roleId = 2
+        return userService.addUser(converter.toEntity(userInfo));
+    }
+	
 }
