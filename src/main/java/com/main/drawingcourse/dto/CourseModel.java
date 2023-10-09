@@ -18,6 +18,4 @@ public class CourseModel {
     private int drawCategoryId;
     private int instructorId;
     private int orderId;
-
-
 }

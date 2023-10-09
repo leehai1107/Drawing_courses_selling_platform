@@ -8,8 +8,10 @@ import com.main.drawingcourse.repository.CourseRepository;
 import com.main.drawingcourse.repository.DrawingCategoryRepository;
 import com.main.drawingcourse.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,8 +36,16 @@ public class CourseImpl implements ICourseService {
         return courseConverter.toDTO(courseEntity);
     }
 
-    public List<DrawingCategory> findAll() {
-        return categoryRepository.findAll();
+    public List<CourseModel> findAll() {
+        List<Course> courses = courseRepository.findAll();
+        List<CourseModel> courseModels = new ArrayList<>();
+
+        for (Course course : courses) {
+            CourseModel courseModel = courseConverter.toDTO(course);
+            courseModels.add(courseModel);
+        }
+
+        return courseModels;
     }
 
     public List<DrawingCategory> findAllById(Iterable<Integer> integers) {
@@ -53,4 +63,5 @@ public class CourseImpl implements ICourseService {
     public void deleteAll() {
         categoryRepository.deleteAll();
     }
+
 }
