@@ -47,6 +47,16 @@ public class CourseImpl implements ICourseService {
         return new CourseModel();
     }
 
+    @Override
+    public void DeleteCoursebyid(int id) {
+
+
+          courseRepository.deleteById(id);
+
+    }
+
+
+
 
 //    public List<DrawingCategory> findAll() {
 //        return categoryRepository.findAll();

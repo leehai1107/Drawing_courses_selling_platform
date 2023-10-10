@@ -1,8 +1,11 @@
 package com.main.drawingcourse.controller;
 
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.entity.Course;
+import com.main.drawingcourse.repository.CourseRepository;
 import com.main.drawingcourse.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,4 +24,11 @@ public class CourseController {
     public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
         return CourseService.AddCourse(courseModel);
     }
+
+
+    @DeleteMapping(value = "/{id}")
+    public void DeleteCoursebyid(@PathVariable int id) {
+        CourseService.DeleteCoursebyid(id);
+    }
+
 }

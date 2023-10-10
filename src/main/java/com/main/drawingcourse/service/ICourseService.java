@@ -7,4 +7,6 @@ public interface ICourseService {
     CourseModel AddCourse(CourseModel courseModel);
 
     CourseModel GetCoursebyid(int id);
+
+    void DeleteCoursebyid(int id);
 }
