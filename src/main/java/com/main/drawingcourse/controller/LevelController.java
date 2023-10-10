@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("level")
+@RequestMapping("public/level")
 public class LevelController {
     @Autowired
     LevelRepository levelRepository;
