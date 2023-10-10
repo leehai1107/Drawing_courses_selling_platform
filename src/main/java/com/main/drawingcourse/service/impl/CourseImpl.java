@@ -38,6 +38,16 @@ public class CourseImpl implements ICourseService {
 
     }
 
+    @Override
+    public CourseModel GetCoursebyid(int id) {
+        var course = courseRepository.findById(id).orElse(null);
+        if(course != null){
+            return courseConverter.toDTO(course);
+        }
+        return new CourseModel();
+    }
+
+
 //    public List<DrawingCategory> findAll() {
 //        return categoryRepository.findAll();
 //    }

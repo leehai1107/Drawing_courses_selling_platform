@@ -18,4 +18,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 //     int drawCategoryId,
 //     int instructorId,
 //     int orderId);
+    Course findCourseByCourseId(int id);
+
 }
