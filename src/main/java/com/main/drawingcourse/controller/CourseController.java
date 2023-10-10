@@ -26,7 +26,7 @@ public class CourseController {
 
     @GetMapping("/view")
 
-    public List<CourseModel> findAll() {    
+    public List<CourseModel> findAll() {
         return CourseService.findAll();
     }
 }
