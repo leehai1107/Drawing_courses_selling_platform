@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("course")
+@RequestMapping("public/course")
 public class CourseController {
     @Autowired
     ICourseService CourseService;
