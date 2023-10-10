@@ -5,6 +5,8 @@ import com.main.drawingcourse.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("public/course")
 public class CourseController {
@@ -21,4 +23,11 @@ public class CourseController {
     public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
         return CourseService.AddCourse(courseModel);
     }
+
+    @GetMapping("/view")
+
+    public List<CourseModel> findAll() {    
+        return CourseService.findAll();
+    }
 }
+
