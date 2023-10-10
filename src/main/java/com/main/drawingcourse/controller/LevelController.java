@@ -1,7 +1,8 @@
 package com.main.drawingcourse.controller;
 
-import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.service.ICourseService;
+import com.main.drawingcourse.dto.LevelModel;
+import com.main.drawingcourse.repository.LevelRepository;
+import com.main.drawingcourse.service.ILevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,13 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("course")
-public class CourseController {
+@RequestMapping("level")
+public class LevelController {
     @Autowired
-    ICourseService CourseService;
+    LevelRepository levelRepository;
+
+    @Autowired
+    ILevelService levelService;
 
     @PostMapping(value = "/add")
-    public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
-        return CourseService.AddCourse(courseModel);
+    public LevelModel AddLevel(@RequestBody LevelModel levelModel){
+        return levelService.AddLevel(levelModel);
     }
+
 }
