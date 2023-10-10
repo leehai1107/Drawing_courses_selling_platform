@@ -18,10 +18,11 @@ import java.util.List;
 public class CourseImpl implements ICourseService {
 
     @Autowired
-    CourseRepository  courseRepository;
+    CourseRepository courseRepository;
 
     @Autowired
     DrawingCategoryRepository categoryRepository;
+
     @Autowired
     CourseConverter courseConverter;
 
@@ -34,8 +35,12 @@ public class CourseImpl implements ICourseService {
         courseEntity = courseRepository.save(courseEntity);
 
         return courseConverter.toDTO(courseEntity);
+//courseRepository.createCourse(courseModel.getCourseId(),courseModel.getTitle(),courseModel.getDescription(),courseModel.getPrice(),courseModel.getRating(),courseModel.getProgress(),courseModel.getLevelId(),courseModel.getDrawCategoryId(),courseModel.getInstructorId(),courseModel.getOrderId());
+
+
     }
 
+<<<<<<< HEAD
     public List<CourseModel> findAll() {
         List<Course> courses = courseRepository.findAll();
         List<CourseModel> courseModels = new ArrayList<>();
@@ -64,4 +69,26 @@ public class CourseImpl implements ICourseService {
         categoryRepository.deleteAll();
     }
 
+=======
+//    public List<DrawingCategory> findAll() {
+//        return categoryRepository.findAll();
+//    }
+//
+//    public List<DrawingCategory> findAllById(Iterable<Integer> integers) {
+//        return categoryRepository.findAllById(integers);
+//    }
+//
+//    public <S extends DrawingCategory> S save(S entity) {
+//        return categoryRepository.save(entity);
+//    }
+//
+//    public void delete(DrawingCategory entity) {
+//        categoryRepository.delete(entity);
+//    }
+//
+//    public void deleteAll() {
+//        categoryRepository.deleteAll();
+//    }ư
+>>>>>>> updateNew/main
 }
+//}
