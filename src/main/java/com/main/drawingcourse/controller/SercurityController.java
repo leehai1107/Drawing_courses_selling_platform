@@ -33,7 +33,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("account")
+@RequestMapping("public/account")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SercurityController {
 	@Autowired

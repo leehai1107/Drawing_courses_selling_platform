@@ -39,9 +39,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
+<<<<<<< HEAD
                 .requestMatchers("/account/**","/course/**", "/course/{id}","/delete/title").permitAll()
+=======
+                .requestMatchers("/account/**","/course/**", "/course/{id}").permitAll()
+                .requestMatchers("/public/**").permitAll()
+>>>>>>> newup/main
                 .and()
-                .authorizeHttpRequests().requestMatchers("/account/hello")
+                .authorizeHttpRequests().requestMatchers("public/account/hello")
                 .authenticated().and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

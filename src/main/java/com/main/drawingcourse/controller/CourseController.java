@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("course")
+@RequestMapping("public/course")
 public class CourseController {
     @Autowired
     ICourseService CourseService;
@@ -25,10 +27,19 @@ public class CourseController {
         return CourseService.AddCourse(courseModel);
     }
 
+<<<<<<< HEAD
 
     @DeleteMapping(value = "/{id}")
     public void DeleteCoursebyid(@PathVariable int id) {
         CourseService.DeleteCoursebyid(id);
     }
 
+=======
+    @GetMapping("/view")
+
+    public List<CourseModel> findAll() {
+        return CourseService.findAll();
+    }
+>>>>>>> newup/main
 }
+
