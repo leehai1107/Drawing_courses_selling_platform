@@ -35,8 +35,18 @@ public class CourseImpl implements ICourseService {
         return courseConverter.toDTO(courseEntity);
 //courseRepository.createCourse(courseModel.getCourseId(),courseModel.getTitle(),courseModel.getDescription(),courseModel.getPrice(),courseModel.getRating(),courseModel.getProgress(),courseModel.getLevelId(),courseModel.getDrawCategoryId(),courseModel.getInstructorId(),courseModel.getOrderId());
 
-
     }
+
+    @Override
+    public CourseModel findByCourseTitle(String title) {
+        Course course = courseRepository.findAllCoursesByTitle(title);
+        if(course != null){
+            return courseConverter.toDTO(course);
+
+        }
+        return new CourseModel();
+    }
+
 
 //    public List<DrawingCategory> findAll() {
 //        return categoryRepository.findAll();

@@ -3,7 +3,11 @@ package com.main.drawingcourse.repository;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Repository
 
@@ -18,4 +22,10 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 //     int drawCategoryId,
 //     int instructorId,
 //     int orderId);
+    Course findCourseByDescription(String title);
+
+    @Query(
+            value = "SELECT * FROM COURSES c WHERE c.title = :title",
+            nativeQuery = true)
+    Course findAllCoursesByTitle(@Param("title") String title);
 }

@@ -40,7 +40,7 @@ public class SecurityConfig {
         return http.csrf().disable()
                 .authorizeHttpRequests()
 
-                .requestMatchers("/account/signup","/account/login","/account/refreshToken","/account/logout/**", "/course/add", "/category/add", "/level/add").permitAll()
+                .requestMatchers("/account/signup","/account/login","/account/refreshToken","/account/logout/**", "/course/add", "/category/add", "/level/add", "/course/find-by-title").permitAll()
 
                 .requestMatchers("/account/**","/course/**").permitAll()
 
