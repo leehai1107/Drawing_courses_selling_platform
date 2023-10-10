@@ -5,4 +5,6 @@ import com.main.drawingcourse.entity.Course;
 
 public interface ICourseService {
     CourseModel AddCourse(CourseModel courseModel);
+
+    CourseModel GetCoursebyid(int id);
 }

@@ -16,10 +16,11 @@ import java.util.List;
 public class CourseImpl implements ICourseService {
 
     @Autowired
-    CourseRepository  courseRepository;
+    CourseRepository courseRepository;
 
     @Autowired
     DrawingCategoryRepository categoryRepository;
+
     @Autowired
     CourseConverter courseConverter;
 
@@ -32,25 +33,39 @@ public class CourseImpl implements ICourseService {
         courseEntity = courseRepository.save(courseEntity);
 
         return courseConverter.toDTO(courseEntity);
+//courseRepository.createCourse(courseModel.getCourseId(),courseModel.getTitle(),courseModel.getDescription(),courseModel.getPrice(),courseModel.getRating(),courseModel.getProgress(),courseModel.getLevelId(),courseModel.getDrawCategoryId(),courseModel.getInstructorId(),courseModel.getOrderId());
+
+
     }
 
-    public List<DrawingCategory> findAll() {
-        return categoryRepository.findAll();
+    @Override
+    public CourseModel GetCoursebyid(int id) {
+        var course = courseRepository.findById(id).orElse(null);
+        if(course != null){
+            return courseConverter.toDTO(course);
+        }
+        return new CourseModel();
     }
 
-    public List<DrawingCategory> findAllById(Iterable<Integer> integers) {
-        return categoryRepository.findAllById(integers);
-    }
 
-    public <S extends DrawingCategory> S save(S entity) {
-        return categoryRepository.save(entity);
-    }
-
-    public void delete(DrawingCategory entity) {
-        categoryRepository.delete(entity);
-    }
-
-    public void deleteAll() {
-        categoryRepository.deleteAll();
-    }
+//    public List<DrawingCategory> findAll() {
+//        return categoryRepository.findAll();
+//    }
+//
+//    public List<DrawingCategory> findAllById(Iterable<Integer> integers) {
+//        return categoryRepository.findAllById(integers);
+//    }
+//
+//    public <S extends DrawingCategory> S save(S entity) {
+//        return categoryRepository.save(entity);
+//    }
+//
+//    public void delete(DrawingCategory entity) {
+//        categoryRepository.delete(entity);
+//    }
+//
+//    public void deleteAll() {
+//        categoryRepository.deleteAll();
+//    }ư
 }
+//}

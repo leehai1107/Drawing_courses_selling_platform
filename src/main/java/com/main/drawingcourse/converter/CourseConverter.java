@@ -28,11 +28,11 @@ public class CourseConverter {
         entity.setDescription(courseModel.getDescription());
         entity.setPrice(courseModel.getPrice());
         entity.setRating(courseModel.getRating());
-//        entity.setLevel(levelRepository.getReferenceById(courseModel.getLevelId()));
-//        entity.setOrder(orderRepository.getReferenceById(courseModel.getOrderId()));
         entity.setProgress(courseModel.getProgress());
-//        entity.setDrawingCategory(categoryRepository.getReferenceById(courseModel.getDrawCategoryId()));
-//        entity.setUser(userRepository.getReferenceById(courseModel.getInstructorId()));
+        entity.setLevel(levelRepository.getReferenceById(courseModel.getLevelId()));
+        entity.setOrder(orderRepository.getReferenceById(courseModel.getOrderId()));
+        entity.setDrawingCategory(categoryRepository.getReferenceById(courseModel.getDrawCategoryId()));
+        entity.setUser(userRepository.getReferenceById(courseModel.getInstructorId()));
         return entity;
     }
 
@@ -44,7 +44,10 @@ public class CourseConverter {
         dto.setPrice(courseEntity.getPrice());
         dto.setRating(courseEntity.getRating());
         dto.setProgress(courseEntity.getProgress());
-
+        dto.setLevelId(courseEntity.getLevel().getLevelId());
+        dto.setDrawCategoryId(courseEntity.getDrawingCategory().getDrawCategoryId());
+        dto.setOrderId(courseEntity.getOrder().getOrderId());
+        dto.setInstructorId(courseEntity.getUser().getUserId());
 
         return dto;
     }
