@@ -36,44 +36,41 @@ public class CourseImpl implements ICourseService {
         return courseConverter.toDTO(courseEntity);
 //courseRepository.createCourse(courseModel.getCourseId(),courseModel.getTitle(),courseModel.getDescription(),courseModel.getPrice(),courseModel.getRating(),courseModel.getProgress(),courseModel.getLevelId(),courseModel.getDrawCategoryId(),courseModel.getInstructorId(),courseModel.getOrderId());
 
-<<<<<<< HEAD
+
     }
 
     @Override
     public CourseModel findByCourseTitle(String title) {
         Course course = courseRepository.findAllCoursesByTitle(title);
-        if(course != null){
+        if (course != null) {
             return courseConverter.toDTO(course);
 
-=======
 
-    }
-
-    @Override
-    public CourseModel GetCoursebyid(int id) {
-        var course = courseRepository.findById(id).orElse(null);
-        if(course != null){
-            return courseConverter.toDTO(course);
->>>>>>> new/main
         }
         return new CourseModel();
     }
+//        @Override
+//        public CourseModel GetCoursebyid( int id){
+//            var course = courseRepository.findById(id).orElse(null);
+//            if (course != null) {
+//                return courseConverter.toDTO(course);
+//
+//            }
+//            return new CourseModel();
+//        }
+//
+//        @Override
+//        public List<CourseModel> findAll() {
+//            List<Course> courses = courseRepository.findAll();
+//            List<CourseModel> courseModels = courses.stream()
+//                    .map(courseConverter::toDTO)
+//                    .collect(Collectors.toList());
+//
+//            return courseModels;
+//        }
 
-<<<<<<< HEAD
+        //    public List<DrawingCategory> findAll() {
 
-//    public List<DrawingCategory> findAll() {
-=======
-    public List<CourseModel> findAll() {
-        List<Course> courses = courseRepository.findAll();
-        List<CourseModel> courseModels = courses.stream()
-                .map(courseConverter::toDTO)
-                .collect(Collectors.toList());
-
-        return courseModels;
-    }
-
-    //    public List<DrawingCategory> findAll() {
->>>>>>> new/main
 //        return categoryRepository.findAll();
 //    }
 //
@@ -92,5 +89,29 @@ public class CourseImpl implements ICourseService {
 //    public void deleteAll() {
 //        categoryRepository.deleteAll();
 //    }ư
-}
+
+
+        @Override
+        public CourseModel GetCoursebyid ( int id){
+            var course = courseRepository.findById(id).orElse(null);
+            if (course != null) {
+                return courseConverter.toDTO(course);
+
+            }
+            return new CourseModel();
+
+        }
+
+        @Override
+        public List<CourseModel> findAll () {
+            List<Course> courses = courseRepository.findAll();
+            List<CourseModel> courseModels = courses.stream()
+                    .map(courseConverter::toDTO)
+                    .collect(Collectors.toList());
+
+            return courseModels;
+        }
+
+    }
+
 //}
