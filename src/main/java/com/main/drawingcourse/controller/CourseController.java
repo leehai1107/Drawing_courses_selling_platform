@@ -11,11 +11,11 @@ public class CourseController {
     @Autowired
     ICourseService CourseService;
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/public/add")
     public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
         return CourseService.AddCourse(courseModel);
     }
-    @GetMapping(value = "/find-by-title")
+    @GetMapping(value = "/public/find-by-title")
     public CourseModel findByCourseName(@RequestParam("title") String title){
         return CourseService.findByCourseTitle(title);
 
