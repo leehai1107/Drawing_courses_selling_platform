@@ -16,7 +16,7 @@ public class PostCategory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int postCategoryId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(20) not null")
 	private String postCategoryName;
 	
 	@ManyToOne

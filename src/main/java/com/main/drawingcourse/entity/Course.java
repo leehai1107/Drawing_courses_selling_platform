@@ -11,15 +11,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Courses")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int courseId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 	
 	@Column(columnDefinition = "nvarchar(MAX) not null")
@@ -38,17 +44,20 @@ public class Course {
 	@JoinColumn(name = "instructorId")
 	private User user;
 	
-	@OneToMany(mappedBy = "course")
-	private Collection<Level> levels;
+	@ManyToOne
+	@JoinColumn(name = "levelId")
+	private Level level;
 	
-	@OneToMany(mappedBy = "course")
-	private Collection<DrawingCategory> drawingCategories;
+	@ManyToOne
+	@JoinColumn(name = "drawCategoryId")
+	private DrawingCategory drawingCategory;
 	
 	@OneToMany(mappedBy = "course")
 	private Collection<Unit> units;
-			
-	@OneToMany(mappedBy = "course")
-	private Collection<Purchase> purchases;
+	
+	@ManyToOne
+	@JoinColumn(name = "orderId")
+	private Order order;
 	
 	@OneToMany(mappedBy = "course")
 	private Collection<CourseImage> courseImages;

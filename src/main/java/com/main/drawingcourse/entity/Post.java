@@ -19,7 +19,7 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int postId;
-	@Column
+	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 	@Column(columnDefinition = "nvarchar(MAX) not null")
 	private String content;

@@ -1,7 +1,5 @@
 package com.main.drawingcourse.entity;
 
-
-
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -34,7 +32,7 @@ public class User {
 	@Column
 	private String password;
 	
-	@Column
+	@Column(columnDefinition = "varchar(50) not null")
 	private String fullname;
 	
 	@Column
@@ -48,8 +46,10 @@ public class User {
 	@Column(columnDefinition = "nvarchar(MAX) not null")
 	private String description;
 	
-	@Column(unique = true)
+	@Column(unique = true,columnDefinition = "varchar(50) not null")
 	private String email;
+	
+	private Boolean status;
 	
 	@ManyToOne
 	@JoinColumn(name = "roleId")
@@ -59,7 +59,7 @@ public class User {
 	private Collection<Course> course;
 	
 	@OneToMany(mappedBy = "user")
-	private Collection<Purchase> purchases;
+	private Collection<Order> oders;
 	
 	@OneToMany(mappedBy = "user")
 	private Collection<Post> posts;

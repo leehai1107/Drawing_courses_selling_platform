@@ -12,30 +12,34 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Pruchases")
-public class Purchase {
+@Table(name = "Orders")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pruchaseId;
+	private int orderId;
 	
-	@Column(unique = true)
-	private String pruchaseCode;
+	@Column(unique = true,columnDefinition = "varchar(10) not null")
+	private String orderCode;
 	
 	@Column
-	private LocalDate purchaseDate;
+	private LocalDate orderDate;
 
 	@Column
-	private Boolean pruchaseStatus;
+	private Boolean orderStatus;
 	
-	@OneToMany(mappedBy = "purchase")
+	@OneToMany(mappedBy = "order")
 	private Collection<Review> reviews;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "courseId")
-	private Course course;
+	@OneToMany(mappedBy = "order")
+	private Collection<Course> courses;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")

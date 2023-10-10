@@ -19,7 +19,7 @@ public class Unit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int unitId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 	
 	@Column(columnDefinition = "nvarchar(MAX) not null")

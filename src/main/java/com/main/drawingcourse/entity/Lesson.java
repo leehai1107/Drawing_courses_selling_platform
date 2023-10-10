@@ -18,7 +18,7 @@ public class Lesson {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int lessonId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 	
 	@Column(columnDefinition = "nvarchar(MAX) not null")

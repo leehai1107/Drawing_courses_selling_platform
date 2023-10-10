@@ -28,8 +28,8 @@ public class Review {
 	private LocalDate reviewDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "purchaseId")
-	private Purchase purchase;
+	@JoinColumn(name = "orderId")
+	private Order order;
 	
 
 }
