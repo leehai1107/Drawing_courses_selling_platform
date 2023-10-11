@@ -30,4 +30,3 @@ public class CourseController {
         return CourseService.findAll();
     }
 }
-
