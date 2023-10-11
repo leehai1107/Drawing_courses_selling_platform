@@ -26,13 +26,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	
-	@Column(unique = true)
+	@Column(unique = true,columnDefinition = "varchar(50)")
 	private String userName;
 	
 	@Column
 	private String password;
 	
-	@Column(columnDefinition = "varchar(50) not null")
+	@Column(columnDefinition = "varchar(50)")
 	private String fullname;
 	
 	@Column
@@ -40,14 +40,11 @@ public class User {
 	
 	@Column
 	private Boolean sex;
-	@Column(columnDefinition = "nvarchar(MAX) not null")
+	@Column(columnDefinition = "nvarchar(MAX)")
 	private String avatar;
 	
-	@Column(columnDefinition = "nvarchar(MAX) not null")
+	@Column(columnDefinition = "nvarchar(MAX) ")
 	private String description;
-	
-	@Column(unique = true,columnDefinition = "varchar(50) not null")
-	private String email;
 	
 	private Boolean status;
 	

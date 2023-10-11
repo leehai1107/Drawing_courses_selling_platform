@@ -8,6 +8,12 @@ import com.main.drawingcourse.service.IDrawingCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+import java.util.stream.Collectors;
+
+>>>>>>> update/main
 @Service
 
 public class DrawingCategoryImpl implements IDrawingCategoryService{
@@ -24,5 +30,15 @@ public class DrawingCategoryImpl implements IDrawingCategoryService{
     return drawingCateforyConverter.toDto(categoryEntity);
 }
 
+<<<<<<< HEAD
 
+=======
+    public List<DrawingCategoryModel> findAll() {
+        List<DrawingCategoryModel> drawingCategories =  categoryRepository.findAll().stream()
+                .map(drawingCateforyConverter::toDto)
+                .collect(Collectors.toList());
+
+        return drawingCategories;
+    }
+>>>>>>> update/main
 }

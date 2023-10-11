@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseImpl implements ICourseService {
@@ -38,7 +39,29 @@ public class CourseImpl implements ICourseService {
 
     }
 
+<<<<<<< HEAD
 //    public List<DrawingCategory> findAll() {
+=======
+    @Override
+    public CourseModel GetCoursebyid(int id) {
+        var course = courseRepository.findById(id).orElse(null);
+        if(course != null){
+            return courseConverter.toDTO(course);
+        }
+        return new CourseModel();
+    }
+
+    public List<CourseModel> findAll() {
+        List<Course> courses = courseRepository.findAll();
+        List<CourseModel> courseModels = courses.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+
+        return courseModels;
+    }
+
+    //    public List<DrawingCategory> findAll() {
+>>>>>>> update/main
 //        return categoryRepository.findAll();
 //    }
 //
