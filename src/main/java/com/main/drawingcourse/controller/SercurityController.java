@@ -57,6 +57,7 @@ public class SercurityController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticationUser(@Valid @RequestBody LoginRequest loginRequest){
+		System.out.println(loginRequest.getUsername());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		
@@ -113,28 +114,27 @@ public class SercurityController {
 		return ResponseEntity.ok("Logout successful!");
 	}
 	
-	@PostMapping("/addstaff")
+	@PostMapping("/add-staff")
     public String addStaff(@RequestBody UserModel userInfo) {
 		userInfo.setRoleId(2);//Staff roleId = 2
 		userInfo.setStatus(true);
         return userService.addUser(converter.toEntity(userInfo));
     }
 	
-	@PostMapping("/addinstructor")
+	@PostMapping("/add-instructor")
     public String addInstructor(@RequestBody UserModel userInfo) {
-		userInfo.setRoleId(2);//Staff roleId = 2
+		userInfo.setRoleId(4);//instructor roleId = 2
 		userInfo.setStatus(true);
         return userService.addUser(converter.toEntity(userInfo));
     }
 	
 	@PostMapping("/forgot-password/{email}")
 	public String forgotPassword(@PathVariable String email) {
-		String result="";
+		String result="Do not find Email!";
 		User user = userService.findUserByUserName(email);
 		if(user !=null) {
-			userService.sendEmail(user);
+			result = userService.sendEmail(user);
 		}
-		
 		return result;
 	}
 	
