@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
+
     Course findCourseByDescription(String title);
 
     @Query(
@@ -23,7 +24,20 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             nativeQuery = true)
     Course findAllCoursesByTitle(@Param("title") String title);
 
-    Course findCourseByCourseId(int id);
+//    Course findCourseByCourseId(int id);
+//
+//
+////    void createCourse(int courseID,
+////     String title,
+////     String description,
+////     Double price,
+////     Integer rating,
+////     Float progress,
+////     int levelId,
+////     int drawCategoryId,
+////     int instructorId,
+////     int orderId);
+//    Course findCourseByCourseId(int id);
 
 
 }

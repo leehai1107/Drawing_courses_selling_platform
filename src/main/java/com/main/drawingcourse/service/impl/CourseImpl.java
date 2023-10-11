@@ -73,3 +73,23 @@ public class CourseImpl implements ICourseService {
     }
 
 
+    //    public List<DrawingCategory> findAll() {
+//        return categoryRepository.findAll();
+//    }
+//
+//    public List<DrawingCategory> findAllById(Iterable<Integer> integers) {
+//        return categoryRepository.findAllById(integers);
+//    }
+//
+//    public <S extends DrawingCategory> S save(S entity) {
+//        return categoryRepository.save(entity);
+//    }
+//
+//    public void delete(DrawingCategory entity) {
+//        categoryRepository.delete(entity);
+//    }
+//
+//    public void deleteAll() {
+//        categoryRepository.deleteAll();
+//    }ư
+

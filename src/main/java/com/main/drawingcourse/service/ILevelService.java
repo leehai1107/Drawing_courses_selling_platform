@@ -9,5 +9,4 @@ public interface ILevelService {
 
     List<LevelModel> findAll();
 
-
 }
