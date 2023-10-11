@@ -1,7 +1,13 @@
 package com.main.drawingcourse.service.impl;
 
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
+import com.main.drawingcourse.converter.UserConverter;
+import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.UserModel;
+import com.main.drawingcourse.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +26,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	UserConverter userConverter;
 
 	@Override
 	public User findUserByUserName(String userName) {
@@ -50,6 +59,38 @@ public class UserServiceImpl implements IUserService {
 			e.printStackTrace();
 			return "Error!";
 		}
+	}
+
+	@Override
+	public List<UserModel> findAllInstructor() {
+		List<User> userEntity = userRepository.findAllInstructor();
+		List<UserModel> userModels = userEntity.stream()
+		                .map(userConverter::toDto)
+						.collect(Collectors.toList());
+
+
+		return userModels;
+	}
+	@Override
+	public List<UserModel> findAllStaff() {
+		List<User> userEntity = userRepository.findAllStaff();
+		List<UserModel> userModels = userEntity.stream()
+				.map(userConverter::toDto)
+				.collect(Collectors.toList());
+
+
+		return userModels;
+	}
+
+	@Override
+	public List<UserModel> findAllCustomer() {
+		List<User> userEntity = userRepository.findAllCustomer();
+		List<UserModel> userModels = userEntity.stream()
+				.map(userConverter::toDto)
+				.collect(Collectors.toList());
+
+
+		return userModels;
 	}
 
 	private String generateRandomPassword(int length) {

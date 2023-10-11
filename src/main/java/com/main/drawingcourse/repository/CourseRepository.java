@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 
@@ -24,20 +26,11 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             nativeQuery = true)
     Course findAllCoursesByTitle(@Param("title") String title);
 
-//    Course findCourseByCourseId(int id);
-//
-//
-////    void createCourse(int courseID,
-////     String title,
-////     String description,
-////     Double price,
-////     Integer rating,
-////     Float progress,
-////     int levelId,
-////     int drawCategoryId,
-////     int instructorId,
-////     int orderId);
-//    Course findCourseByCourseId(int id);
+    @Query(
+            value = "SELECT * FROM COURSES c WHERE c.instructor_id = :id",
+            nativeQuery = true)
+    List<Course> findAllCoursesByInstructorId(@Param("id") int id);
+
 
 
 }

@@ -30,12 +30,6 @@ public class CourseConverter {
         entity.setRating(courseModel.getRating());
         entity.setProgress(courseModel.getProgress());
         entity.setLevel(levelRepository.getReferenceById(courseModel.getLevelId()));
-
-
-
-//        entity.setOrder(orderRepository.getReferenceById(courseModel.getOrderId()));
-
-
         entity.setDrawingCategory(categoryRepository.getReferenceById(courseModel.getDrawCategoryId()));
         entity.setUser(userRepository.getReferenceById(courseModel.getInstructorId()));
         return entity;
@@ -51,10 +45,6 @@ public class CourseConverter {
         dto.setProgress(courseEntity.getProgress());
         dto.setLevelId(courseEntity.getLevel().getLevelId());
         dto.setDrawCategoryId(courseEntity.getDrawingCategory().getDrawCategoryId());
-
-//        dto.setOrderId(courseEntity.getOrder().getOrderId());
-
-
         dto.setInstructorId(courseEntity.getUser().getUserId());
 
         return dto;

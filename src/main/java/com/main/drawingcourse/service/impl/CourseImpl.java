@@ -2,6 +2,7 @@ package com.main.drawingcourse.service.impl;
 
 import com.main.drawingcourse.converter.CourseConverter;
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.DrawingCategory;
 import com.main.drawingcourse.repository.CourseRepository;
@@ -68,9 +69,20 @@ public class CourseImpl implements ICourseService {
             return courseModels;
         }
 
+    @Override
+    public List<CourseModel> findCourseByInstructorID(int instructor_id) {
+        List<Course> courseEntity = courseRepository.findAllCoursesByInstructorId(instructor_id);
+        List<CourseModel> courseModels = courseEntity.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
 
-
+        return courseModels;
     }
+
+
+
+
+}
 
 
     //    public List<DrawingCategory> findAll() {

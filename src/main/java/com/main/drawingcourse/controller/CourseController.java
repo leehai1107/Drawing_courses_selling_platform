@@ -24,8 +24,15 @@ public class CourseController {
     @GetMapping(value = "/find-by-title")
     public CourseModel findByCourseName(@RequestParam("title") String title) {
         return CourseService.findByCourseTitle(title);
-
-
-
     }
+
+    @GetMapping(value = "/find-by-InstructorId/{id}")
+    public List<CourseModel> findCourseByIntructorID(@PathVariable("id") int id){
+        return CourseService.findCourseByInstructorID(id);
+        }
+
+
+
+
+
 }
