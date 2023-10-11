@@ -1,6 +1,9 @@
 package com.main.drawingcourse.service;
 
+import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.User;
+
+import java.util.List;
 
 public interface IUserService {
 
@@ -9,5 +12,9 @@ public interface IUserService {
 	User findUserByUserName(String userName);
 
 	String sendEmail(User user);
+
+	List<UserModel> findAllInstructor();
+	List<UserModel> findAllStaff();
+	List<UserModel> findAllCustomer();
 
 }
