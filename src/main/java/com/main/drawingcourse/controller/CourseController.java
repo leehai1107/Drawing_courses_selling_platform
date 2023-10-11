@@ -26,19 +26,19 @@ public class CourseController {
         return CourseService.findByCourseTitle(title);
 
 
-
-        @GetMapping(value = "/get/{id}")
-        public CourseModel GetCoursebyid ( @PathVariable int id){
-            return CourseService.GetCoursebyid(id);
-
-        }
-
-
-        @GetMapping("/view")
-        public List<CourseModel> findAll () {
-            return CourseService.findAll();
-
-        }
+//
+//        @GetMapping(value = "/get/{id}")
+//        public CourseModel GetCoursebyid ( @PathVariable int id){
+//            return CourseService.GetCoursebyid(id);
+//
+//        }
+//
+//
+//        @GetMapping("/view")
+//        public List<CourseModel> findAll () {
+//            return CourseService.findAll();
+//
+//        }
     }
 }
 

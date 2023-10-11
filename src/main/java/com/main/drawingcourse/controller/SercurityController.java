@@ -82,6 +82,7 @@ public class SercurityController {
 	@PostMapping("/signup")
     public String addCustomer(@RequestBody UserModel userInfo) {
 		userInfo.setRoleId(3);//customer roleId = 3
+		userInfo.setStatus(true);
         return userService.addUser(converter.toEntity(userInfo));
     }
 	
@@ -111,10 +112,17 @@ public class SercurityController {
 		return ResponseEntity.ok("Logout successful!");
 	}
 	
-	@PostMapping("/addStaff")
+	@PostMapping("/addstaff")
     public String addStaff(@RequestBody UserModel userInfo) {
 		userInfo.setRoleId(2);//Staff roleId = 2
+		userInfo.setStatus(true);
         return userService.addUser(converter.toEntity(userInfo));
     }
 	
+	@PostMapping("/addinstructor")
+    public String addInstructor(@RequestBody UserModel userInfo) {
+		userInfo.setRoleId(2);//Staff roleId = 2
+		userInfo.setStatus(true);
+        return userService.addUser(converter.toEntity(userInfo));
+    }
 }

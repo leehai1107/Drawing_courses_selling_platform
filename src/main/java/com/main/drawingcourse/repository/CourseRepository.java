@@ -15,16 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
-//    void createCourse(int courseID,
-//     String title,
-//     String description,
-//     Double price,
-//     Integer rating,
-//     Float progress,
-//     int levelId,
-//     int drawCategoryId,
-//     int instructorId,
-//     int orderId);
 
     Course findCourseByDescription(String title);
 
