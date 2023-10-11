@@ -18,9 +18,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 //     int drawCategoryId,
 //     int instructorId,
 //     int orderId);
-<<<<<<< HEAD
-=======
     Course findCourseByCourseId(int id);
 
->>>>>>> update/main
 }
