@@ -9,12 +9,9 @@ import com.main.drawingcourse.service.ILevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 import java.util.stream.Collectors;
 
->>>>>>> update/main
 @Service
 
 public class LevelImpl implements ILevelService {
@@ -31,8 +28,6 @@ public class LevelImpl implements ILevelService {
 
         return levelConverter.toDto(levelEntity);
     }
-<<<<<<< HEAD
-=======
 
     public List<LevelModel> findAll() {
         List<LevelModel> levels = levelRepository.findAll().stream()
@@ -41,5 +36,4 @@ public class LevelImpl implements ILevelService {
 
         return levels;
     }
->>>>>>> update/main
 }
