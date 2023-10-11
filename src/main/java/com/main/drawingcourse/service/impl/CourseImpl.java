@@ -39,9 +39,6 @@ public class CourseImpl implements ICourseService {
 
     }
 
-<<<<<<< HEAD
-//    public List<DrawingCategory> findAll() {
-=======
     @Override
     public CourseModel GetCoursebyid(int id) {
         var course = courseRepository.findById(id).orElse(null);
@@ -61,7 +58,6 @@ public class CourseImpl implements ICourseService {
     }
 
     //    public List<DrawingCategory> findAll() {
->>>>>>> update/main
 //        return categoryRepository.findAll();
 //    }
 //
