@@ -31,7 +31,11 @@ public class CourseController {
         return CourseService.findCourseByInstructorID(id);
         }
 
+    @GetMapping("/view")
 
+    public List<CourseModel> findAll() {
+        return CourseService.findAll();
+    }
 
 
 
