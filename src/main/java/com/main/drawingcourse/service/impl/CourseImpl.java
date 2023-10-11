@@ -79,7 +79,14 @@ public class CourseImpl implements ICourseService {
         return courseModels;
     }
 
-
+    @Override
+    public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
+        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price,end_price);
+        List<CourseModel> courseModels = courseEntity.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+        return courseModels;
+    }
 
 
 }

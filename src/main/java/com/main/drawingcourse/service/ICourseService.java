@@ -18,4 +18,6 @@ public interface ICourseService {
 
     List<CourseModel> findCourseByInstructorID(int instructor_id);
 
+    List<CourseModel> findCoursesByPriceRange(double start_price, double end_price);
+
 }
