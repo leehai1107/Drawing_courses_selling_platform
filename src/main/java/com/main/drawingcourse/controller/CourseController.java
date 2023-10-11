@@ -5,6 +5,8 @@ import com.main.drawingcourse.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+
 import java.util.List;
 
 @RestController
@@ -13,20 +15,28 @@ public class CourseController {
     @Autowired
     ICourseService CourseService;
 
-    @GetMapping(value = "/{id}")
-    public CourseModel GetCoursebyid(@PathVariable int id){
-        return  CourseService.GetCoursebyid(id);
-
-    }
 
     @PostMapping(value = "/add")
     public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
         return CourseService.AddCourse(courseModel);
     }
 
+    @GetMapping(value = "/find-by-title")
+    public CourseModel findByCourseName(@RequestParam("title") String title) {
+        return CourseService.findByCourseTitle(title);
+    }
+
+    @GetMapping(value = "/find-by-InstructorId/{id}")
+    public List<CourseModel> findCourseByIntructorID(@PathVariable("id") int id){
+        return CourseService.findCourseByInstructorID(id);
+        }
+
     @GetMapping("/view")
 
     public List<CourseModel> findAll() {
         return CourseService.findAll();
     }
+
+
+
 }

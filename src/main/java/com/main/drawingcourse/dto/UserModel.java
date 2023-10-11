@@ -18,7 +18,6 @@ public class UserModel {
 	private String avatar;
 	private LocalDate dob;
 	private boolean sex;
-	private String email;
 	private String description;
 	private String fullname;
 }

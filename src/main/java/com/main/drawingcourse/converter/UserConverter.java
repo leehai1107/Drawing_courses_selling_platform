@@ -23,8 +23,26 @@ public class UserConverter {
 		entity.setDescription(model.getDescription());
 		entity.setStatus(model.getStatus());
 		entity.setFullname(model.getFullname());
+		entity.setDob(model.getDob());
+		entity.setStatus(model.getStatus());
+		entity.setSex(model.isSex());
 		
 		return entity;
+	}
+
+	public UserModel toDto(User entity){
+		UserModel dto = new UserModel();
+		dto.setId(entity.getUserId());
+		dto.setUserName(entity.getUserName());
+		dto.setPassword(entity.getPassword());
+		dto.setAvatar(entity.getAvatar());
+		dto.setRoleId(entity.getRole().getRoleId());
+		dto.setDescription(entity.getDescription());
+		dto.setFullname(entity.getFullname());
+		dto.setDob(entity.getDob());
+		dto.setStatus(entity.getStatus());
+		dto.setSex(entity.getSex());
+		return dto;
 	}
 
 }
