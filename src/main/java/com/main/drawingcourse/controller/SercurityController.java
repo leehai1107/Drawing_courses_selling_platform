@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.main.drawingcourse.converter.UserConverter;
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.RefreshToken;
+import com.main.drawingcourse.entity.User;
 import com.main.drawingcourse.jwt.JwtResponse;
 import com.main.drawingcourse.jwt.JwtUtility;
 import com.main.drawingcourse.jwt.RefreshTokenRequest;
@@ -125,4 +126,16 @@ public class SercurityController {
 		userInfo.setStatus(true);
         return userService.addUser(converter.toEntity(userInfo));
     }
+	
+	@PostMapping("/forgot-password/{email}")
+	public String forgotPassword(@PathVariable String email) {
+		String result="";
+		User user = userService.findUserByUserName(email);
+		if(user !=null) {
+			userService.sendEmail(user);
+		}
+		
+		return result;
+	}
+	
 }
