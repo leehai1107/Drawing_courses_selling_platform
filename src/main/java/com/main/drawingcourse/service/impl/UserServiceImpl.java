@@ -48,8 +48,8 @@ public class UserServiceImpl implements IUserService {
 		try {
 			String subject = "MẬT KHẨU ĐĂNG NHẬP MỚI";
 			String newPassword = generateRandomPassword(8);
-			String text = "Mật khẩu đăng nhập của tài khoản <h5>" + user.getUserName() + "</h5> là \n\n<h5>"
-					+ newPassword + "</h5>\n\n <h5>VUI LÒNG KHÔNG CHIA SẺ MẬT KHẨU NÀY CHO AI KHÁC!</h5> Xin cảm ơn.";
+			String text = "Mật khẩu đăng nhập của tài khoản " + user.getUserName() + " là \n\n"
+					+ newPassword + "\n\n VUI LÒNG KHÔNG CHIA SẺ MẬT KHẨU NÀY CHO AI KHÁC! Xin cảm ơn.";
 
 			emailSender.sendEmail(user.getUserName(), text, subject);
 			userRepository.saveNewPassword(passwordEncoder.encode(newPassword), user.getUserName());

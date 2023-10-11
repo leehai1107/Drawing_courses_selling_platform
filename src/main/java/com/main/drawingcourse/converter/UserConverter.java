@@ -21,6 +21,7 @@ public class UserConverter {
 		entity.setAvatar(model.getAvatar());
 		entity.setRole(roleRepository.getReferenceById(model.getRoleId()));
 		entity.setDescription(model.getDescription());
+		entity.setStatus(model.getStatus());
 		entity.setFullname(model.getFullname());
 		entity.setDob(model.getDob());
 		entity.setStatus(model.getStatus());
