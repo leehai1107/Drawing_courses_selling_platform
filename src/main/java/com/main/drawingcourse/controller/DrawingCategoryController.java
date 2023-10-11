@@ -4,22 +4,12 @@ import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.DrawingCategoryModel;
 import com.main.drawingcourse.service.IDrawingCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("category")
-=======
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("public/category")
->>>>>>> update/main
 
 public class DrawingCategoryController {
     @Autowired
@@ -29,11 +19,8 @@ public class DrawingCategoryController {
     public DrawingCategoryModel AddCategory(@RequestBody DrawingCategoryModel drawingCategoryModel) {
         return drawingCategoryService.AddCategory(drawingCategoryModel);
     }
-<<<<<<< HEAD
-=======
 @GetMapping("/ViewAllDrawingCategories")
     public List<DrawingCategoryModel> findAll() {
         return drawingCategoryService.findAll();
     }
->>>>>>> update/main
 }
