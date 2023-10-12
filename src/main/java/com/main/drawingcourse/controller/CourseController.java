@@ -37,6 +37,12 @@ public class CourseController {
         return CourseService.findAll();
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteCourseById(@PathVariable int id) {
+
+        CourseService.DeleteCoursebyid(id);
+    }
+
 
 
 }

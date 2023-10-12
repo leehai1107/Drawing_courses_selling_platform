@@ -18,4 +18,8 @@ public interface ICourseService {
 
     List<CourseModel> findCourseByInstructorID(int instructor_id);
 
+    void DeleteCoursebyid (int id);
+
+
+
 }

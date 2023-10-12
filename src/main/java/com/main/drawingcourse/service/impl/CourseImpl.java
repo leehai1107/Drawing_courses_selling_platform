@@ -79,10 +79,21 @@ public class CourseImpl implements ICourseService {
         return courseModels;
     }
 
+    @Override
+    public void DeleteCoursebyid(int id) {
+        var course = courseRepository.findById(id).orElse(null);
+        if(course != null){
+            var courseDTO = courseConverter.toDTO(course);
+            courseRepository.delete(course);
+        }
+    }
+
 
 
 
 }
+
+
 
 
     //    public List<DrawingCategory> findAll() {
