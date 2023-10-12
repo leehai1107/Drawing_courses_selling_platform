@@ -38,7 +38,4 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 			value = "SELECT * FROM USERS c WHERE c.role_id = 3",
 			nativeQuery = true)
 	List<User> findAllCustomer();
-
-	void saveNewPassword(String password,String user_name);
-
 }
