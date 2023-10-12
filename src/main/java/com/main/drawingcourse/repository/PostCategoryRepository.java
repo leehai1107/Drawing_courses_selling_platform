@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PostCategoryRepository extends JpaRepository<PostCategory, Integer> {
     PostCategory findOneByPostCategoryId(int id);
 
+
 }

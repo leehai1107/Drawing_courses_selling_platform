@@ -10,10 +10,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostModel {
+
     private int postId;
     private String title;
     private String content;
     private LocalDate postDate;
     private int userId;
     private int postCategoryId;
+
+
+
 }

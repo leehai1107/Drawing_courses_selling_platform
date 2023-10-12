@@ -8,10 +8,15 @@ import com.main.drawingcourse.repository.PostCategoryRepository;
 import com.main.drawingcourse.repository.PostRepository;
 import com.main.drawingcourse.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.entity.Post;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class PostConverter {
+
     @Autowired
     PostRepository postRepository;
     @Autowired
@@ -41,6 +46,7 @@ public class PostConverter {
         dto.setUserId(post.getUser().getUserId());
         return dto;
     }
+
 
 
 
