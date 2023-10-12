@@ -41,7 +41,7 @@ public class CourseImpl implements ICourseService {
 
     @Override
     public CourseModel findByCourseTitle(String title) {
-        Course course = courseRepository.findAllCoursesByTitle(title);
+        Course course = courseRepository.findCoursesByTitle(title);
         if (course != null) {
             return courseConverter.toDTO(course);
 

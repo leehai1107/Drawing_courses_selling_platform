@@ -19,12 +19,14 @@ import org.springframework.stereotype.Repository;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
-    Course findCourseByDescription(String title);
+
+
+    Course findCourseByTitle(String title);
 
     @Query(
             value = "SELECT * FROM COURSES c WHERE c.title = :title",
             nativeQuery = true)
-    Course findAllCoursesByTitle(@Param("title") String title);
+    Course findCoursesByTitle(@Param("title") String title);
 
     @Query(
             value = "SELECT * FROM COURSES c WHERE c.instructor_id = :id",
