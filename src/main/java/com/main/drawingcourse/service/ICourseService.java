@@ -24,10 +24,9 @@ public interface ICourseService {
 
     Course findByCoursebyId(int id);
 
-<<<<<<< HEAD
-=======
+
     List<CourseModel> findCoursesByPriceRange(double start_price, double end_price);
->>>>>>> 0824267e742e2f035f44a358aa533ad88c0e7100
+
 
 
 }
