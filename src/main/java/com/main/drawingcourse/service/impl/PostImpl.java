@@ -2,6 +2,7 @@ package com.main.drawingcourse.service.impl;
 
 import com.main.drawingcourse.converter.PostConverter;
 
+import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.PostModel;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.DrawingCategory;
@@ -48,10 +49,9 @@ public class PostImpl implements IPostService {
 
     @Override
     public void deleteByPostId(int id) {
-//     this.postRepository.deleteByPostId(id);
-        Post postEnitity = postRepository.findByPostId(id);
-        if (postEnitity != null) {
-            this.postRepository.deleteByPostId(id);
-        }
+     this.postRepository.deleteByPostId(id);
+
     }
+
+
 }

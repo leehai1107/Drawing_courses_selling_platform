@@ -23,6 +23,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
     Course findCourseByTitle(String title);
 
+
     @Query(
             value = "SELECT * FROM COURSES c WHERE c.title = :title",
             nativeQuery = true)

@@ -9,4 +9,5 @@ public interface IPostService {
 
     void deleteByPostId(int id);
 
+
 }
