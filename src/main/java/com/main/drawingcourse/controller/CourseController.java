@@ -43,7 +43,6 @@ public class CourseController {
         }
 
     @GetMapping("/view")
-
     public List<CourseModel> findAll() {
         return CourseService.findAll();
     }
@@ -78,6 +77,14 @@ public class CourseController {
 
 
 
+
+
+
+
+    @GetMapping(value = "/find-Course-By-PriceRange/{start_price}/{end_price}")
+    public List<CourseModel> findCourseByIntructorID(@PathVariable("start_price") Double start_price, @PathVariable("end_price") Double end_price){
+        return CourseService.findCoursesByPriceRange(start_price,end_price);
+    }
 
 
 

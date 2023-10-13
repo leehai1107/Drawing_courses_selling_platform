@@ -17,10 +17,14 @@ public interface ICourseService {
 
     List<CourseModel> findCourseByInstructorID(int instructor_id);
 
+
     void DeleteCoursebyid (int id);
 
     void UpdateCourse(CourseModel CourseModel);
 
     Course findByCoursebyId(int id);
+
+    List<CourseModel> findCoursesByPriceRange(double start_price, double end_price);
+
 
 }

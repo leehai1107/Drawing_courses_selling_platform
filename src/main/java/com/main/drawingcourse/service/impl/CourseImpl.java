@@ -53,7 +53,7 @@ public class CourseImpl implements ICourseService {
 
     @Override
     public CourseModel findByCourseTitle(String title) {
-        Course course = courseRepository.findAllCoursesByTitle(title);
+        Course course = courseRepository.findCoursesByTitle(title);
         if (course != null) {
             return courseConverter.toDTO(course);
 
@@ -93,6 +93,7 @@ public class CourseImpl implements ICourseService {
     }
 
     @Override
+
     public void DeleteCoursebyid(int id) {
         var course = courseRepository.findById(id).orElse(null);
         if (course != null) {
@@ -123,6 +124,15 @@ public class CourseImpl implements ICourseService {
             if (level != null) {
                 course.setLevel(level);
             }
+
+    public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
+        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price,end_price);
+        List<CourseModel> courseModels = courseEntity.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+        return courseModels;
+    }
+
 
             var userByIdAndRole = userRepository.findByIdAndRole(course.getUser().getUserId()).orElse(null);
             if (userByIdAndRole != null) {
