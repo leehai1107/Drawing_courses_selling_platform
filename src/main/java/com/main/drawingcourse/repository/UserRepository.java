@@ -21,8 +21,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	@Modifying
     @Query(value = "update users set password =?1 where user_name=?2 ",nativeQuery = true)
-
-	void saveNewPassword(String newpassword,String email);
+		void saveNewPassword(String newpassword,String email);
 
 	@Query(
 			value = "SELECT * FROM USERS c WHERE c.role_id = 4",
@@ -38,4 +37,5 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 			value = "SELECT * FROM USERS c WHERE c.role_id = 3",
 			nativeQuery = true)
 	List<User> findAllCustomer();
+
 }
