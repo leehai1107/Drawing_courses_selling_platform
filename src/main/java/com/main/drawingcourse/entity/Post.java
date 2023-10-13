@@ -36,8 +36,9 @@ public class Post {
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@OneToMany(mappedBy = "post")
-	private Collection<PostCategory> postCategories;
+	@ManyToOne
+	@JoinColumn(name="postCategoryId")
+	private PostCategory postCategory;
 	
 	@OneToMany(mappedBy = "post")
 	private Collection<PostImage> postImages;

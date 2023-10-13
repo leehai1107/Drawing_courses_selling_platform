@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.main.drawingcourse.converter.UserConverter;
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.RefreshToken;
+import com.main.drawingcourse.entity.User;
 import com.main.drawingcourse.jwt.JwtResponse;
 import com.main.drawingcourse.jwt.JwtUtility;
 import com.main.drawingcourse.jwt.RefreshTokenRequest;
@@ -56,6 +57,7 @@ public class SercurityController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticationUser(@Valid @RequestBody LoginRequest loginRequest){
+		System.out.println(loginRequest.getUsername());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		
@@ -82,6 +84,7 @@ public class SercurityController {
 	@PostMapping("/signup")
     public String addCustomer(@RequestBody UserModel userInfo) {
 		userInfo.setRoleId(3);//customer roleId = 3
+		userInfo.setStatus(true);
         return userService.addUser(converter.toEntity(userInfo));
     }
 	
@@ -111,10 +114,28 @@ public class SercurityController {
 		return ResponseEntity.ok("Logout successful!");
 	}
 	
-	@PostMapping("/addStaff")
+	@PostMapping("/add-staff")
     public String addStaff(@RequestBody UserModel userInfo) {
 		userInfo.setRoleId(2);//Staff roleId = 2
+		userInfo.setStatus(true);
         return userService.addUser(converter.toEntity(userInfo));
     }
+	
+	@PostMapping("/add-instructor")
+    public String addInstructor(@RequestBody UserModel userInfo) {
+		userInfo.setRoleId(4);//instructor roleId = 2
+		userInfo.setStatus(true);
+        return userService.addUser(converter.toEntity(userInfo));
+    }
+	
+	@PostMapping("/forgot-password/{email}")
+	public String forgotPassword(@PathVariable String email) {
+		String result="Do not find Email!";
+		User user = userService.findUserByUserName(email);
+		if(user !=null) {
+			result = userService.sendEmail(user);
+		}
+		return result;
+	}
 	
 }

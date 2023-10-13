@@ -2,6 +2,7 @@ package com.main.drawingcourse.service.impl;
 
 import com.main.drawingcourse.converter.CourseConverter;
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.DrawingCategory;
 import com.main.drawingcourse.repository.CourseRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseImpl implements ICourseService {
@@ -33,22 +35,57 @@ public class CourseImpl implements ICourseService {
         courseEntity = courseRepository.save(courseEntity);
 
         return courseConverter.toDTO(courseEntity);
-//courseRepository.createCourse(courseModel.getCourseId(),courseModel.getTitle(),courseModel.getDescription(),courseModel.getPrice(),courseModel.getRating(),courseModel.getProgress(),courseModel.getLevelId(),courseModel.getDrawCategoryId(),courseModel.getInstructorId(),courseModel.getOrderId());
 
 
     }
 
     @Override
-    public CourseModel GetCoursebyid(int id) {
-        var course = courseRepository.findById(id).orElse(null);
-        if(course != null){
+    public CourseModel findByCourseTitle(String title) {
+        Course course = courseRepository.findAllCoursesByTitle(title);
+        if (course != null) {
             return courseConverter.toDTO(course);
+
+
         }
         return new CourseModel();
     }
+        @Override
+        public CourseModel GetCoursebyid( int id){
+            var course = courseRepository.findById(id).orElse(null);
+            if (course != null) {
+                return courseConverter.toDTO(course);
+
+            }
+            return new CourseModel();
+        }
+
+        @Override
+        public List<CourseModel> findAll() {
+            List<Course> courses = courseRepository.findAll();
+            List<CourseModel> courseModels = courses.stream()
+                    .map(courseConverter::toDTO)
+                    .collect(Collectors.toList());
+
+            return courseModels;
+        }
+
+    @Override
+    public List<CourseModel> findCourseByInstructorID(int instructor_id) {
+        List<Course> courseEntity = courseRepository.findAllCoursesByInstructorId(instructor_id);
+        List<CourseModel> courseModels = courseEntity.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+
+        return courseModels;
+    }
 
 
-//    public List<DrawingCategory> findAll() {
+
+
+}
+
+
+    //    public List<DrawingCategory> findAll() {
 //        return categoryRepository.findAll();
 //    }
 //
@@ -67,5 +104,4 @@ public class CourseImpl implements ICourseService {
 //    public void deleteAll() {
 //        categoryRepository.deleteAll();
 //    }ư
-}
-//}
+

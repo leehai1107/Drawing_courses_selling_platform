@@ -17,7 +17,5 @@ public class CourseModel {
     private int levelId;
     private int drawCategoryId;
     private int instructorId;
-    private int orderId;
-
 
 }
