@@ -1,22 +1,20 @@
 package com.main.drawingcourse.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.main.drawingcourse.converter.CourseConverter;
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.DrawingCategory;
-import com.main.drawingcourse.entity.Level;
-import com.main.drawingcourse.entity.User;
 import com.main.drawingcourse.repository.CourseRepository;
 import com.main.drawingcourse.repository.DrawingCategoryRepository;
 import com.main.drawingcourse.repository.LevelRepository;
 import com.main.drawingcourse.repository.UserRepository;
 import com.main.drawingcourse.service.ICourseService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CourseImpl implements ICourseService {
@@ -125,15 +123,6 @@ public class CourseImpl implements ICourseService {
                 course.setLevel(level);
             }
 
-    public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
-        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price,end_price);
-        List<CourseModel> courseModels = courseEntity.stream()
-                .map(courseConverter::toDTO)
-                .collect(Collectors.toList());
-        return courseModels;
-    }
-
-
             var userByIdAndRole = userRepository.findByIdAndRole(course.getUser().getUserId()).orElse(null);
             if (userByIdAndRole != null) {
                 course.setUser(userByIdAndRole);
@@ -145,6 +134,15 @@ public class CourseImpl implements ICourseService {
             // You can return the updated CourseModel if needed
             CourseModel updatedCourseModel = courseConverter.toDTO(course);
         }
+    }
+    
+    @Override
+	public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
+        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price,end_price);
+        List<CourseModel> courseModels = courseEntity.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+        return courseModels;
     }
 
 
