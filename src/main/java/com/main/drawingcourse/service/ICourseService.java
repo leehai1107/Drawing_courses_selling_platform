@@ -1,7 +1,6 @@
 package com.main.drawingcourse.service;
 
 import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.Course;
 
 import java.util.List;
@@ -21,5 +20,7 @@ public interface ICourseService {
     void DeleteCoursebyid (int id);
 
 
+    void EditCourse1(Course CourseModel, int id);
+    Course findByCoursebyId(int id);
 
 }
