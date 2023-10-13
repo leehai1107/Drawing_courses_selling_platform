@@ -1,9 +1,12 @@
 package com.main.drawingcourse.service.impl;
 
 import com.main.drawingcourse.converter.PostConverter;
+import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.LevelModel;
 import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Post;
+import com.main.drawingcourse.entity.PostCategory;
 import com.main.drawingcourse.repository.PostRepository;
 import com.main.drawingcourse.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +30,16 @@ public class PostImpl implements IPostService {
 
         return Posts;
     }
+
+    @Override
+    public List<PostModel> findPostByPostcategoryId(int id) {
+        List<Post> postEntity = postRepository.findAllPostByPostCategoryID(id);
+        List<PostModel> postModels = postEntity.stream()
+                .map(postConverter::toDTO)
+                .collect(Collectors.toList());
+
+        return postModels;
+
+    }
+
 }
