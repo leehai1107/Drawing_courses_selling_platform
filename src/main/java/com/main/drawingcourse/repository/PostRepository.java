@@ -16,5 +16,5 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             value = "SELECT * FROM POSTS p WHERE p.post_category_id = :id",
             nativeQuery = true)
     List<Post> findAllPostByPostCategoryID(@Param("id") int id);
-    
+
 }
