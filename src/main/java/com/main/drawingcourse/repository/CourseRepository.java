@@ -30,32 +30,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     List<Course> findAllCoursesByInstructorId(@Param("id") int id);
 
 
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE Courses AS c " +
-            "SET c.title = :title, " +
-            "    c.description = :description, " +
-            "    c.price = :price, " +
-            "    c.rating = :rating " +
-            "FROM Courses AS c " +
-            "WHERE " +
-            "    c.course_id = :Courseid " +
-            "    AND EXISTS (SELECT 1 FROM Levels AS l WHERE l.level_id = :levelId) " +
-            "    AND EXISTS (SELECT 1 FROM DrawingCategories AS dc WHERE dc.draw_category_id = :drawCategoryId) " +
-            "    AND EXISTS (SELECT 1 FROM Users AS i WHERE i.user_id = :instructorId)",
-            nativeQuery = true)
 
-
-    void editCourse(
-            @Param("courseid") int Courseid,
-            @Param("title") String title,
-            @Param("description") String description,
-            @Param("price") Double price,
-            @Param("rating") int rating,
-            @Param("levelId") int levelId,
-            @Param("drawCategoryId") int drawCategoryId,
-            @Param("instructorId") int instructorId
-    );
 
 
 
@@ -63,5 +38,5 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     @Query(value = "select * from COURSES where courseId = ?", nativeQuery = true)
     Course findCourseByID(@Param("id") int id);
 
-    void editCourse(Course course, int id);
+
 }

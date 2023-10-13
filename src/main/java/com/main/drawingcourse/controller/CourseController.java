@@ -54,21 +54,32 @@ public class CourseController {
         CourseService.DeleteCoursebyid(id);
     }
 
-
-
-
-
-
-    @PutMapping("/{id}")
-    public ResponseEntity<String> editCourse(@RequestBody Course CourseModel, @PathVariable int id) {
-        try {
-            CourseService.EditCourse1(CourseModel, id);
-            return ResponseEntity.ok("Course updated successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating course: " + e.getMessage());
+    @PutMapping("edit/{id}")
+    public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
+        CourseModel courseModel1 = CourseService.GetCoursebyid(id);
+        if(courseModel!=null){
+            courseModel1.setTitle(courseModel.getTitle());
+            courseModel1.setDescription(courseModel.getDescription());
+            courseModel1.setPrice(courseModel.getPrice());
+            courseModel1.setRating(courseModel.getRating());
+            courseModel1.setProgress(courseModel.getProgress());
+            courseModel1.setLevelId(courseModel.getLevelId());
+            courseModel1.setDrawCategoryId(courseModel.getDrawCategoryId());
+            courseModel1.setInstructorId(courseModel.getInstructorId());
+            CourseService.UpdateCourse( courseModel1);
         }
+
+        // You can return a response as needed
     }
-}
+
+
+    }
+
+
+
+
+
+
 
 
 

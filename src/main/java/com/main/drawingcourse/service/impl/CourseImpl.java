@@ -101,41 +101,40 @@ public class CourseImpl implements ICourseService {
         }
     }
 
-
-
     @Override
-    public void EditCourse1(Course CourseModel, int id) {
-        var course = courseRepository.findById(id).orElse(null);
-        if (course != null) {
-            course.setTitle(CourseModel.getTitle());
-            course.setDescription(CourseModel.getDescription());
-            course.setPrice(CourseModel.getPrice());
-            course.setRating(CourseModel.getRating());
-            Level level = levelRepository.findById(CourseModel.getLevel().getLevelId()).orElse(null);
-            course.setLevel(level);
+    public void UpdateCourse(CourseModel CourseModel) {
+        Course course = courseConverter.toEntity(CourseModel);
 
-            // Assuming your Course entity has a `drawingCategory` property of type DrawingCategory
-            DrawingCategory drawingCategory = drawingCategoryRepository.findById(CourseModel.getDrawingCategory().getDrawCategoryId()).orElse(null);
-            course.setDrawingCategory(drawingCategory);
+        if(course != null){
+            // Update the course entity with data from CourseModel
+            course.setDescription(course.getDescription());
+            course.setPrice(course.getPrice());
+            course.setProgress(course.getProgress());
+            course.setRating(course.getRating());
+            course.setTitle(course.getTitle());
 
-            // Assuming your Course entity has an `instructor` property of type User
-            User instructor = userRepository.findById(CourseModel.getUser().getUserId()).orElse(null);
+            // Update the drawing category, level, and user, similar to the way you did it
+            var draw = drawingCategoryRepository.findById(course.getDrawingCategory().getDrawCategoryId()).orElse(null);
+            if (draw != null) {
+                course.setDrawingCategory(draw);
+            }
 
-            // Assuming your CourseModel also has necessary properties for level, drawingCategory, and user
-            // Modify the code accordingly to set these properties.
+            var level = levelRepository.findById(course.getLevel().getLevelId()).orElse(null);
+            if (level != null) {
+                course.setLevel(level);
+            }
 
-            // Save the modified course
-//            courseRepository.editCourse(course.getCourseId(),
-//                    course.getTitle(),
-//                    course.getDescription(),
-//                    course.getPrice(),
-//                    course.getRating(),
-//                    course.getLevel().getLevelId(),
-//                    course.getDrawingCategory().getDrawCategoryId(),
-//                    course.getUser().getUserId());
-            courseRepository.editCourse(course,id);
+            var userByIdAndRole = userRepository.findByIdAndRole(course.getUser().getUserId()).orElse(null);
+            if (userByIdAndRole != null) {
+                course.setUser(userByIdAndRole);
+            }
+
+            // Finally, save the updated course entity
+            course = courseRepository.save(course);
+
+            // You can return the updated CourseModel if needed
+            CourseModel updatedCourseModel = courseConverter.toDTO(course);
         }
-
     }
 
 

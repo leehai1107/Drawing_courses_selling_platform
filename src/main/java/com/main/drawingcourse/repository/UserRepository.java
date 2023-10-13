@@ -41,7 +41,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 			nativeQuery = true)
 	List<User> findAllCustomer();
 	@Query(
-			value = "SELECT * FROM USERS c WHERE c.userId = :id  AND c.role_id = 4 ",
+			value = "SELECT * FROM USERS c WHERE c.user_Id = :id  AND c.role_id = 4 ",
 			nativeQuery = true
 	)
 	Optional<User> findByIdAndRole( int id);
