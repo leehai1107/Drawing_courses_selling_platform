@@ -64,4 +64,6 @@ public class Course {
 
 	@OneToMany(mappedBy = "course")
 	private Collection<CourseImage> courseImages;
+
+
 }
