@@ -1,5 +1,6 @@
 package com.main.drawingcourse.service;
 
+import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.User;
 
@@ -17,4 +18,6 @@ public interface IUserService {
 	List<UserModel> findAllStaff();
 	List<UserModel> findAllCustomer();
 
+	void Edit_User(UserModel userModel);
+	UserModel GetUserbyid(int id);
 }
