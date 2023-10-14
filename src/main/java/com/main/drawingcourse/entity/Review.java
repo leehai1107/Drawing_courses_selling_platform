@@ -21,15 +21,13 @@ public class Review {
 	@Column
 	private String comment;
 	
-	@Column
-	private int rating;
 	
 	@Column
 	private LocalDate reviewDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "orderId")
-	private Order order;
+	@JoinColumn(name = "id")
+	private Course_Order course_Order;
 	
 
 }

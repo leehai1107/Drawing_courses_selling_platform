@@ -234,3 +234,29 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,intellij,maven
+
+
+# Logs
+Client/logs
+Client/*.log
+Client/npm-debug.log*
+Client/yarn-debug.log*
+Client/yarn-error.log*
+Client/pnpm-debug.log*
+Client/lerna-debug.log*
+
+Client/node_modules
+Client/dist
+Client/dist-ssr
+Client/*.local
+
+# Editor directories and files
+Client/.vscode/*
+Client/!.vscode/extensions.json
+Client/.idea
+Client/.DS_Store
+Client/*.suo
+Client/*.ntvs*
+Client/*.njsproj
+Client/*.sln
+Client/*.sw?
