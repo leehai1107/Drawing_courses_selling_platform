@@ -24,7 +24,9 @@ import com.main.drawingcourse.jwt.JwtResponse;
 import com.main.drawingcourse.jwt.JwtUtility;
 import com.main.drawingcourse.jwt.RefreshTokenRequest;
 import com.main.drawingcourse.jwt.RefreshTokenResponse;
+import com.main.drawingcourse.payload.ForgotPasswordRequest;
 import com.main.drawingcourse.payload.LoginRequest;
+import com.main.drawingcourse.payload.LogoutRequest;
 import com.main.drawingcourse.repository.RefreshTokenRepository;
 import com.main.drawingcourse.service.IUserService;
 import com.main.drawingcourse.service.impl.RefreshTokenService;
@@ -108,9 +110,9 @@ public class SercurityController {
         );
 	}
 	
-	@PostMapping("/logout/{userName}")
-	public ResponseEntity<?> logout(@PathVariable String userName) {
-		refreshTokenService.removeFromInstance((refreshTokenRepository.findByUser(userService.findUserByUserName(userName))));
+	@PostMapping("/logout")
+	public ResponseEntity<?> logout(@RequestBody LogoutRequest userName) {
+		refreshTokenService.removeFromInstance((refreshTokenRepository.findByUser(userService.findUserByUserName(userName.getEmail()))));
 		return ResponseEntity.ok("Logout successful!");
 	}
 	
@@ -128,10 +130,10 @@ public class SercurityController {
         return userService.addUser(converter.toEntity(userInfo));
     }
 	
-	@PostMapping("/forgot-password/{email}")
-	public String forgotPassword(@PathVariable String email) {
+	@PostMapping("/forgot-password")
+	public String forgotPassword(@RequestBody ForgotPasswordRequest email) {
 		String result="Do not find Email!";
-		User user = userService.findUserByUserName(email);
+		User user = userService.findUserByUserName(email.getEmail());
 		if(user !=null) {
 			result = userService.sendEmail(user);
 		}

@@ -16,6 +16,7 @@ public class CourseModel {
     private Float progress;
     private int levelId;
     private int drawCategoryId;
+
     private int instructorId;
 
 }
