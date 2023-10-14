@@ -40,10 +40,7 @@ public class Order {
 	private Boolean orderStatus;
 	
 	@OneToMany(mappedBy = "order")
-	private Collection<Review> reviews;
-	
-	@ManyToMany(mappedBy = "orders")
-	private Collection<Course> courses;
+	private Collection<Course_Order> course_Orders;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")

@@ -31,7 +31,7 @@ public class Course {
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 
-	@Column(columnDefinition = "nvarchar(MAX) not null")
+	@Column(columnDefinition = "TEXT not null")
 	private String description;
 
 	@Column
@@ -58,12 +58,11 @@ public class Course {
 	@OneToMany(mappedBy = "course")
 	private Collection<Unit> units;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "course_order", joinColumns = @JoinColumn(name = "courseId"), inverseJoinColumns = @JoinColumn(name = "orderId"))
-	private Collection<Order> orders;
-
 	@OneToMany(mappedBy = "course")
-	private Collection<CourseImage> courseImages;
+	private Collection<Course_Order> course_Orders;
+	
+	@Column
+	private String courseImage;
 
 
 }
