@@ -32,6 +32,9 @@ public class Order {
 	
 	@Column
 	private LocalDate orderDate;
+	
+	@Column
+	private Double price;
 
 	@Column
 	private Boolean orderStatus;
@@ -46,7 +49,4 @@ public class Order {
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@ManyToOne
-	@JoinColumn(name = "couponId")
-	private Coupon coupon;
 }
