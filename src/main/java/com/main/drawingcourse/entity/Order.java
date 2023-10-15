@@ -32,21 +32,18 @@ public class Order {
 	
 	@Column
 	private LocalDate orderDate;
+	
+	@Column
+	private Double price;
 
 	@Column
 	private Boolean orderStatus;
 	
 	@OneToMany(mappedBy = "order")
-	private Collection<Review> reviews;
-	
-	@ManyToMany(mappedBy = "orders")
-	private Collection<Course> courses;
+	private Collection<Course_Order> course_Orders;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@ManyToOne
-	@JoinColumn(name = "couponId")
-	private Coupon coupon;
 }

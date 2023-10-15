@@ -8,6 +8,7 @@ import com.main.drawingcourse.converter.UserConverter;
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.Course;
+import com.main.drawingcourse.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	UserConverter userConverter;
+
+	@Autowired
+	RoleRepository roleRepository;
 
 	@Override
 	public User findUserByUserName(String userName) {
@@ -140,6 +144,42 @@ public class UserServiceImpl implements IUserService {
 		List<UserModel> userModels = userEntity.stream().map(userConverter::toDto).collect(Collectors.toList());
 
 		return userModels;
+	}
+
+	@Override
+	public void Edit_User(UserModel userModel) {
+		User user = userConverter.toEntity(userModel);
+
+			user.setAvatar(user.getAvatar());
+			user.setDescription(user.getDescription());
+			user.setDob(user.getDob());
+			user.setFullname(user.getFullname());
+			user.setPassword(user.getPassword());
+			user.setSex(user.getSex());
+			user.setStatus(user.getStatus());
+			user.setUserName(user.getUserName());
+
+			var u = roleRepository.findById(user.getUserId()).orElse(null);
+			if(u !=null){
+				user.setRole(u);
+			}
+			user = userRepository.save(user);
+
+			// You can return the updated CourseModel if needed
+			UserModel updatedUserModel = userConverter.toDto(user);
+
+
+	}
+
+	@Override
+	public UserModel GetUserbyid(int id) {
+		var user = userRepository.findById(id).orElse(null);
+		if(user!= null){
+			return userConverter.toDto(user);
+		}
+		return new UserModel();
+
+
 	}
 
 	private String generateRandomPassword(int length) {

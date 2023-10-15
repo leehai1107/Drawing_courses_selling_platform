@@ -1,12 +1,14 @@
 package com.main.drawingcourse.loader;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.main.drawingcourse.entity.Role;
 import com.main.drawingcourse.repository.RoleRepository;
 
 @Component
+@Order(1)
 public class DefaultRoleLoader implements CommandLineRunner {
 	private final RoleRepository roleRepository;
 
