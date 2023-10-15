@@ -20,4 +20,6 @@ public interface ICourseService {
 
     List<CourseModel> findCoursesByPriceRange(double start_price, double end_price);
 
+    List<CourseModel> findAllCourseHasOrder();
+
 }

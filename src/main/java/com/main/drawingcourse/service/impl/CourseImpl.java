@@ -29,14 +29,17 @@ public class CourseImpl implements ICourseService {
 
     @Override
     public CourseModel AddCourse(CourseModel courseModel) {
+        Course existingCourse = courseRepository.findCoursesByTitleAndInstructorID(courseModel.getTitle(), courseModel.getInstructorId());
+        if (existingCourse !=null) {
+            throw new IllegalArgumentException("Course already exists");
+        }
+
         DrawingCategory categoryEntity = categoryRepository.findOneByDrawCategoryId(courseModel.getDrawCategoryId());
         Course courseEntity = courseConverter.toEntity(courseModel);
         courseEntity.setDrawingCategory(categoryEntity);
         courseEntity = courseRepository.save(courseEntity);
 
         return courseConverter.toDTO(courseEntity);
-
-
     }
 
     @Override
@@ -85,6 +88,16 @@ public class CourseImpl implements ICourseService {
         List<CourseModel> courseModels = courseEntity.stream()
                 .map(courseConverter::toDTO)
                 .collect(Collectors.toList());
+        return courseModels;
+    }
+
+    @Override
+    public List<CourseModel> findAllCourseHasOrder() {
+        List<Course> courseEntity = courseRepository.findAllCourseHasOrder();
+        List<CourseModel> courseModels = courseEntity.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+
         return courseModels;
     }
 

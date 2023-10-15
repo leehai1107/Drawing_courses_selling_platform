@@ -39,6 +39,10 @@ public class PostImpl implements IPostService {
 
     @Override
     public PostModel AddPost(PostModel postModel) {
+        Post existingPost  = postRepository.findPostByTitleAndUserID(postModel.getTitle(), postModel.getUserId());
+        if(existingPost != null){
+            throw new IllegalArgumentException("Post is already exists");
+        }
 
         PostCategory postCategory = categoryRepository.findOneByPostCategoryId(postModel.getPostCategoryId());
         Post postEntity = postConverter.toEntity(postModel);

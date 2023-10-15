@@ -24,7 +24,7 @@ public class DrawingCategoryController {
     @Autowired
     IDrawingCategoryService drawingCategoryService;
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/addCategory")
     public DrawingCategoryModel AddCategory(@RequestBody DrawingCategoryModel drawingCategoryModel) {
         return drawingCategoryService.AddCategory(drawingCategoryModel);
     }

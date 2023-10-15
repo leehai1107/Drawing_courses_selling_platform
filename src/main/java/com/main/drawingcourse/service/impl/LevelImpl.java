@@ -30,6 +30,13 @@ public class LevelImpl implements ILevelService {
 
     @Override
     public LevelModel AddLevel(LevelModel levelModel) {
+
+        Level existingLevel = levelRepository.findByLevelName(levelModel.getLevelName());
+        if (existingLevel != null) {
+            throw new IllegalArgumentException("Level name is already exists");
+        }
+
+
         Level levelEntity = levelConverter.toEntity(levelModel);
         levelEntity = levelRepository.save(levelEntity);
 
