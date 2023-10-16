@@ -107,6 +107,7 @@ public class CourseImpl implements ICourseService {
         if(course != null){
             // Update the course entity with data from CourseModel
             course.setDescription(course.getDescription());
+            course.setCourseImage(course.getCourseImage());
             course.setPrice(course.getPrice());
             course.setProgress(course.getProgress());
             course.setRating(course.getRating());

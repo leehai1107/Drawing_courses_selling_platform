@@ -1,0 +1,16 @@
+package com.main.drawingcourse.repository;
+
+import com.main.drawingcourse.entity.Course;
+import com.main.drawingcourse.entity.Course_Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+
+@Repository
+public interface Course_OrderRepository extends JpaRepository<Course_Order, Integer> {
+
+}

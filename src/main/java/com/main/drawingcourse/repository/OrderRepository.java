@@ -7,4 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
+    Order findByOrderCode(String orderCode);
 }
