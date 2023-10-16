@@ -2,6 +2,7 @@ package com.main.drawingcourse.service.impl;
 
 import com.main.drawingcourse.converter.Course_OrderConverter;
 import com.main.drawingcourse.converter.OrderConverter;
+import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.Course_OrderModel;
 import com.main.drawingcourse.dto.OrderModel;
 import com.main.drawingcourse.entity.Course;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +33,7 @@ public class OrderImpl implements IOrderService {
     CourseRepository courseRepository;
     @Autowired
     Course_OrderConverter courseOrderConverter;
+
 
 
     @Override
@@ -55,6 +58,9 @@ public class OrderImpl implements IOrderService {
             for (Integer courseId : courseIds) {
                 Course_Order courseOrder = new Course_Order();
                 courseOrder.setCourse(courseRepository.findById(courseId).orElse(null));
+                var rating = courseRepository.findById(courseId).orElse(null);
+                courseOrder.setProgress(rating.getRating());
+
                 courseOrder.setOrder(order);
                 courseOrderRepository.save(courseOrder);
 
