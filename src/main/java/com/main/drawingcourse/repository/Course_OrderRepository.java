@@ -12,5 +12,8 @@ import java.time.LocalDateTime;
 
 @Repository
 public interface Course_OrderRepository extends JpaRepository<Course_Order, Integer> {
-
+    @Query("SELECT SUM(c.price) FROM Course_Order co " +
+            "JOIN co.course c " +
+            "JOIN co.order o")
+    Double getTotalSalesAmount();
 }
