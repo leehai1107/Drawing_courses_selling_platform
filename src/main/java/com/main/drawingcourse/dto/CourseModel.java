@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CourseModel {
     private int courseId;
+    private String courseImage;
     private String title;
     private String description;
     private Double price;
@@ -16,7 +17,6 @@ public class CourseModel {
     private Float progress;
     private int levelId;
     private int drawCategoryId;
-
     private int instructorId;
 
 }
