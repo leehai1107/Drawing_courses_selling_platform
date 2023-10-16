@@ -59,6 +59,7 @@ public class CourseController {
         CourseModel courseModel1 = CourseService.GetCoursebyid(id);
         if(courseModel!=null){
             courseModel1.setTitle(courseModel.getTitle());
+            courseModel1.setCourseImage(courseModel.getCourseImage());
             courseModel1.setDescription(courseModel.getDescription());
             courseModel1.setPrice(courseModel.getPrice());
             courseModel1.setRating(courseModel.getRating());
