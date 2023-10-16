@@ -31,9 +31,9 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
 
     @Query(
-            value = "SELECT * FROM POSTS p WHERE p.title = :title AND p.user_id = :id",
+            value = "SELECT * FROM POSTS p WHERE p.title = :title ",
             nativeQuery = true)
-    Post findPostByTitleAndUserID(@Param("title") String title,@Param("id") int id);
+    Post findPostByTitle(@Param("title") String title);
 
 
     @Modifying

@@ -3,6 +3,7 @@ package com.main.drawingcourse.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.main.drawingcourse.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,10 +38,12 @@ public class CourseImpl implements ICourseService {
     @Autowired
     DrawingCategoryRepository drawingCategoryRepository;
 
+
     @Override
     public CourseModel AddCourse(CourseModel courseModel) {
         Course existingCourse = courseRepository.findCoursesByTitleAndInstructorID(courseModel.getTitle(), courseModel.getInstructorId());
-        if (existingCourse !=null) {
+        List<User> instructor = userRepository.findAllInstructor();
+        if (existingCourse !=null ) {
             throw new IllegalArgumentException("Course already exists");
         }
 
