@@ -31,7 +31,7 @@ public class Course {
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 
-	@Column(columnDefinition = "TEXT not null")
+	@Column(columnDefinition = "nvarchar(200) not null")
 	private String description;
 
 	@Column
@@ -39,9 +39,6 @@ public class Course {
 
 	@Column
 	private Integer rating;
-
-	@Column
-	private Float progress;
 
 	@ManyToOne
 	@JoinColumn(name = "instructorId")

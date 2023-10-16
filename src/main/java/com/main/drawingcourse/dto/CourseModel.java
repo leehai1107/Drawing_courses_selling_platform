@@ -14,7 +14,6 @@ public class CourseModel {
     private String description;
     private Double price;
     private Integer rating;
-    private Float progress;
     private int levelId;
     private int drawCategoryId;
     private int instructorId;
