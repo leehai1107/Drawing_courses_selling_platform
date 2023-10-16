@@ -109,7 +109,6 @@ public class CourseImpl implements ICourseService {
             course.setDescription(course.getDescription());
             course.setCourseImage(course.getCourseImage());
             course.setPrice(course.getPrice());
-            course.setProgress(course.getProgress());
             course.setRating(course.getRating());
             course.setTitle(course.getTitle());
 

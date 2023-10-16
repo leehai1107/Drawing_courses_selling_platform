@@ -30,7 +30,7 @@ public class Order {
 	@Column(unique = true,columnDefinition = "varchar(10) not null")
 	private String orderCode;
 	
-	@Column
+	@Column(columnDefinition = "DATE")
 	private LocalDate orderDate;
 	
 	@Column

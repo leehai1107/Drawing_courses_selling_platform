@@ -63,7 +63,6 @@ public class CourseController {
             courseModel1.setDescription(courseModel.getDescription());
             courseModel1.setPrice(courseModel.getPrice());
             courseModel1.setRating(courseModel.getRating());
-            courseModel1.setProgress(courseModel.getProgress());
             courseModel1.setLevelId(courseModel.getLevelId());
             courseModel1.setDrawCategoryId(courseModel.getDrawCategoryId());
             courseModel1.setInstructorId(courseModel.getInstructorId());
