@@ -22,7 +22,7 @@ public class Review {
 	private String comment;
 	
 	
-	@Column
+	@Column(columnDefinition = "DATE")
 	private LocalDate reviewDate;
 	
 	@ManyToOne

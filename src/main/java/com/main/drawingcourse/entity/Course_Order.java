@@ -29,7 +29,7 @@ public class Course_Order {
 	@Column
 	private int rating;
 	
-	@Column
+	@Column(columnDefinition = "DATE")
 	LocalDateTime registeredAt;
 	
 	@Column

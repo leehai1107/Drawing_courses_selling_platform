@@ -26,9 +26,9 @@ public class Post {
 	private int postId;
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
-	@Column(columnDefinition = "TEXT not null")
+	@Column(columnDefinition = "nvarchar(max) not null")
 	private String content;
-	@Column
+	@Column(columnDefinition = "DATE")
 	private LocalDate postDate;
 	
 	@ManyToOne
