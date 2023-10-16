@@ -24,7 +24,8 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
     @Query(
             value = "SELECT * FROM COURSES c WHERE c.title = :title",
-            nativeQuery = true)
+            nativeQuery = true
+            )
     Course findCoursesByTitle(@Param("title") String title);
 
     @Query(
@@ -42,8 +43,9 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
 
-    @Query(value = "select * from COURSES where courseId = ?", nativeQuery = true)
+    @Query(value = "SELECT * FROM COURSES WHERE courseId = :id", nativeQuery = true)
     Course findCourseByID(@Param("id") int id);
+
 
 
 }
