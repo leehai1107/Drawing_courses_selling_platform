@@ -2,6 +2,7 @@ package com.main.drawingcourse.converter;
 
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.dto.ResponsePostByCate;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Post;
 import com.main.drawingcourse.repository.PostCategoryRepository;
@@ -23,6 +24,10 @@ public class PostConverter {
     PostCategoryRepository categoryRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PostCategoryConverter postConverter;
+    @Autowired
+    UserConverter userConverter;
     public Post toEntity(PostModel postModel) {
         Post entity = new Post();
 
@@ -49,7 +54,20 @@ public class PostConverter {
         return dto;
     }
 
+    public ResponsePostByCate toResponse(Post post) {
+    	ResponsePostByCate dto = new ResponsePostByCate();
 
+        dto.setPostId(post.getPostId());
+        dto.setTitle(post.getTitle());
+        dto.setContent(post.getContent());
+        dto.setPostDate(post.getPostDate());
+        
+        dto.setCateInfo(postConverter.toDto(post.getPostCategory()));
+        dto.setUserInfo(userConverter.toResponse(post.getUser()));
+        
+        dto.setPostImage(post.getPostImage());
+        return dto;
+    }
 
 
 }
