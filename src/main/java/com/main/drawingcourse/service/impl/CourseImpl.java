@@ -1,5 +1,6 @@
 package com.main.drawingcourse.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,14 +88,30 @@ public class CourseImpl implements ICourseService {
     }
 
     @Override
-    public List<CourseModel> findCourseByInstructorID(int instructor_id) {
-        List<Course> courseEntity = courseRepository.findAllCoursesByInstructorId(instructor_id);
-        List<CourseModel> courseModels = courseEntity.stream()
-                .map(courseConverter::toDTO)
-                .collect(Collectors.toList());
+    public List<CourseModel> findCourseByInstructorID(int instructorId) {
+//        List<Course> courseEntities = courseRepository.findAllCoursesByInstructorId(instructorId);
+//        List<CourseModel> courseModels = courseEntities.stream()
+//                .map(courseConverter::toDTO)
+//                .collect(Collectors.toList());
+//
+//        return courseModels;
+        // Retrieve the courses by instructor ID
+        List<Course> courses = courseRepository.findAllCoursesByInstructorId(instructorId);
 
-        return courseModels;
+        // Transform Course entities into CourseDTO objects
+        List<CourseModel> courseDTOs = new ArrayList<>();
+        for (Course course : courses) {
+            CourseModel courseDTO = new CourseModel();
+            CourseModel.setinstructorName(course.getUser().getFullname());
+            CourseModel.setlevelName(course.getLevel().getLevelName());
+            CourseModel.setdrawCategoryName(course.getDrawingCategory().getDrawCategoryName());
+            // Set other fields as needed
+            courseDTOs.add(courseDTO);
+        }
+
+        return courseDTOs;
     }
+
 
     @Override
 
