@@ -1,7 +1,7 @@
 import { Form } from "react-router-dom"
 
 const EditProfile = ()=> {
-    return <div className="pt-32 pl-20">
+    return <div className="pt-32 pl-20 ">
     <div className="flex justify-between items-center w-full font-bold text-3xl">
       <div>Edit profile</div>
       <img

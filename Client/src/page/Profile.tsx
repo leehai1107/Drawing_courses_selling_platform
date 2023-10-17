@@ -1,6 +1,4 @@
 import { Form } from "react-router-dom";
-import SettingSideBar from "../components/SettingSideBar";
-import SideBar from "../components/SideBar";
 
 const Profile = () => {
   return (
