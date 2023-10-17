@@ -54,11 +54,22 @@ public class PostImpl implements IPostService {
 
     @Override
     public List<PostModel> getall(PostModel postModel) {
-        List<Post> posts = postRepository.findAllPostsWithUserInfoAndCategory();
-        return posts.stream()
-                .map(postConverter::toDto)
+        List<Object[]> postData = postRepository.findAllPostsWithUserInfoAndCategory();
+
+        // Map the result to DTOs
+        return postData.stream()
+                .map(this::mapToPostModel)
                 .collect(Collectors.toList());
 
+    }
+
+    private PostModel mapToPostModel(Object[] data) {
+        PostModel postModel = new PostModel();
+        postModel.setPostId((Integer) data[0]);
+        postModel.setTitle((String) data[1]);
+        // Set other properties here based on the data array
+
+        return postModel;
     }
 
 

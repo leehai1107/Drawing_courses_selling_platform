@@ -49,9 +49,14 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 //    List<Post> findAllPostsWithUserInfoAndCategory();
 
 
+//    @Query("SELECT p.postId, p.title, u.userId, u.fullname, pc.postCategoryId, pc.postCategoryName AS postCategoryName " +
+//            "FROM Post p " +
+//            "JOIN p.user u " +
+//            "JOIN p.postCategory pc")
+//    List<Post> findAllPostsWithUserInfoAndCategory();
     @Query("SELECT p.postId, p.title, u.userId, u.fullname, pc.postCategoryId, pc.postCategoryName AS postCategoryName " +
             "FROM Post p " +
             "JOIN p.user u " +
             "JOIN p.postCategory pc")
-    List<Post> findAllPostsWithUserInfoAndCategory();
+    List<Object[]> findAllPostsWithUserInfoAndCategory();
 }
