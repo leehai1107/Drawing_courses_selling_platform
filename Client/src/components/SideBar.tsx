@@ -24,7 +24,7 @@ const SideBar = ({ children }: { children: ReactNode }) => {
           </div>
           <SettingsIcon className="text-neutral-500 mb-10" sx={{fontSize: 40}}/>
         </div>
-        <div>{children}</div>
+        <div className="w-11/12">{children}</div>
       </div>
     </>
   );

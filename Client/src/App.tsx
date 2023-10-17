@@ -14,6 +14,12 @@ import Home from "./page/Home";
 import LandingPage from "./page/LandingPage";
 import Cart from "./page/Cart";
 import Payment from "./page/Payment";
+import Login from "./page/Login";
+import SettingSideBar from "./components/SettingSideBar";
+import ForgetPass from "./page/ForgetPass";
+import Register from "./page/Register";
+import BlogsPage from "./page/BlogsPage";
+import BlogDetail from "./page/BlogDetail";
 
 function App() {
   const router = createBrowserRouter(
@@ -27,6 +33,12 @@ function App() {
             <Route path="LandingPage" element={<LandingPage />}/>
             <Route path="Cart" element={<Cart />}/>
             <Route path="Payment" element={<Payment />}/>
+            <Route path="SignIn" element={<Login />}/>
+            <Route path="forgotpass" element={<ForgetPass />}/>
+            <Route path="Profile" element={<SettingSideBar />}/>
+            <Route path="signUp" element={<Register />}/>
+            <Route path="Blogs" element={<BlogsPage />}/>
+            <Route path="BlogDetail/:index" element={<BlogDetail />}/>
         </Route>
       </Route>
     ),
