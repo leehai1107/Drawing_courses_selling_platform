@@ -11,7 +11,9 @@ import java.util.List;
 public  interface IPostService {
     PostModel AddPost(PostModel postModel);
 
-    List<PostModel> getall (PostModel postModel);
+//    List<PostModel> getall (PostModel postModel);
+
+//    List<PostModel> getallpost();
 
 
     void deleteByPostId(int id);
@@ -19,4 +21,5 @@ public  interface IPostService {
 
     List<PostModel> findPostByPostcategoryId(int id);
 
+    List<PostModel> getAllPosts();
 }

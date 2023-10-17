@@ -30,9 +30,10 @@ import java.util.List;
 @RequestMapping("public/post")
 public class PostController {
     @Autowired
-
     IPostService postService;
 
+    @Autowired
+    PostRepository postRepository;
 
     @PostMapping(value = "/add")
     public PostModel AddPost(@RequestBody PostModel postModel) {
@@ -47,13 +48,14 @@ public class PostController {
 
 
     @GetMapping("/viewallpost")
-    public List<PostModel> getAllPosts() {
-        return postService.getall(new PostModel());
+    public ResponseEntity<List<PostModel>> getAllPosts() {
+        List<PostModel> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
     }
 
-        @DeleteMapping(value = "/DeletePostById/{id}")
-        public void deltePostById(@PathVariable int id){
-            this.postService.deleteByPostId(id);
+    @DeleteMapping(value = "/DeletePostById/{id}")
+    public void deltePostById(@PathVariable int id){
+        this.postService.deleteByPostId(id);
 
 
         }

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class PostModel {
 
     private int postId;
@@ -16,8 +17,10 @@ public class PostModel {
     private String content;
     private LocalDate postDate;
     private int userId;
+//    private UserModel user ;
     private int postCategoryId;
-
+//    private Po
+    private String postimage;
 
 
 }
