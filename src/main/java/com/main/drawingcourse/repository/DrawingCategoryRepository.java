@@ -9,4 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface DrawingCategoryRepository extends JpaRepository<DrawingCategory, Integer> {
     DrawingCategory findOneByDrawCategoryId(int cateID);
+    DrawingCategory findByDrawCategoryName(String name);
 }

@@ -27,7 +27,7 @@ public class CourseController {
     ICourseService CourseService;
 
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/addCourse")
     public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
         return CourseService.AddCourse(courseModel);
     }
@@ -73,7 +73,19 @@ public class CourseController {
     }
 
 
+    @GetMapping(value = "/find-Course-By-PriceRange/{start_price}/{end_price}")
+    public List<CourseModel> findCourseByPriceRange(@PathVariable("start_price") double start_price, @PathVariable("end_price") double end_price ){
+        return CourseService.findCoursesByPriceRange(start_price, end_price);
     }
+
+    @GetMapping(value = "/find-Course-Has-Order")
+    public List<CourseModel> findAllCourseHasOrder(){
+        return CourseService.findAllCourseHasOrder();
+    }
+
+
+    }
+
 
 
 

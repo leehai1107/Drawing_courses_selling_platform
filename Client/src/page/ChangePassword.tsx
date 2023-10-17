@@ -24,7 +24,7 @@ const ChangePassword = () => {
           <input type="password" className="block p-2 w-full border" />
         </div>
 
-        <div className="flex justify-between px-20 mt-10">
+        <div className="flex justify-center px-20 mt-10">
           <button className="bg-orange-400 text-white py-2 px-5">Save</button>
         </div>
       </Form>

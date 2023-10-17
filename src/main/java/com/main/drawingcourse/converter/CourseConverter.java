@@ -24,6 +24,7 @@ public class CourseConverter {
     public Course toEntity(CourseModel courseModel) {
         Course entity = new Course();
         entity.setCourseId(courseModel.getCourseId());
+        entity.setCourseImage(courseModel.getCourseImage());
         entity.setTitle(courseModel.getTitle());
         entity.setDescription(courseModel.getDescription());
         entity.setPrice(courseModel.getPrice());
@@ -37,6 +38,7 @@ public class CourseConverter {
     public CourseModel toDTO(Course courseEntity) {
         CourseModel dto = new CourseModel();
         dto.setCourseId(courseEntity.getCourseId());
+        dto.setCourseImage(courseEntity.getCourseImage());
         dto.setTitle(courseEntity.getTitle());
         dto.setDescription(courseEntity.getDescription());
         dto.setPrice(courseEntity.getPrice());
