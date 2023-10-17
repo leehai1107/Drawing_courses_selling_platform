@@ -59,7 +59,7 @@ public class OrderImpl implements IOrderService {
                 Course_Order courseOrder = new Course_Order();
                 courseOrder.setCourse(courseRepository.findById(courseId).orElse(null));
                 var rating = courseRepository.findById(courseId).orElse(null);
-                courseOrder.setProgress(rating.getRating());
+                courseOrder.setRating(rating.getRating());
 
                 courseOrder.setOrder(order);
                 courseOrderRepository.save(courseOrder);
