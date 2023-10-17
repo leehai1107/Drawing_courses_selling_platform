@@ -32,6 +32,7 @@ public class PostConverter {
         entity.setPostDate(postModel.getPostDate());
         entity.setPostCategory(categoryRepository.getReferenceById(postModel.getPostCategoryId()));
         entity.setUser(userRepository.getReferenceById(postModel.getUserId()));
+        entity.setPostImage(postModel.getPostImage());
         return entity;
     }
 
@@ -44,6 +45,7 @@ public class PostConverter {
         dto.setPostDate(post.getPostDate());
         dto.setPostCategoryId(post.getPostCategory().getPostCategoryId());
         dto.setUserId(post.getUser().getUserId());
+        dto.setPostImage(post.getPostImage());
         return dto;
     }
 
