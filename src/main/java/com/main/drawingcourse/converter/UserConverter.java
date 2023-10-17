@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.main.drawingcourse.dto.UserModel;
+import com.main.drawingcourse.dto.UserModelRespone;
 import com.main.drawingcourse.entity.User;
 import com.main.drawingcourse.repository.RoleRepository;
 
@@ -11,6 +12,8 @@ import com.main.drawingcourse.repository.RoleRepository;
 public class UserConverter {
 	@Autowired
 	RoleRepository roleRepository;
+	@Autowired
+	RoleConverter roleConverter;
 	
 	public User toEntity(UserModel model) {
 		User entity = new User();
@@ -42,6 +45,14 @@ public class UserConverter {
 		dto.setDob(entity.getDob());
 		dto.setStatus(entity.getStatus());
 		dto.setSex(entity.getSex());
+		return dto;
+	}
+	
+	public UserModelRespone toResponse(User entity){
+		UserModelRespone dto = new UserModelRespone();
+		dto.setId(entity.getUserId());
+		dto.setRoleInfo(roleConverter.toDto(entity.getRole()));
+		dto.setFullname(entity.getFullname());
 		return dto;
 	}
 

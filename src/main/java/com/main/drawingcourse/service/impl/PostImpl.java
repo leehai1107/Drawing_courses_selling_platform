@@ -1,30 +1,19 @@
 package com.main.drawingcourse.service.impl;
 
-import com.main.drawingcourse.converter.PostConverter;
+import java.util.List;
+import java.util.stream.Collectors;
 
-
-import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.dto.PostModel;
-import com.main.drawingcourse.entity.Course;
-import com.main.drawingcourse.entity.DrawingCategory;
-import com.main.drawingcourse.entity.Post;
-import com.main.drawingcourse.entity.PostCategory;
-import com.main.drawingcourse.repository.PostCategoryRepository;
-
-import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.dto.LevelModel;
-import com.main.drawingcourse.dto.PostModel;
-import com.main.drawingcourse.entity.Course;
-import com.main.drawingcourse.entity.Post;
-import com.main.drawingcourse.entity.PostCategory;
-
-import com.main.drawingcourse.repository.PostRepository;
-import com.main.drawingcourse.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.main.drawingcourse.converter.PostConverter;
+import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.dto.ResponsePostByCate;
+import com.main.drawingcourse.entity.Post;
+import com.main.drawingcourse.entity.PostCategory;
+import com.main.drawingcourse.repository.PostCategoryRepository;
+import com.main.drawingcourse.repository.PostRepository;
+import com.main.drawingcourse.service.IPostService;
 
 @Service
 public class PostImpl implements IPostService {
@@ -72,6 +61,17 @@ public class PostImpl implements IPostService {
         List<Post> postEntity = postRepository.findAllPostByPostCategoryID(id);
         List<PostModel> postModels = postEntity.stream()
                 .map(postConverter::toDto)
+                .collect(Collectors.toList());
+
+        return postModels;
+
+    }
+    
+    @Override
+	public List<ResponsePostByCate> findPostByPostcategory(int id) {
+        List<Post> postEntity = postRepository.findAllPostByPostCategoryID(id);
+        List<ResponsePostByCate> postModels = postEntity.stream()
+                .map(postConverter::toResponse)
                 .collect(Collectors.toList());
 
         return postModels;
