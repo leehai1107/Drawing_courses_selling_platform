@@ -27,7 +27,7 @@ public class LevelController {
     @Autowired
     ILevelService levelService;
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/addLevel")
     public LevelModel AddLevel(@RequestBody LevelModel levelModel){
         return levelService.AddLevel(levelModel);
     }

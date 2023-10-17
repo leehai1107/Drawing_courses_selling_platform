@@ -1,0 +1,6 @@
+const Activities = [
+    {
+        image:'',
+        title:''
+    }
+]
