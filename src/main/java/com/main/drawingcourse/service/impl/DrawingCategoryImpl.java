@@ -22,6 +22,12 @@ public class DrawingCategoryImpl implements IDrawingCategoryService{
     DrawingCateforyConverter drawingCateforyConverter;
 @Override
     public DrawingCategoryModel AddCategory(DrawingCategoryModel categoryModel){
+        DrawingCategory existingCate = categoryRepository.findByDrawCategoryName(categoryModel.getDrawCategoryName());
+        if(existingCate != null){
+            throw new IllegalArgumentException("Drawing Category is already exists");
+
+        }
+
              DrawingCategory categoryEntity = drawingCateforyConverter.toEntity(categoryModel);
              categoryEntity = categoryRepository.save(categoryEntity);
 

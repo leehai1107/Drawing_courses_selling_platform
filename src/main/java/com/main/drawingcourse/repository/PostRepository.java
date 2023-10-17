@@ -30,6 +30,12 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findAllPostByPostCategoryID(@Param("id") int id);
 
 
+    @Query(
+            value = "SELECT * FROM POSTS p WHERE p.title = :title ",
+            nativeQuery = true)
+    Post findPostByTitle(@Param("title") String title);
+
+
     @Modifying
     @Query(
             value = "DELETE p FROM POSTS p WHERE p.post_id = :id AND p.user_id IN ( SELECT user_id FROM users u WHERE u.role_id IN ( SELECT role_id FROM roles r WHERE r.role_id = 1 or r.role_id = 2 or r.role_id = 4))",

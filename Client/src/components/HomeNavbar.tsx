@@ -32,6 +32,10 @@ const HomeNavbar = () => {
             />
           </Link>
 
+          <div className="ml-5  hover:bg-black bg-white hover:text-white font-semibold rounded-full py-2 px-5">
+            <Link to={"/SignIn"}>Login</Link>
+          </div>
+
           <div className="mx-5 border-2 border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-white font-semibold rounded-full py-2 px-10">
             <Link to={"/LandingPage"}>Đăng Ký Học</Link>
           </div>

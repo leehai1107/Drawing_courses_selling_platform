@@ -1,5 +1,6 @@
 package com.main.drawingcourse.dto;
 
+import com.main.drawingcourse.entity.DrawingCategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ public class CourseModel {
     private Double price;
     private Integer rating;
     private int levelId;
+    private DrawingCategory drawingCategory;
     private int drawCategoryId;
     private int instructorId;
 

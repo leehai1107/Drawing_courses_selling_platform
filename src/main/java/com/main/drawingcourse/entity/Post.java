@@ -32,7 +32,7 @@ public class Post {
 	@JoinColumn(name="postCategoryId")
 	private PostCategory postCategory;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(500) not null")
 	private String postImage;
 
 

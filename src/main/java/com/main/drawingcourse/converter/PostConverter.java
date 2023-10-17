@@ -2,6 +2,7 @@ package com.main.drawingcourse.converter;
 
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.dto.ResponsePostByCate;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Post;
 import com.main.drawingcourse.repository.PostCategoryRepository;
@@ -23,6 +24,10 @@ public class PostConverter {
     PostCategoryRepository categoryRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PostCategoryConverter postConverter;
+    @Autowired
+    UserConverter userConverter;
     public Post toEntity(PostModel postModel) {
         Post entity = new Post();
 
@@ -32,6 +37,7 @@ public class PostConverter {
         entity.setPostDate(postModel.getPostDate());
         entity.setPostCategory(categoryRepository.getReferenceById(postModel.getPostCategoryId()));
         entity.setUser(userRepository.getReferenceById(postModel.getUserId()));
+        entity.setPostImage(postModel.getPostImage());
         return entity;
     }
 
@@ -44,11 +50,24 @@ public class PostConverter {
         dto.setPostDate(post.getPostDate());
         dto.setPostCategoryId(post.getPostCategory().getPostCategoryId());
         dto.setUserId(post.getUser().getUserId());
-
+        dto.setPostImage(post.getPostImage());
         return dto;
     }
 
+    public ResponsePostByCate toResponse(Post post) {
+    	ResponsePostByCate dto = new ResponsePostByCate();
 
+        dto.setPostId(post.getPostId());
+        dto.setTitle(post.getTitle());
+        dto.setContent(post.getContent());
+        dto.setPostDate(post.getPostDate());
+
+        dto.setCateInfo(postConverter.toDto(post.getPostCategory()));
+        dto.setUserInfo(userConverter.toResponse(post.getUser()));
+
+        dto.setPostImage(post.getPostImage());
+        return dto;
+    }
 
 
 }

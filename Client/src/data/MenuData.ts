@@ -1,23 +1,23 @@
 
 const MenuData = [
     {
-        label:"Giới Thiệu",
+        label:"Home Page",
         link:"/"
     },
     {
-        label:"Lớp Người Lớn",
+        label:"Các khóa học cho bé",
         link:"/"
     },
     {
-        label:"Lớp Cho Bé",
+        label:"Blog",
+        link:"/Blogs"
+    },
+    {
+        label:"Khóa học thử 3 ngày",
         link:"/"
     },
     {
-        label:"Bụi's Blog",
-        link:"/"
-    },
-    {
-        label:"Học Miễn Phí",
+        label:"Khóa học đã đăng ký",
         link:"/"
     }
 ]

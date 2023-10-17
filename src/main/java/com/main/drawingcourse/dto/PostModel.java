@@ -17,10 +17,8 @@ public class PostModel {
     private String content;
     private LocalDate postDate;
     private int userId;
-//    private UserModel user ;
     private int postCategoryId;
-//    private Po
     private String postimage;
-
+    private String postImage;
 
 }
