@@ -45,6 +45,7 @@ public class UserConverter {
 		dto.setDob(entity.getDob());
 		dto.setStatus(entity.getStatus());
 		dto.setSex(entity.getSex());
+		dto.setRoleModelResponse(roleConverter.toDto(entity.getRole()));
 		return dto;
 	}
 	

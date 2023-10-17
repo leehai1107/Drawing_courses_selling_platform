@@ -15,6 +15,7 @@ public class UserModel {
 	private String password;
 	private Boolean status;
 	private int roleId;
+	private RoleModelResponse roleModelResponse;
 	private String avatar;
 	private LocalDate dob;
 	private boolean sex;
