@@ -27,10 +27,8 @@ public class DrawingCategoryImpl implements IDrawingCategoryService{
             throw new IllegalArgumentException("Drawing Category is already exists");
 
         }
-
              DrawingCategory categoryEntity = drawingCateforyConverter.toEntity(categoryModel);
              categoryEntity = categoryRepository.save(categoryEntity);
-
     return drawingCateforyConverter.toDto(categoryEntity);
 }
 

@@ -61,8 +61,6 @@ public class CourseImpl implements ICourseService {
         Course course = courseRepository.findCoursesByTitle(title);
         if (course != null) {
             return courseConverter.toDTO(course);
-
-
         }
         return new CourseModel();
     }
@@ -89,27 +87,13 @@ public class CourseImpl implements ICourseService {
 
     @Override
     public List<CourseModel> findCourseByInstructorID(int instructorId) {
-//        List<Course> courseEntities = courseRepository.findAllCoursesByInstructorId(instructorId);
-//        List<CourseModel> courseModels = courseEntities.stream()
-//                .map(courseConverter::toDTO)
-//                .collect(Collectors.toList());
-//
-//        return courseModels;
-        // Retrieve the courses by instructor ID
-        List<Course> courses = courseRepository.findAllCoursesByInstructorId(instructorId);
+        List<Course> courseEntities = courseRepository.findAllCoursesByInstructorId(instructorId);
+        List<CourseModel> courseModels = courseEntities.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
 
-        // Transform Course entities into CourseDTO objects
-        List<CourseModel> courseDTOs = new ArrayList<>();
-        for (Course course : courses) {
-            CourseModel courseDTO = new CourseModel();
-            CourseModel.setinstructorName(course.getUser().getFullname());
-            CourseModel.setlevelName(course.getLevel().getLevelName());
-            CourseModel.setdrawCategoryName(course.getDrawingCategory().getDrawCategoryName());
-            // Set other fields as needed
-            courseDTOs.add(courseDTO);
-        }
+        return courseModels;
 
-        return courseDTOs;
     }
 
 
