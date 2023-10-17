@@ -40,10 +40,16 @@ public class PostController {
 
 
     }
-        @GetMapping(value = "/ViewAllPost")
-        public List<PostModel> findAll() {
-            return postService.findAll();
-        }
+//        @GetMapping(value = "/ViewAllPost")
+//        public List<PostModel> findAll() {
+//            return postService.findAll();
+//        }
+
+
+    @GetMapping("/viewallpost")
+    public List<PostModel> getAllPosts() {
+        return postService.getall(new PostModel());
+    }
 
         @DeleteMapping(value = "/DeletePostById/{id}")
         public void deltePostById(@PathVariable int id){

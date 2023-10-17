@@ -44,6 +44,7 @@ public class PostConverter {
         dto.setPostDate(post.getPostDate());
         dto.setPostCategoryId(post.getPostCategory().getPostCategoryId());
         dto.setUserId(post.getUser().getUserId());
+
         return dto;
     }
 

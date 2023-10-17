@@ -8,9 +8,10 @@ import com.main.drawingcourse.entity.PostCategory;
 
 import java.util.List;
 
-public interface IPostService {
+public  interface IPostService {
     PostModel AddPost(PostModel postModel);
-    List<PostModel> findAll();
+
+    List<PostModel> getall (PostModel postModel);
 
 
     void deleteByPostId(int id);

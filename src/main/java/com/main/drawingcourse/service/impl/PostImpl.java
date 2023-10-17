@@ -45,16 +45,22 @@ public class PostImpl implements IPostService {
         postEntity.setPostCategory(postCategory);
         postEntity = postRepository.save(postEntity);
 
+
+
         return postConverter.toDto(postEntity);
     }
 
-    public List<PostModel> findAll() {
-        List<PostModel> Posts = postRepository.findAll().stream()
+
+
+    @Override
+    public List<PostModel> getall(PostModel postModel) {
+        List<Post> posts = postRepository.findAllPostsWithUserInfoAndCategory();
+        return posts.stream()
                 .map(postConverter::toDto)
                 .collect(Collectors.toList());
 
-        return Posts;
     }
+
 
     @Override
 
