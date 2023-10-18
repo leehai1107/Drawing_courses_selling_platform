@@ -11,10 +11,10 @@ import com.main.drawingcourse.service.IUserService;
 
 @Component
 @Order(2)
-public class AdminLoader implements CommandLineRunner{	
+public class AdminLoader implements CommandLineRunner{
 	@Autowired
 	private RoleRepository roleRepository;
-	
+
 	@Autowired
 	private final IUserService service;
 
@@ -33,6 +33,6 @@ public class AdminLoader implements CommandLineRunner{
 			admin.setPassword("ADMIN@@@");//this is admin password
 			service.addUser(admin);
 		}
-		
+
 	}
 }

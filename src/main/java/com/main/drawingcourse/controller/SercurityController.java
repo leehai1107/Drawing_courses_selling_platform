@@ -37,7 +37,6 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("public/account")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SercurityController {
 	@Autowired
 	private JwtUtility jwtUtility;
