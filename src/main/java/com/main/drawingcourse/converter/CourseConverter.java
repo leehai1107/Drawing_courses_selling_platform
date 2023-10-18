@@ -1,6 +1,8 @@
 package com.main.drawingcourse.converter;
 
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.DrawingCategoryModel;
+import com.main.drawingcourse.dto.LevelModel;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.repository.DrawingCategoryRepository;
 import com.main.drawingcourse.repository.LevelRepository;
@@ -20,7 +22,12 @@ public class CourseConverter {
     OrderRepository orderRepository;
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    DrawingCateforyConverter drawingCateforyConverter;
+    @Autowired
+    LevelConverter levelConverter;
+    @Autowired
+    UserConverter userConverter;
     public Course toEntity(CourseModel courseModel) {
         Course entity = new Course();
         entity.setCourseId(courseModel.getCourseId());
@@ -29,9 +36,10 @@ public class CourseConverter {
         entity.setDescription(courseModel.getDescription());
         entity.setPrice(courseModel.getPrice());
         entity.setRating(courseModel.getRating());
-        entity.setLevel(levelRepository.getReferenceById(courseModel.getLevelId()));
         entity.setDrawingCategory(categoryRepository.getReferenceById(courseModel.getDrawCategoryId()));
+        entity.setLevel(levelRepository.getReferenceById(courseModel.getLevelId()));
         entity.setUser(userRepository.getReferenceById(courseModel.getInstructorId()));
+
         return entity;
     }
 
@@ -43,9 +51,12 @@ public class CourseConverter {
         dto.setDescription(courseEntity.getDescription());
         dto.setPrice(courseEntity.getPrice());
         dto.setRating(courseEntity.getRating());
-        dto.setLevelId(courseEntity.getLevel().getLevelId());
         dto.setDrawCategoryId(courseEntity.getDrawingCategory().getDrawCategoryId());
+        dto.setLevelId(courseEntity.getLevel().getLevelId());
         dto.setInstructorId(courseEntity.getUser().getUserId());
+        dto.setDrawingCategoryModel(drawingCateforyConverter.toDto(courseEntity.getDrawingCategory()));
+        dto.setLevelModel(levelConverter. toDto(courseEntity.getLevel()));
+        dto.setUserModelRespone(userConverter.toResponse(courseEntity.getUser()));
 
         return dto;
     }

@@ -18,23 +18,23 @@ public class DefaultRoleLoader implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		 if (roleRepository.count() == 0) {
-	            Role adminRole = new Role();
-	            adminRole.setRoleName("ADMIN");
-	            roleRepository.save(adminRole);
+		if (roleRepository.count() == 0) {
+			Role adminRole = new Role();
+			adminRole.setRoleName("ADMIN");
+			roleRepository.save(adminRole);
 
-	            Role staffRole = new Role();
-	            staffRole.setRoleName("STAFF");
-	            roleRepository.save(staffRole);
+			Role staffRole = new Role();
+			staffRole.setRoleName("STAFF");
+			roleRepository.save(staffRole);
 
-	            Role userRole = new Role();
-	            userRole.setRoleName("CUSTOMER");
-	            roleRepository.save(userRole);
+			Role userRole = new Role();
+			userRole.setRoleName("CUSTOMER");
+			roleRepository.save(userRole);
 
-	            Role instructorRole = new Role();
-	            instructorRole.setRoleName("INSTRUCTOR");
-	            roleRepository.save(instructorRole);
-	        }
+			Role instructorRole = new Role();
+			instructorRole.setRoleName("INSTRUCTOR");
+			roleRepository.save(instructorRole);
+		}
 
 	}
 

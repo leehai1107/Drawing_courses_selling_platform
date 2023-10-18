@@ -16,7 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,10 +37,10 @@ public class CourseController {
         return CourseService.findByCourseTitle(title);
     }
 
-    @GetMapping(value = "/find-by-InstructorId/{id}")
-    public List<CourseModel> findCourseByIntructorID(@PathVariable("id") int id){
-        return CourseService.findCourseByInstructorID(id);
-        }
+//    @GetMapping(value = "/find-by-InstructorId/{id}")
+//    public List<CourseModel> findCourseByIntructorID(@PathVariable("id") int id){
+//        return CourseService.findCourseByInstructorID(id);
+//        }
 
     @GetMapping("/view")
 
@@ -83,6 +83,49 @@ public class CourseController {
         return CourseService.findAllCourseHasOrder();
     }
 
+    @GetMapping("/find-by-InstructorId/{id}")
+    public List<CourseModel> getCoursesByInstructorId(@PathVariable int id) {
+        return CourseService.findCourseByInstructorID(id);
+    }
+
+//    @GetMapping("/byInstructor/{instructorId}")
+//    public List<CourseModel> getCoursesByInstructorId(@PathVariable("instructorId") int instructorId) {
+//        List<Course> courses = CourseService.findCourseByInstructorID(instructorId);
+//        List<CourseModel> courseDTOs = new ArrayList<>();
+//
+//        for (Course course : courses) {
+//            CourseModel courseDTO = new CourseModel();
+//            courseDTO.setCourseId(course.getCourseId());
+//            courseDTO.setCourseImage(course.getCourseImage());
+//            courseDTO.setDescription(course.getDescription());
+//            courseDTO.setPrice(course.getPrice());
+//            courseDTO.setRating(course.getRating());
+//            courseDTO.setTitle(course.getTitle());
+//
+//            // Get information from related tables
+//            DrawingCategory drawCategory = course.getDrawingCategory();
+//            if (drawCategory != null) {
+//                courseDTO.setDrawCategoryId(drawCategory.getDrawCategoryId());
+//                courseDTO.setDrawCategoryName(drawCategory.getDrawCategoryName());
+//            }
+//
+//            Level level = course.getLevel();
+//            if (level != null) {
+//                courseDTO.setLevelId(level.getLevelId());
+//                courseDTO.setLevelName(level.getLevelName());
+//            }
+//
+//            User instructor = course.getInstructor();
+//            if (instructor != null) {
+//                courseDTO.setInstructorId(instructor.getUserId());
+//                courseDTO.setInstructorName(instructor.getFullname());
+//            }
+//
+//            courseDTOs.add(courseDTO);
+//        }
+//
+//        return courseDTOs;
+//    }
 
     }
 
