@@ -22,6 +22,7 @@ public class UserConverter {
 		entity.setUserName(model.getUsername());
 		entity.setPassword(model.getPassword());
 		entity.setAvatar(model.getAvatar());
+		entity.setPhone(model.getPhone());
 		entity.setEmail(model.getEmail());
 		entity.setRole(roleRepository.getReferenceById(model.getRoleId()));
 		entity.setDescription(model.getDescription());
@@ -41,6 +42,7 @@ public class UserConverter {
 		dto.setPassword(entity.getPassword());
 		dto.setAvatar(entity.getAvatar());
 		dto.setEmail(entity.getEmail());
+		dto.setPhone(entity.getPhone());
 		dto.setRoleId(entity.getRole().getRoleId());
 		dto.setDescription(entity.getDescription());
 		dto.setFullname(entity.getFullname());
