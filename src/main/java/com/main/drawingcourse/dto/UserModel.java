@@ -11,10 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserModel {
 	private int id;
-	private String userName;
+	private String username;
 	private String password;
+	private String email;
 	private Boolean status;
+	private String phone;
 	private int roleId;
+	private RoleModelResponse roleModelResponse;
 	private String avatar;
 	private LocalDate dob;
 	private boolean sex;
