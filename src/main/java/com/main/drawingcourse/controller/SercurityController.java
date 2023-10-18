@@ -90,10 +90,10 @@ public class SercurityController {
     }
 	
 	@GetMapping("/hello")
-	@PreAuthorize("hasAuthority('User')")
-	// change by role name in db here the roleName is User
+	@PreAuthorize("hasAuthority('CUSTOMER')")
+	// change by role name in db here the roleName is CUSTOMER
 	public String sayHello ()
-    { return "Hello User" ;}
+    { return "Hello CUSTOMER" ;}
 	
 	
 	@PostMapping("/refreshToken")
@@ -110,8 +110,8 @@ public class SercurityController {
 	}
 	
 	@PostMapping("/logout")
-	public ResponseEntity<?> logout(@RequestBody LogoutRequest userName) {
-		refreshTokenService.removeFromInstance((refreshTokenRepository.findByUser(userService.findUserByUserName(userName.getEmail()))));
+	public ResponseEntity<?> logout(@RequestBody LogoutRequest token) {
+		refreshTokenService.removeFromInstance(refreshTokenRepository.findByToken(token.getToken()));
 		return ResponseEntity.ok("Logout successful!");
 	}
 	
@@ -132,7 +132,7 @@ public class SercurityController {
 	@PostMapping("/forgot-password")
 	public String forgotPassword(@RequestBody ForgotPasswordRequest email) {
 		String result="Do not find Email!";
-		User user = userService.findUserByUserName(email.getEmail());
+		User user = userService.findUserByEmail(email.getEmail());
 		if(user !=null) {
 			result = userService.sendEmail(user);
 		}

@@ -1,12 +1,17 @@
 package com.main.drawingcourse.controller;
 
-import com.main.drawingcourse.dto.CourseModel;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequestMapping("public/user")
 @RestController
@@ -42,7 +47,9 @@ public class UserController {
             userModel1.setPassword(userModel.getPassword());
             userModel1.setSex(userModel.isSex());
             userModel1.setStatus(userModel.getStatus());
-            userModel1.setUserName(userModel.getUserName());
+            userModel1.setPhone(userModel.getPhone());
+            userModel1.setUsername(userModel.getUsername());
+            userModel1.setEmail(userModel.getEmail());
             userService.Edit_User( userModel1);
         }
 

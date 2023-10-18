@@ -20,4 +20,6 @@ public interface IUserService {
 
 	void Edit_User(UserModel userModel);
 	UserModel GetUserbyid(int id);
+
+	User findUserByEmail(String email);
 }
