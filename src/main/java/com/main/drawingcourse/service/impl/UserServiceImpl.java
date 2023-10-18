@@ -38,6 +38,12 @@ public class UserServiceImpl implements IUserService {
 	public User findUserByUserName(String userName) {
 		return userRepository.findUserByUserName(userName);
 	}
+	
+	@Override
+	public User findUserByEmail(String email) {
+		return userRepository.findUserByEmail(email);
+	}
+	
 
 	@Override
 	public String addUser(User userInfo) {

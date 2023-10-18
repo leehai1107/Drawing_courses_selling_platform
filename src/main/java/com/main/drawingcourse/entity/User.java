@@ -29,11 +29,17 @@ public class User {
 	@Column(unique = true,columnDefinition = "varchar(50)")
 	private String userName;
 	
+	@Column(unique = true,columnDefinition = "varchar(50)")
+	private String email;
+	
 	@Column
 	private String password;
 	
 	@Column(columnDefinition = "varchar(50)")
 	private String fullname;
+	
+	@Column(unique = true,columnDefinition = "varchar(50)")
+	private String phone;
 	
 	@Column
 	private LocalDate dob;
