@@ -2,7 +2,6 @@ package com.main.drawingcourse.service.impl;
 
 import com.main.drawingcourse.converter.Course_OrderConverter;
 import com.main.drawingcourse.converter.OrderConverter;
-import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.Course_OrderModel;
 import com.main.drawingcourse.dto.OrderModel;
 import com.main.drawingcourse.entity.Course;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,7 +35,7 @@ public class OrderImpl implements IOrderService {
 
 
     @Override
-    public OrderModel addOrder(OrderModel orderModel, List<Integer> courseIds) {
+    public OrderModel addOrder(OrderModel orderModel) {
         // Chuyển đổi OrderModel thành Order entity
         Order order = orderConverter.toEntity(orderModel);
 
@@ -46,8 +44,9 @@ public class OrderImpl implements IOrderService {
 
         if (existingOrder == null) {
             // Lưu đơn hàng vào cơ sở dữ liệu
+            order.setOrderCode(order.getOrderCode());
             order.setOrderDate(LocalDate.now());
-            order.setOrderStatus(true); // Mặc định là đã đặt hàng
+            order.setOrderStatus(order.getOrderStatus()); // Mặc định là đã đặt hàng
             order = orderRepository.save(order);
             orderConverter.toDTO(order);
 
@@ -55,16 +54,18 @@ public class OrderImpl implements IOrderService {
             List<Course_Order> addedCourseOrders = new ArrayList<>();
 
             // Thêm các khóa học vào đơn hàng thông qua Course_Order
-            for (Integer courseId : courseIds) {
+            for (Integer courseId : orderModel.getCourseIds()) {
                 Course_Order courseOrder = new Course_Order();
-                courseOrder.setCourse(courseRepository.findById(courseId).orElse(null));
-                var rating = courseRepository.findById(courseId).orElse(null);
-                courseOrder.setRating(rating.getRating());
+                Course course = courseRepository.findById(courseId).orElse(null);
+                if (course != null) {
+                    courseOrder.setCourse(course);
+                    courseOrder.setRating(course.getRating());
 
-                courseOrder.setOrder(order);
-                courseOrderRepository.save(courseOrder);
+                    courseOrder.setOrder(order);
+                    courseOrderRepository.save(courseOrder);
 
-                addedCourseOrders.add(courseOrder);
+                    addedCourseOrders.add(courseOrder);
+                }
             }
 
             // Chuyển đổi danh sách các Course_Order thành danh sách Course_OrderModel
