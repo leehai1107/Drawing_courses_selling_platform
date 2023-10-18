@@ -3,6 +3,7 @@ package com.main.drawingcourse.controller;
 
 import java.util.List;
 
+import com.main.drawingcourse.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +40,9 @@ public class PostController {
 
 
     @GetMapping("/viewallpost")
-    public ResponseEntity<List<PostModel>> getAllPosts() {
-        List<PostModel> posts = postService.getAllPosts();
-        return ResponseEntity.ok(posts);
+    public List<ResponsePostByCate> getAllPosts() {
+
+        return postService.getAllPosts();
     }
 
     @DeleteMapping(value = "/DeletePostById/{id}")

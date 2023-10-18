@@ -4,20 +4,10 @@ package com.main.drawingcourse.service.impl;
 import com.main.drawingcourse.converter.PostConverter;
 
 
-import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.PostModel;
-import com.main.drawingcourse.entity.Course;
-import com.main.drawingcourse.entity.DrawingCategory;
 import com.main.drawingcourse.entity.Post;
 import com.main.drawingcourse.entity.PostCategory;
 import com.main.drawingcourse.repository.PostCategoryRepository;
-
-import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.dto.LevelModel;
-import com.main.drawingcourse.dto.PostModel;
-import com.main.drawingcourse.entity.Course;
-import com.main.drawingcourse.entity.Post;
-import com.main.drawingcourse.entity.PostCategory;
 
 import com.main.drawingcourse.repository.PostRepository;
 import com.main.drawingcourse.repository.UserRepository;
@@ -25,21 +15,10 @@ import com.main.drawingcourse.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.main.drawingcourse.converter.PostConverter;
-import com.main.drawingcourse.dto.PostModel;
 import com.main.drawingcourse.dto.ResponsePostByCate;
-import com.main.drawingcourse.entity.Post;
-import com.main.drawingcourse.entity.PostCategory;
-import com.main.drawingcourse.repository.PostCategoryRepository;
-import com.main.drawingcourse.repository.PostRepository;
-import com.main.drawingcourse.service.IPostService;
 
 @Service
 public class PostImpl implements IPostService {
@@ -75,34 +54,12 @@ public class PostImpl implements IPostService {
         return postConverter.toDto(postEntity);
     }
 
-    public List<PostModel> getAllPosts() {
-//        List<Post> posts = postRepository.findAll();
-//        List<PostModel> postModels = posts.stream()
-//                .map(postConverter::toDto)
-//                .collect(Collectors.toList());
-//
-//        PostModel PostModel;
-//        postModels.add(PostModel);
-//        }
-//
-//        return postResponseDTOs;
-        List<Post> posts = postRepository.findAll();
-        List<PostModel> postResponseDTOs = new ArrayList<>();
+    public List<ResponsePostByCate> getAllPosts() {
+        List<ResponsePostByCate> postModels = postRepository.findAll().stream()
+                .map(postConverter::toResponse)
+                .collect(Collectors.toList());
 
-        for (Post post : posts) {
-            PostModel postResponseDTO = new PostModel();
-            postResponseDTO.setPostId(post.getPostId());
-            postResponseDTO.setContent(post.getContent());
-            postResponseDTO.setPostDate(post.getPostDate());
-            postResponseDTO.setTitle(post.getTitle());
-            postResponseDTO.setPostimage(post.getPostImage());
-            postResponseDTO.setPostCategoryId(post.getPostCategory().getPostCategoryId());
-            postResponseDTO.setUserId(post.getUser().getUserId());
-
-            postResponseDTOs.add(postResponseDTO);
-        }
-
-        return postResponseDTOs;
+        return postModels;
     }
 
 //    @Override

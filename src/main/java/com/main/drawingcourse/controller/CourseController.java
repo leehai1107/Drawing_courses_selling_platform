@@ -1,6 +1,7 @@
 package com.main.drawingcourse.controller;
 
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.DrawingCategory;
 import com.main.drawingcourse.entity.Level;
@@ -44,7 +45,9 @@ public class CourseController {
 
     @GetMapping("/view")
 
-    public List<CourseModel> findAll() {
+    public List<ResponseCourse> findAll() {
+
+
         return CourseService.findAll();
     }
 

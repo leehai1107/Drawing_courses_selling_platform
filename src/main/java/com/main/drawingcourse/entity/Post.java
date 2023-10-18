@@ -24,11 +24,11 @@ public class Post {
 	@Column(columnDefinition = "DATE")
 	private LocalDate postDate;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="postCategoryId")
 	private PostCategory postCategory;
 	

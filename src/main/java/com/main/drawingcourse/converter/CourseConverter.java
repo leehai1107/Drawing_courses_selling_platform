@@ -1,6 +1,7 @@
 package com.main.drawingcourse.converter;
 
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.repository.DrawingCategoryRepository;
 import com.main.drawingcourse.repository.LevelRepository;
@@ -12,14 +13,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CourseConverter {
+
     @Autowired
     DrawingCategoryRepository categoryRepository;
+
     @Autowired
     LevelRepository levelRepository;
+
     @Autowired
     OrderRepository orderRepository;
+
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserConverter userConverter;
+
+    @Autowired
+    LevelConverter levelConverter;
+
+    @Autowired
+    DrawingCateforyConverter drawingCateforyConverter;
 
     public Course toEntity(CourseModel courseModel) {
         Course entity = new Course();
@@ -46,6 +60,23 @@ public class CourseConverter {
         dto.setLevelId(courseEntity.getLevel().getLevelId());
         dto.setDrawCategoryId(courseEntity.getDrawingCategory().getDrawCategoryId());
         dto.setInstructorId(courseEntity.getUser().getUserId());
+
+        return dto;
+    }
+
+    public ResponseCourse toResponse(Course course) {
+        ResponseCourse dto = new ResponseCourse();
+
+        dto.setCourseid(course.getCourseId());
+        dto.setDescription(course.getDescription());
+        dto.setTitle(course.getTitle());
+        dto.setPrice(course.getPrice());
+        dto.setRating(course.getRating());
+        dto.setCourseImg(course.getCourseImage());
+
+        dto.setUserinfo(userConverter.toResponse(course.getUser()));
+        dto.setLevelinfo(levelConverter.toDto(course.getLevel()));
+        dto.setCateInfo(drawingCateforyConverter.toDto(course.getDrawingCategory()));
 
         return dto;
     }

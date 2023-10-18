@@ -18,7 +18,6 @@ public class PostModel {
     private LocalDate postDate;
     private int userId;
     private int postCategoryId;
-    private String postimage;
     private String postImage;
 
 }
