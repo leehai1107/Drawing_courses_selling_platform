@@ -2,15 +2,16 @@ package com.main.drawingcourse.service;
 
 import com.main.drawingcourse.dto.PostModel;
 import com.main.drawingcourse.dto.ResponsePostByCate;
-import com.main.drawingcourse.entity.Post;
-import com.main.drawingcourse.entity.PostCategory;
 
 
 import java.util.List;
 
-public interface IPostService {
+public  interface IPostService {
     PostModel AddPost(PostModel postModel);
-    List<PostModel> findAll();
+
+//    List<PostModel> getall (PostModel postModel);
+
+//    List<PostModel> getallpost();
 
 
     void deleteByPostId(int id);
@@ -19,4 +20,5 @@ public interface IPostService {
     List<PostModel> findPostByPostcategoryId(int id);
 	List<ResponsePostByCate> findPostByPostcategory(int id);
 
+    List<ResponsePostByCate> getAllPosts();
 }

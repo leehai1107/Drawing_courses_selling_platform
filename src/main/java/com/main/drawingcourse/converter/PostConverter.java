@@ -61,10 +61,10 @@ public class PostConverter {
         dto.setTitle(post.getTitle());
         dto.setContent(post.getContent());
         dto.setPostDate(post.getPostDate());
-        
+
         dto.setCateInfo(postConverter.toDto(post.getPostCategory()));
         dto.setUserInfo(userConverter.toResponse(post.getUser()));
-        
+
         dto.setPostImage(post.getPostImage());
         return dto;
     }

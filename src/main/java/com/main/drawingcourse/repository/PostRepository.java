@@ -42,5 +42,31 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             nativeQuery = true)
     void deleteByPostId(@Param("id") int id);
 
+//    @Query("SELECT\n" +
+//            "    p.post_id," +
+//            "    p.Title," +
+//            "    u.user_id," +
+//            "    u.fullname," +
+//            "    pc.post_category_id," +
+//            "    pc.post_category_name AS PostCategoryName" +
+//            "FROM POSTS p" +
+//            "    INNER JOIN Users u ON u.user_id = p.user_id" +
+//            "    INNER JOIN post_categories pc ON pc.post_category_id = p.post_category_id")
+//    List<Post> findAllPostsWithUserInfoAndCategory();
+
+
+//    @Query("SELECT p.postId, p.title, u.userId, u.fullname, pc.postCategoryId, pc.postCategoryName AS postCategoryName " +
+//            "FROM Post p " +
+//            "JOIN p.user u " +
+//            "JOIN p.postCategory pc")
+//    List<Post> findAllPostsWithUserInfoAndCategory();
+
+
+//    @Query("SELECT p.postId, p.title, u.userId, u.fullname, pc.postCategoryId, pc.postCategoryName AS postCategoryName " +
+//            "FROM Post p " +
+//            "JOIN p.user u " +
+//            "JOIN p.postCategory pc")
+//    List<Post> findAll();
+
 
 }

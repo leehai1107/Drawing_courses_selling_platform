@@ -3,6 +3,7 @@ package com.main.drawingcourse.controller;
 
 import java.util.List;
 
+import com.main.drawingcourse.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,10 @@ import com.main.drawingcourse.service.IPostService;
 @RequestMapping("public/post")
 public class PostController {
     @Autowired
-
     IPostService postService;
 
+    @Autowired
+    PostRepository postRepository;
 
     @PostMapping(value = "/add")
     public PostModel AddPost(@RequestBody PostModel postModel) {
@@ -31,14 +33,21 @@ public class PostController {
 
 
     }
-        @GetMapping(value = "/ViewAllPost")
-        public List<PostModel> findAll() {
-            return postService.findAll();
-        }
+//        @GetMapping(value = "/ViewAllPost")
+//        public List<PostModel> findAll() {
+//            return postService.findAll();
+//        }
 
-        @DeleteMapping(value = "/DeletePostById/{id}")
-        public void deltePostById(@PathVariable int id){
-            this.postService.deleteByPostId(id);
+
+    @GetMapping("/viewallpost")
+    public List<ResponsePostByCate> getAllPosts() {
+
+        return postService.getAllPosts();
+    }
+
+    @DeleteMapping(value = "/DeletePostById/{id}")
+    public void deltePostById(@PathVariable int id){
+        this.postService.deleteByPostId(id);
 
 
         }
