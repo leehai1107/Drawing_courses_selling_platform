@@ -1,5 +1,6 @@
 package com.main.drawingcourse.repository;
 
+import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.entity.Course;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,6 +18,8 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
+    @Query(value = "SELECT courses.course_id, courses.course_image, courses.description, courses.price, courses.rating, courses.title, courses.instructor_id, drawing_categories.draw_category_id, drawing_categories.draw_category_name, levels.level_id, levels.level_name, users.user_id, users.fullname FROM courses JOIN drawing_categories ON courses.draw_category_id = drawing_categories.draw_category_id JOIN levels ON courses.level_id = levels.level_id JOIN users ON courses.instructor_id = users.user_id where instructor_id = :id", nativeQuery = true)
+    List<Course> findAllCoursesByInstructorId(@Param("id") int id);
 
 
     @Query(
@@ -31,10 +34,10 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             )
     Course findCoursesByTitle(@Param("title") String title);
 
-    @Query(
-            value = "SELECT * FROM COURSES c WHERE c.instructor_id = :id",
-            nativeQuery = true)
-    List<Course> findAllCoursesByInstructorId(@Param("id") int id);
+//    @Query(
+//            value = "SELECT * FROM COURSES c WHERE c.instructor_id = :id",
+//            nativeQuery = true)
+//    List<Course> findAllCoursesByInstructorId(@Param("id") int id);
 
 
     @Query(

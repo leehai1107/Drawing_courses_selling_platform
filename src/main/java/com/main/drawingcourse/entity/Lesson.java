@@ -40,7 +40,7 @@ public class Lesson {
 	private Boolean lessonStatus;
 	
 	@ManyToOne
-	@JoinColumn(name = "unitId")
-	private Unit unit;
+	@JoinColumn(name = "courseId")
+	private Course course;
 
 }

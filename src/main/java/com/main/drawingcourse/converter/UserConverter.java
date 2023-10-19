@@ -19,9 +19,11 @@ public class UserConverter {
 		User entity = new User();
 		
 		entity.setUserId(model.getId());
-		entity.setUserName(model.getUserName());
+		entity.setUserName(model.getUsername());
 		entity.setPassword(model.getPassword());
 		entity.setAvatar(model.getAvatar());
+		entity.setPhone(model.getPhone());
+		entity.setEmail(model.getEmail());
 		entity.setRole(roleRepository.getReferenceById(model.getRoleId()));
 		entity.setDescription(model.getDescription());
 		entity.setStatus(model.getStatus());
@@ -36,15 +38,18 @@ public class UserConverter {
 	public UserModel toDto(User entity){
 		UserModel dto = new UserModel();
 		dto.setId(entity.getUserId());
-		dto.setUserName(entity.getUserName());
+		dto.setUsername(entity.getUserName());
 		dto.setPassword(entity.getPassword());
 		dto.setAvatar(entity.getAvatar());
+		dto.setEmail(entity.getEmail());
+		dto.setPhone(entity.getPhone());
 		dto.setRoleId(entity.getRole().getRoleId());
 		dto.setDescription(entity.getDescription());
 		dto.setFullname(entity.getFullname());
 		dto.setDob(entity.getDob());
 		dto.setStatus(entity.getStatus());
 		dto.setSex(entity.getSex());
+		dto.setRoleModelResponse(roleConverter.toDto(entity.getRole()));
 		return dto;
 	}
 	

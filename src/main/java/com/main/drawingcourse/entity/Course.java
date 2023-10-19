@@ -53,13 +53,14 @@ public class Course {
 	private DrawingCategory drawingCategory;
 
 	@OneToMany(mappedBy = "course")
-	private Collection<Unit> units;
+	private Collection<Lesson> lessons;
 
 	@OneToMany(mappedBy = "course")
 	private Collection<Course_Order> course_Orders;
 	
 	@Column(columnDefinition = "nvarchar(500) not null")
 	private String courseImage;
+
 
 
 }

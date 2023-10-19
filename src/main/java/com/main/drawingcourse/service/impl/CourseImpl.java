@@ -1,5 +1,6 @@
 package com.main.drawingcourse.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,8 +62,6 @@ public class CourseImpl implements ICourseService {
         Course course = courseRepository.findCoursesByTitle(title);
         if (course != null) {
             return courseConverter.toDTO(course);
-
-
         }
         return new CourseModel();
     }
@@ -92,14 +91,16 @@ public class CourseImpl implements ICourseService {
     }
 
     @Override
-    public List<CourseModel> findCourseByInstructorID(int instructor_id) {
-        List<Course> courseEntity = courseRepository.findAllCoursesByInstructorId(instructor_id);
-        List<CourseModel> courseModels = courseEntity.stream()
+    public List<CourseModel> findCourseByInstructorID(int instructorId) {
+        List<Course> courseEntities = courseRepository.findAllCoursesByInstructorId(instructorId);
+        List<CourseModel> courseModels = courseEntities.stream()
                 .map(courseConverter::toDTO)
                 .collect(Collectors.toList());
 
         return courseModels;
+
     }
+
 
     @Override
 

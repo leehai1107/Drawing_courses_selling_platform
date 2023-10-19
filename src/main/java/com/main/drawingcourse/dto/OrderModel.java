@@ -19,6 +19,8 @@ public class OrderModel {
     private boolean order_status;
     private double price;
     private int user_id;
+    private List<Integer> courseIds;
+
     public void setCourseOrders(List<Course_OrderModel> courseOrders) {
         this.courseOrders = courseOrders;
     }

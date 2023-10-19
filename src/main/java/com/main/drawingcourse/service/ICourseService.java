@@ -11,7 +11,6 @@ public interface ICourseService {
 
     CourseModel findByCourseTitle(String title);
 
-
     CourseModel GetCoursebyid(int id);
 
     List<ResponseCourse> findAll();
