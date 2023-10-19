@@ -34,6 +34,7 @@ public class LevelController {
 
 @GetMapping("/ViewAllLevels")
     public List<LevelModel> findAll() {
+
         return levelService.findAll();
     }
 

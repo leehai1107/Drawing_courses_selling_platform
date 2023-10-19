@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,14 +76,18 @@ public class CourseImpl implements ICourseService {
         return new CourseModel();
     }
 
-    @Override
-    public List<CourseModel> findAll() {
-        List<Course> courses = courseRepository.findAll();
-        List<CourseModel> courseModels = courses.stream()
-                .map(courseConverter::toDTO)
+    public List<ResponseCourse> findAll() {
+        List<ResponseCourse> courseModels = courseRepository.findAll().stream()
+                .map(courseConverter::toResponse)
                 .collect(Collectors.toList());
 
         return courseModels;
+
+//        List<ResponsePostByCate> postModels = postRepository.findAll().stream()
+//                .map(postConverter::toResponse)
+//                .collect(Collectors.toList());
+//
+//        return postModels;
     }
 
     @Override
