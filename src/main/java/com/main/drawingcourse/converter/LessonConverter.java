@@ -1,5 +1,6 @@
 package com.main.drawingcourse.converter;
 
+import com.main.drawingcourse.dto.ResponseLessonByCourseId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,8 @@ public class LessonConverter {
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    CourseConverter courseConverter;
 
     public Lesson toEntity (LessonModel lessonDTO) {
         Lesson entity = new Lesson();
@@ -40,6 +43,21 @@ public class LessonConverter {
         dto.setVideoUrl(lessonEntity.getVideoUrl());
         dto.setCourseId(lessonEntity.getCourse().getCourseId());
         dto.setLessonstatus(lessonEntity.getLessonStatus());
+
+        return dto;
+    }
+
+    public ResponseLessonByCourseId toResponse(Lesson lesson) {
+        ResponseLessonByCourseId dto = new ResponseLessonByCourseId();
+
+        dto.setLessonId(lesson.getLessonId());
+        dto.setTitle(lesson.getTitle());
+        dto.setContent(lesson.getContent());
+        dto.setVideoUrl(lesson.getVideoUrl());
+        dto.setVideoduration(lesson.getVideoDuration());
+        dto.setLessonstatus(lesson.getLessonStatus());
+
+        dto.setCourseInfo(courseConverter.toDTO(lesson.getCourse()));
 
         return dto;
     }
