@@ -5,39 +5,40 @@ import Cum3 from "../assets/1cum3.png"
 import { HotCourses, StartCourse } from "../data/Course";
 const Home = () => {
 
-  const CourseShow = (course : any) => {
-        return <div className="w-4/12 mx-10 border-4">
-        <div className="border-b-4 border-black">
+  const CourseShow = (course: any) => {
+    return (
+      <div className="w-1/3 mx-4 mb-8"> {/* Adjust the width and margin */}
+        <div className="border-4 border-black">
           <img
-            className="w-4/5 m-auto mt-5 mb-10"
+            className="w-full"
             src={course?.image}
+            alt={course?.title}
           />
           <div className="flex justify-end">
             <div className="text-center text-xs bg-yellow-500 w-1/4">
-              {course?.level !== undefined
-                ? course?.level
-                : "CHƯA LỰA CHỌN CẤP ĐỘ"}
+              {course?.level !== undefined ? course?.level : "CHƯA LỰA CHỌN CẤP ĐỘ"}
             </div>
           </div>
-        </div>
-        <div className="text-center text-3xl font-normal py-3">
-          {course?.title}
+          <div className="text-center text-3xl font-normal py-3">
+            {course?.title}
+          </div>
         </div>
       </div>
+    );
   }  
 
-  const SlideShow = (Courses : any[]) => {
+  const SlideShow = (Courses: any[]) => {
     var slides = [];
     for (var i = 0; i < Courses.length; i += 3) {
       slides.push(
-        <div key={i} className="flex px-10">
+        <div key={i} className="flex px-4"> {/* Adjust the padding */}
           {CourseShow(Courses[i])}
-          {CourseShow(Courses[i+1])}
-          {CourseShow(Courses[i+2])}
+          {CourseShow(Courses[i + 1])}
+          {CourseShow(Courses[i + 2])}
         </div>
       );
     }
-
+  
     return slides;
   };
   return (

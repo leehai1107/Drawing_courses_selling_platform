@@ -38,10 +38,6 @@ public class CourseController {
         return CourseService.findByCourseTitle(title);
     }
 
-//    @GetMapping(value = "/find-by-InstructorId/{id}")
-//    public List<CourseModel> findCourseByIntructorID(@PathVariable("id") int id){
-//        return CourseService.findCourseByInstructorID(id);
-//        }
 
     @GetMapping("/view")
 
@@ -82,8 +78,8 @@ public class CourseController {
     }
 
     @GetMapping(value = "/find-Course-Has-Order")
-    public List<CourseModel> findAllCourseHasOrder(){
-        return CourseService.findAllCourseHasOrder();
+    public List<CourseModel> findAllCourseHasOrder(@RequestParam("name") String name){
+        return CourseService.findAllCourseHasOrder(name);
     }
 
     @GetMapping("/find-by-InstructorId/{id}")
@@ -91,44 +87,16 @@ public class CourseController {
         return CourseService.findCourseByInstructorID(id);
     }
 
-//    @GetMapping("/byInstructor/{instructorId}")
-//    public List<CourseModel> getCoursesByInstructorId(@PathVariable("instructorId") int instructorId) {
-//        List<Course> courses = CourseService.findCourseByInstructorID(instructorId);
-//        List<CourseModel> courseDTOs = new ArrayList<>();
-//
-//        for (Course course : courses) {
-//            CourseModel courseDTO = new CourseModel();
-//            courseDTO.setCourseId(course.getCourseId());
-//            courseDTO.setCourseImage(course.getCourseImage());
-//            courseDTO.setDescription(course.getDescription());
-//            courseDTO.setPrice(course.getPrice());
-//            courseDTO.setRating(course.getRating());
-//            courseDTO.setTitle(course.getTitle());
-//
-//            // Get information from related tables
-//            DrawingCategory drawCategory = course.getDrawingCategory();
-//            if (drawCategory != null) {
-//                courseDTO.setDrawCategoryId(drawCategory.getDrawCategoryId());
-//                courseDTO.setDrawCategoryName(drawCategory.getDrawCategoryName());
-//            }
-//
-//            Level level = course.getLevel();
-//            if (level != null) {
-//                courseDTO.setLevelId(level.getLevelId());
-//                courseDTO.setLevelName(level.getLevelName());
-//            }
-//
-//            User instructor = course.getInstructor();
-//            if (instructor != null) {
-//                courseDTO.setInstructorId(instructor.getUserId());
-//                courseDTO.setInstructorName(instructor.getFullname());
-//            }
-//
-//            courseDTOs.add(courseDTO);
-//        }
-//
-//        return courseDTOs;
-//    }
+    @GetMapping(value = "/find-Course-Of-Instructor-By-UserName")
+    public List<CourseModel> findAllCourseOfInstructorByUserName(@RequestParam("name") String name) {
+        return CourseService.findAllCourseOfInstructorByUserName(name);
+    }
+
+    @GetMapping(value = "/find-Top4-Best-Seller-Course")
+    public List<CourseModel> findTop4BestSellerCourse(){
+        return CourseService.findTop4BestSellerCourse();
+    }
+
 
     }
 

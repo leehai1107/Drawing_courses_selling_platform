@@ -4,7 +4,9 @@ package com.main.drawingcourse.service.impl;
 import com.main.drawingcourse.converter.PostConverter;
 
 
+import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Post;
 import com.main.drawingcourse.entity.PostCategory;
 import com.main.drawingcourse.repository.PostCategoryRepository;
@@ -52,6 +54,17 @@ public class PostImpl implements IPostService {
 
 
         return postConverter.toDto(postEntity);
+    }
+
+    @Override
+    public List<ResponsePostByCate> findPostByID(int id) {
+        List<Post> postEntity = postRepository.findPostByPostId(id);
+        List<ResponsePostByCate> postModels = postEntity.stream()
+                .map(postConverter::toResponse)
+                .collect(Collectors.toList());
+
+        return postModels;
+
     }
 
     public List<ResponsePostByCate> getAllPosts() {

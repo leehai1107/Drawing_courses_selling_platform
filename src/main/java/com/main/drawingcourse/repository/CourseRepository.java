@@ -48,15 +48,23 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
     @Query(
-            value = "SELECT c.* FROM COURSES c JOIN course_order co ON c.course_id = co.course_id",
+            value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id FROM Courses c INNER JOIN Users u ON c.instructor_id = u.user_id WHERE c.course_id IN (SELECT course_id FROM course_order)AND u.user_name = :name",
             nativeQuery = true)
-    List<Course> findAllCourseHasOrder();
+    List<Course> findAllCourseHasOrder(@Param("name") String name);
 
-
+    @Query(
+            value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id FROM Courses c JOIN Users u ON c.instructor_id = u.user_id WHERE u.user_name = :name",
+            nativeQuery = true)
+    List<Course> findAllCourseOfInstructorByUserName(@Param("name") String name);
 
 
     @Query(value = "SELECT * FROM COURSES WHERE courseId = :id", nativeQuery = true)
     Course findCourseByID(@Param("id") int id);
+
+
+
+    @Query(value = "SELECT TOP 4 c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id FROM Courses c JOIN course_order co ON c.course_id = co.course_id GROUP BY c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id ORDER BY COUNT(co.order_id) DESC", nativeQuery = true)
+    List<Course> findTop4BestSellerCourse();
 
 
 
