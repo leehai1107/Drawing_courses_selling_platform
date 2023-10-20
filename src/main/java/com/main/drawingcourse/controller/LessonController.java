@@ -25,7 +25,7 @@ public class LessonController {
         return lessonService.AddLesson(lessonModel);
     }
 
-    @GetMapping(value = "/findLessonByCourseID/{id}")
+    @GetMapping(value = "/find-by-course-id/{id}")
     public List<ResponseLessonByCourseId> findLessonsByCourseID(@PathVariable int id){
         return lessonService.findLessonsByCourseID(id);
 

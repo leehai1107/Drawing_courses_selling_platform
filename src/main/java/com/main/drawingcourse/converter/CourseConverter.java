@@ -42,7 +42,6 @@ public class CourseConverter {
     DrawingCateforyConverter drawingCateforyConverter;
 
 
-
     public Course toEntity(CourseModel courseModel) {
         Course entity = new Course();
         entity.setCourseId(courseModel.getCourseId());
