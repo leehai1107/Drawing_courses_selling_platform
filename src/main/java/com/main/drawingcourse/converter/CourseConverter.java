@@ -54,6 +54,7 @@ public class CourseConverter {
         entity.setLevel(levelRepository.getReferenceById(courseModel.getLevelId()));
         entity.setUser(userRepository.getReferenceById(courseModel.getInstructorId()));
 
+
         return entity;
     }
 

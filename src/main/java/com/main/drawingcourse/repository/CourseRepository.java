@@ -63,4 +63,9 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
 
+    @Query(value = "SELECT TOP 4 c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id FROM Courses c JOIN course_order co ON c.course_id = co.course_id GROUP BY c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id ORDER BY COUNT(co.order_id) DESC", nativeQuery = true)
+    List<Course> findTop4BestSellerCourse();
+
+
+
 }

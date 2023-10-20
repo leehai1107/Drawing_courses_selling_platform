@@ -33,4 +33,6 @@ public interface ICourseService {
 
     List<CourseModel> findAllCourseOfInstructorByUserName(String name);
 
+    List<CourseModel> findTop4BestSellerCourse();
+
 }

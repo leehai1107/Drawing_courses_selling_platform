@@ -177,6 +177,15 @@ public class CourseImpl implements ICourseService {
         return courseModels;
     }
 
+    @Override
+    public List<CourseModel> findTop4BestSellerCourse() {
+        List<CourseModel> courseModels = courseRepository.findTop4BestSellerCourse().stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+
+        return courseModels;
+    }
+
 
     @Override
     public Course findByCoursebyId(int id) {
