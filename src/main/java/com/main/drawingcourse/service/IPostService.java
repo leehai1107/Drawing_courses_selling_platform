@@ -13,7 +13,7 @@ public  interface IPostService {
 
 //    List<PostModel> getallpost();
 
-
+    List<ResponsePostByCate> findPostByID(int id);
     void deleteByPostId(int id);
 
 
