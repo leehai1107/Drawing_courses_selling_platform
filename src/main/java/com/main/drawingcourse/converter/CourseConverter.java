@@ -1,12 +1,12 @@
 package com.main.drawingcourse.converter;
 
 import com.main.drawingcourse.dto.CourseModel;
-<<<<<<< HEAD
+
 import com.main.drawingcourse.dto.ResponseCourse;
-=======
+
 import com.main.drawingcourse.dto.DrawingCategoryModel;
 import com.main.drawingcourse.dto.LevelModel;
->>>>>>> newup/main
+
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.repository.DrawingCategoryRepository;
 import com.main.drawingcourse.repository.LevelRepository;
@@ -30,7 +30,7 @@ public class CourseConverter {
 
     @Autowired
     UserRepository userRepository;
-<<<<<<< HEAD
+
 
     @Autowired
     UserConverter userConverter;
@@ -41,14 +41,8 @@ public class CourseConverter {
     @Autowired
     DrawingCateforyConverter drawingCateforyConverter;
 
-=======
-    @Autowired
-    DrawingCateforyConverter drawingCateforyConverter;
-    @Autowired
-    LevelConverter levelConverter;
-    @Autowired
-    UserConverter userConverter;
->>>>>>> newup/main
+
+
     public Course toEntity(CourseModel courseModel) {
         Course entity = new Course();
         entity.setCourseId(courseModel.getCourseId());
