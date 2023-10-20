@@ -35,6 +35,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             nativeQuery = true)
     Post findPostByTitle(@Param("title") String title);
 
+    List<Post> findPostByPostId(int id);
 
     @Modifying
     @Query(

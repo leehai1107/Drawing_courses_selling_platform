@@ -38,10 +38,6 @@ public class CourseController {
         return CourseService.findByCourseTitle(title);
     }
 
-//    @GetMapping(value = "/find-by-InstructorId/{id}")
-//    public List<CourseModel> findCourseByIntructorID(@PathVariable("id") int id){
-//        return CourseService.findCourseByInstructorID(id);
-//        }
 
     @GetMapping("/view")
 
@@ -82,13 +78,18 @@ public class CourseController {
     }
 
     @GetMapping(value = "/find-Course-Has-Order")
-    public List<CourseModel> findAllCourseHasOrder(){
-        return CourseService.findAllCourseHasOrder();
+    public List<CourseModel> findAllCourseHasOrder(@RequestParam("name") String name){
+        return CourseService.findAllCourseHasOrder(name);
     }
 
     @GetMapping("/find-by-InstructorId/{id}")
     public List<CourseModel> getCoursesByInstructorId(@PathVariable int id) {
         return CourseService.findCourseByInstructorID(id);
+    }
+
+    @GetMapping(value = "/find-Course-Of-Instructor-By-UserName")
+    public List<CourseModel> findAllCourseOfInstructorByUserName(@RequestParam("name") String name) {
+        return CourseService.findAllCourseOfInstructorByUserName(name);
     }
 
 //    @GetMapping("/byInstructor/{instructorId}")

@@ -158,8 +158,18 @@ public class CourseImpl implements ICourseService {
     }
 
     @Override
-    public List<CourseModel> findAllCourseHasOrder() {
-        List<Course> courseEntity = courseRepository.findAllCourseHasOrder();
+    public List<CourseModel> findAllCourseHasOrder(String name) {
+        List<Course> courseEntity = courseRepository.findAllCourseHasOrder(name);
+        List<CourseModel> courseModels = courseEntity.stream()
+                .map(courseConverter::toDTO)
+                .collect(Collectors.toList());
+
+        return courseModels;
+    }
+
+    @Override
+    public List<CourseModel> findAllCourseOfInstructorByUserName(String name) {
+        List<Course> courseEntity = courseRepository.findAllCourseOfInstructorByUserName(name);
         List<CourseModel> courseModels = courseEntity.stream()
                 .map(courseConverter::toDTO)
                 .collect(Collectors.toList());

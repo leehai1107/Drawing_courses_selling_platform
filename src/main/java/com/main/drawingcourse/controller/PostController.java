@@ -52,6 +52,11 @@ public class PostController {
 
         }
 
+        @GetMapping(value =  "find-Post-By-id/{id}")
+        public List<ResponsePostByCate> findPostByID(@PathVariable int id){
+        return postService.findPostByID(id);
+        }
+
 //        remove later
     @GetMapping(value = "/find-post-by-category/{id}")
     public List<PostModel> findPostBycategoryID(@PathVariable int id){
