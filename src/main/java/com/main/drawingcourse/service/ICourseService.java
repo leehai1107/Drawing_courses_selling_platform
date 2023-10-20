@@ -29,6 +29,10 @@ public interface ICourseService {
 
 
 
-    List<CourseModel> findAllCourseHasOrder();
+    List<CourseModel> findAllCourseHasOrder(String name);
+
+    List<CourseModel> findAllCourseOfInstructorByUserName(String name);
+
+    List<CourseModel> findTop4BestSellerCourse();
 
 }
