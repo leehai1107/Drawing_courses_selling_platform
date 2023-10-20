@@ -1,7 +1,27 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useActionData, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useRecoilState } from 'recoil'
+import { accountState } from '../../../atom/atom'
 
 const Login = () => {
+  const [account, setAccount] = useRecoilState(accountState)
+  const [mount, setMount] = useState(true);
+  const result : any = useActionData();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!result && !mount) {
+      toast("Unthentication", {type: toast.TYPE.ERROR})
+    }
+    else if(result){
+      setAccount(result)
+      navigate("/")
+    }
+
+    setMount(false)
+  }, [result]);
   return (
     <>
       <div className="mx-10 text-center">
@@ -9,6 +29,7 @@ const Login = () => {
         <Form method="post" className="mb-10">
           <div className="mb-5">
             <TextField
+              required
               name="account"
               id="standard-basic"
               label="Account"
@@ -19,6 +40,7 @@ const Login = () => {
           </div>
           <div>
             <TextField
+              required
               name="password"
               id="standard-basic"
               label="Password"
