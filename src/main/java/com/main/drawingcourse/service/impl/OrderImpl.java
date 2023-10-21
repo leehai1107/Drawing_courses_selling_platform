@@ -46,7 +46,7 @@ public class OrderImpl implements IOrderService {
             // Lưu đơn hàng vào cơ sở dữ liệu
             order.setOrderCode(order.getOrderCode());
             order.setOrderDate(LocalDate.now());
-            order.setOrderStatus(order.getOrderStatus()); // Mặc định là đã đặt hàng
+            order.setOrderStatus(false); // Mặc định là đã đặt hàng
             order = orderRepository.save(order);
             orderConverter.toDTO(order);
 
