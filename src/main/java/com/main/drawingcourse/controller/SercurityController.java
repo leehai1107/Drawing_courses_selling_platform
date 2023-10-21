@@ -58,7 +58,6 @@ public class SercurityController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticationUser(@Valid @RequestBody LoginRequest loginRequest){
-		System.out.println(loginRequest.getUsername());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		
