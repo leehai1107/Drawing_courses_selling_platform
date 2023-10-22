@@ -1,14 +1,20 @@
 package com.main.drawingcourse.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+
+import com.main.drawingcourse.converter.Course_OrderConverter;
 import com.main.drawingcourse.converter.UserConverter;
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.Course_OrderModel;
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.Course;
+import com.main.drawingcourse.entity.Course_Order;
 import com.main.drawingcourse.repository.RoleRepository;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,6 +40,12 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	RoleRepository roleRepository;
 
+	@Autowired
+	private EntityManager entityManager;
+
+	@Autowired
+	Course_OrderConverter courseOrderConverter;
+
 	@Override
 	public User findUserByUserName(String userName) {
 		return userRepository.findUserByUserName(userName);
@@ -43,7 +55,19 @@ public class UserServiceImpl implements IUserService {
 	public User findUserByEmail(String email) {
 		return userRepository.findUserByEmail(email);
 	}
-	
+
+	@Override
+	public List<UserModel> findByUsernameAndOrderDate(String username) {
+		List<User> UserEntity = userRepository.findOrderHistoryByUsername(username);
+		List<UserModel> UserModels = UserEntity.stream()
+				.map(userConverter::toDto)
+				.collect(Collectors.toList());
+		return UserModels;
+
+
+
+	}
+
 
 	@Override
 	public String addUser(User userInfo) {
@@ -159,8 +183,10 @@ public class UserServiceImpl implements IUserService {
 			user.setAvatar(user.getAvatar());
 			user.setDescription(user.getDescription());
 			user.setDob(user.getDob());
+			user.setEmail(user.getEmail());
 			user.setFullname(user.getFullname());
 			user.setPassword(user.getPassword());
+			user.setPhone(user.getPhone());
 			user.setSex(user.getSex());
 			user.setStatus(user.getStatus());
 			user.setUserName(user.getUserName());
@@ -201,4 +227,6 @@ public class UserServiceImpl implements IUserService {
 
 		return sb.toString();
 	}
+
+
 }

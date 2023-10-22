@@ -2,7 +2,9 @@ package com.main.drawingcourse.controller;
 
 import java.util.List;
 
+import com.main.drawingcourse.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,5 +57,9 @@ public class UserController {
 
         // You can return a response as needed
     }
-
+    @GetMapping("/order-history/{username}")
+    public List<UserModel> getOrderHistoryByUsername(@PathVariable String username) {
+        List<UserModel> userModels = userService.findByUsernameAndOrderDate(username);
+        return userModels;
+    }
 }
