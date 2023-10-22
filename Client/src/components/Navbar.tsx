@@ -4,6 +4,7 @@ import { BlackSwitch } from "./Switch";
 import adminJpg from "../assets/admin.jpg";
 
 const Navbar = () => {
+
   return (
     <>
       <div className="flex justify-between items-center py-4 px-7">

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.User;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -111,38 +112,53 @@ public class CourseImpl implements ICourseService {
     public void UpdateCourse(CourseModel CourseModel) {
         Course course = courseConverter.toEntity(CourseModel);
 
-        if(course != null){
+        if (course != null) {
             // Update the course entity with data from CourseModel
-            course.setDescription(course.getDescription());
-            course.setCourseImage(course.getCourseImage());
-            course.setPrice(course.getPrice());
-            course.setRating(course.getRating());
-            course.setTitle(course.getTitle());
+            course.setDescription(CourseModel.getDescription());
+            course.setPrice(CourseModel.getPrice());
+            course.setRating(CourseModel.getRating());
+            course.setTitle(CourseModel.getTitle());
 
             // Update the drawing category, level, and user, similar to the way you did it
-            var draw = drawingCategoryRepository.findById(course.getDrawingCategory().getDrawCategoryId()).orElse(null);
+            var draw = drawingCategoryRepository.findById(CourseModel.getDrawCategoryId()).orElse(null);
             if (draw != null) {
                 course.setDrawingCategory(draw);
             }
 
-            var level = levelRepository.findById(course.getLevel().getLevelId()).orElse(null);
+            var level = levelRepository.findById(CourseModel.getLevelId()).orElse(null);
             if (level != null) {
                 course.setLevel(level);
             }
 
-            var userByIdAndRole = userRepository.findByIdAndRole(course.getUser().getUserId()).orElse(null);
+            var userByIdAndRole = userRepository.findByIdAndRole(CourseModel.getInstructorId()).orElse(null);
             if (userByIdAndRole != null) {
                 course.setUser(userByIdAndRole);
             }
 
+            // Update the courseImage if it's not null in CourseModel
+            if (CourseModel.getCourseImage() != null) {
+                course.setCourseImage(CourseModel.getCourseImage());
+            }
+
             // Finally, save the updated course entity
             course = courseRepository.save(course);
-
-            // You can return the updated CourseModel if needed
-            CourseModel updatedCourseModel = courseConverter.toDTO(course);
         }
     }
-    
+
+
+    @Override
+    public void editCourse(int courseId, CourseModel courseModel) {
+        Course existingCourse = courseRepository.findCourseByID(courseId);
+
+        if(existingCourse != null){
+            // Update the existing course with the new data from the courseModel
+            BeanUtils.copyProperties(courseModel, existingCourse, "courseId");
+
+            // Save the updated course
+            courseRepository.save(existingCourse);
+        }
+            }
+
     @Override
 	public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
         List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price,end_price);
