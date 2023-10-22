@@ -24,6 +24,9 @@ public class Post {
 	@Column(columnDefinition = "DATE")
 	private LocalDate postDate;
 	
+	@Column
+	private boolean status;
+	
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;

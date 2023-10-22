@@ -188,7 +188,7 @@ public class UserServiceImpl implements IUserService {
 			user.setPassword(user.getPassword());
 			user.setPhone(user.getPhone());
 			user.setSex(user.getSex());
-			user.setStatus(user.getStatus());
+			user.setStatus(user.isStatus());
 			user.setUserName(user.getUserName());
 
 			var u = roleRepository.findById(user.getUserId()).orElse(null);
