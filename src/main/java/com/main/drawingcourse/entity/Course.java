@@ -57,8 +57,10 @@ public class Course {
 
 	@OneToMany(mappedBy = "course")
 	private Collection<Course_Order> course_Orders;
+
+
 	
-	@Column(columnDefinition = "nvarchar(500) not null")
+	@Column(name ="CourseImage",columnDefinition = "nvarchar(500) not null")
 	private String courseImage;
 
 

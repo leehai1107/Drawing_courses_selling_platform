@@ -1,5 +1,6 @@
 package com.main.drawingcourse.controller;
 
+import com.main.drawingcourse.payload.ChangePasswordRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -8,13 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.main.drawingcourse.converter.UserConverter;
 import com.main.drawingcourse.dto.UserModel;
@@ -137,5 +132,15 @@ public class SercurityController {
 		}
 		return result;
 	}
-	
+
+
+	@PutMapping("/change-password")
+	public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+		User user = userService.findUserByUserName(request.getUsername());
+		String result = "Change password fail!";
+		if(user!=null) {
+			result = userService.changePassword(user, request.getPasswordEntered(),request.getNewPassword());
+		}
+		return ResponseEntity.ok(result);
+	}
 }
