@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface Course_OrderRepository extends JpaRepository<Course_Order, Integer> {
@@ -16,4 +17,6 @@ public interface Course_OrderRepository extends JpaRepository<Course_Order, Inte
             "JOIN co.course c " +
             "JOIN co.order o")
     Double getTotalSalesAmount();
+
+
 }
