@@ -14,13 +14,13 @@ public class UserModel {
 	private String username;
 	private String password;
 	private String email;
-	private Boolean status;
+	private boolean status;
 	private String phone;
 	private int roleId;
 	private RoleModelResponse roleModelResponse;
 	private String avatar;
 	private LocalDate dob;
-	private boolean sex;
+	private Boolean sex;
 	private String description;
 	private String fullname;
 }

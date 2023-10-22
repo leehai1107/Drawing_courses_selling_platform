@@ -47,8 +47,8 @@ public class UserController {
             userModel1.setDob(userModel.getDob());
             userModel1.setFullname(userModel.getFullname());
             userModel1.setPassword(userModel.getPassword());
-            userModel1.setSex(userModel.isSex());
-            userModel1.setStatus(userModel.getStatus());
+            userModel1.setSex(userModel.getSex());
+            userModel1.setStatus(userModel.isStatus());
             userModel1.setPhone(userModel.getPhone());
             userModel1.setUsername(userModel.getUsername());
             userModel1.setEmail(userModel.getEmail());
