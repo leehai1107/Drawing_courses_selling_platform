@@ -83,11 +83,6 @@ public class CourseImpl implements ICourseService {
 
         return courseModels;
 
-//        List<ResponsePostByCate> postModels = postRepository.findAll().stream()
-//                .map(postConverter::toResponse)
-//                .collect(Collectors.toList());
-//
-//        return postModels;
     }
 
     @Override
@@ -201,67 +196,7 @@ public class CourseImpl implements ICourseService {
 
 
 
-  /*   @Override
-    public CourseModel EditCourse(int id, CourseModel courseModel) {
-        Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Course not found"));
-
-        // Update the course details
-        course.setTitle(courseModel.getTitle());
-        course.setDescription(courseModel.getDescription());
-        course.setPrice(courseModel.getPrice());
-        course.setRating(courseModel.getRating());
-        course.setProgress(courseModel.getProgress());
-
-        // Update the relationships
-        int instructorId = courseModel.getInstructorId();
-        if (instructorId > 0) {
-           User instructor = userRepository.findByIdAndRole(instructorId)
-                 .orElseThrow(() -> new EntityNotFoundException("Instructor not found"));
-            course.setUser(instructor);
-        }
-
-        int levelId = courseModel.getLevelId();
-        if (levelId > 0) {
-            Level level = levelRepository.findById(levelId)
-                    .orElseThrow(() -> new EntityNotFoundException("Level not found"));
-            course.setLevel(level);
-        }
-
-
-        int drawingCategoryId = courseModel.getDrawCategoryId();
-        if (drawingCategoryId > 0) {
-            DrawingCategory drawingCategory = drawingCategoryRepository.findById(drawingCategoryId)
-                    .orElseThrow(() -> new EntityNotFoundException("Drawing Category not found"));
-            course.setDrawingCategory(drawingCategory);
-        }
-
-        // Save the updated course
-        Course updatedCourse = courseRepository.save(course);
-
-        return courseConverter.toDTO(updatedCourse);
-
-    }*/
 
 }
 
-    //    public List<DrawingCategory> findAll() {
-//        return categoryRepository.findAll();
-//    }
-//
-//    public List<DrawingCategory> findAllById(Iterable<Integer> integers) {
-//        return categoryRepository.findAllById(integers);
-//    }
-//
-//    public <S extends DrawingCategory> S save(S entity) {
-//        return categoryRepository.save(entity);
-//    }
-//
-//    public void delete(DrawingCategory entity) {
-//        categoryRepository.delete(entity);
-//    }
-//
-//    public void deleteAll() {
-//        categoryRepository.deleteAll();
-//    }ư
 

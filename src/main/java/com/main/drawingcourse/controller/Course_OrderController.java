@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Course_OrderController {
     @Autowired
     Course_OrderImpl course_order;
+
+
     @GetMapping("/total-sales-amount")
     public Double getTotalSalesAmount() {
         Double totalSalesAmount = course_order.getTotalSalesAmount();

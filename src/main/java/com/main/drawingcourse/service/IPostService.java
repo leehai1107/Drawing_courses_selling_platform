@@ -9,9 +9,6 @@ import java.util.List;
 public  interface IPostService {
     PostModel AddPost(PostModel postModel);
 
-//    List<PostModel> getall (PostModel postModel);
-
-//    List<PostModel> getallpost();
 
     List<ResponsePostByCate> findPostByID(int id);
     void deleteByPostId(int id);

@@ -34,17 +34,11 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             )
     Course findCoursesByTitle(@Param("title") String title);
 
-//    @Query(
-//            value = "SELECT * FROM COURSES c WHERE c.instructor_id = :id",
-//            nativeQuery = true)
-//    List<Course> findAllCoursesByInstructorId(@Param("id") int id);
-
 
     @Query(
             value = "SELECT * FROM COURSES c WHERE c.price BETWEEN :start_price AND :end_price",
             nativeQuery = true)
     List<Course> findCoursesByPriceRange(@Param("start_price") double start_price, @Param("end_price") double end_price);
-
 
 
     @Query(
