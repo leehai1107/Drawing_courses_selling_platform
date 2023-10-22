@@ -22,4 +22,6 @@ public interface IUserService {
 	UserModel GetUserbyid(int id);
 
 	User findUserByEmail(String email);
+
+	String changePassword(User user,String passwordEnter, String newPassword);
 }
