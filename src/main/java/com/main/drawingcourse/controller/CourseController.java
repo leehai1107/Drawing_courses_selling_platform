@@ -56,21 +56,23 @@ public class CourseController {
     @PutMapping("edit/{id}")
     public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
         CourseModel courseModel1 = CourseService.GetCoursebyid(id);
-        if(courseModel!=null){
+        if (courseModel != null) {
             courseModel1.setTitle(courseModel.getTitle());
-            courseModel1.setCourseImage(courseModel.getCourseImage());
             courseModel1.setDescription(courseModel.getDescription());
             courseModel1.setPrice(courseModel.getPrice());
             courseModel1.setRating(courseModel.getRating());
             courseModel1.setLevelId(courseModel.getLevelId());
             courseModel1.setDrawCategoryId(courseModel.getDrawCategoryId());
             courseModel1.setInstructorId(courseModel.getInstructorId());
-            CourseService.UpdateCourse( courseModel1);
+
+            // Update the courseImage if it's not null in CourseModel
+            if (courseModel.getCourseImage() != null) {
+                courseModel1.setCourseImage(courseModel.getCourseImage());
+            }
+
+            CourseService.UpdateCourse(courseModel1);
         }
-
-        // You can return a response as needed
     }
-
 
     @GetMapping(value = "/find-Course-By-PriceRange/{start_price}/{end_price}")
     public List<CourseModel> findCourseByPriceRange(@PathVariable("start_price") double start_price, @PathVariable("end_price") double end_price ){

@@ -21,6 +21,7 @@ public interface ICourseService {
     void DeleteCoursebyid (int id);
 
     void UpdateCourse(CourseModel CourseModel);
+    void editCourse(int courseId, CourseModel courseModel);
 
     Course findByCoursebyId(int id);
 
