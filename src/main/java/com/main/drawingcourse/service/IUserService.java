@@ -25,5 +25,8 @@ public interface IUserService {
 
 	User findUserByEmail(String email);
 
+	String changePassword(User user,String passwordEnter, String newPassword);
+
 	List<UserModel> findByUsernameAndOrderDate(String username);
+
 }

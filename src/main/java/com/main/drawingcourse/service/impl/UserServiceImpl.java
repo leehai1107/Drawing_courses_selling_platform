@@ -229,4 +229,13 @@ public class UserServiceImpl implements IUserService {
 	}
 
 
+	public String changePassword(User user,String passwordEnter, String newPassword) {
+		if(passwordEncoder.matches(passwordEnter, user.getPassword())) {
+			userRepository.saveNewPassword(passwordEncoder.encode(newPassword), user.getUserName());
+			return "Password has changed!";
+		}
+		return "Password has enter does not match with old password!";
+	}
+
+
 }
