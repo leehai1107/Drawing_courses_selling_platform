@@ -16,6 +16,7 @@ public class PostModel {
     private String title;
     private String content;
     private LocalDate postDate;
+    private boolean status;
     private int userId;
     private int postCategoryId;
     private String postImage;
