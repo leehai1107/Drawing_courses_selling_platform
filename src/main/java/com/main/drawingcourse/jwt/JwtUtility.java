@@ -9,6 +9,8 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.main.drawingcourse.payload.LoginResponse;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -53,15 +55,17 @@ public class JwtUtility {
 	    }
 
 
-	    public String generateToken(String userName){
+	    public String generateToken(LoginResponse loginResponse){
 	        Map<String,Object> claims=new HashMap<>();
-	        return createToken(claims,userName);
+	        claims.put("username", loginResponse.getUsername());
+	        claims.put("rolename", loginResponse.getRolename());
+	        claims.put("fullname", loginResponse.getFullname());
+	        return createToken(claims);
 	    }
 
-	    private String createToken(Map<String, Object> claims, String userName) {
+	    private String createToken(Map<String, Object> claims) {
 	        return Jwts.builder()
 	                .setClaims(claims)
-	                .setSubject(userName)
 	                .setIssuedAt(new Date(System.currentTimeMillis()))
 	                .setExpiration(new Date(System.currentTimeMillis()+JWT_TOKEN_VALIDITY))
 	                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
