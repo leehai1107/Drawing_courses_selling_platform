@@ -100,7 +100,14 @@ public class CourseController {
     }
 
 
+    @GetMapping("/coursestatustrue")
+
+    public List<ResponseCourse> viewcoursehasstatustrue(boolean status) {
+
+        return CourseService.viewcoursehasstatustrue(status);
     }
+
+}
 
 
 

@@ -39,11 +39,18 @@ public class PostController {
 //        }
 
 
+    @GetMapping("/poststatustrue")
+    public List<ResponsePostByCate> viewpostbystatustrue(boolean status) {
+        return postService.viewpostbystatustrue(status);
+    }
+
     @GetMapping("/viewallpost")
     public List<ResponsePostByCate> getAllPosts() {
 
         return postService.getAllPosts();
     }
+
+
 
     @DeleteMapping(value = "/DeletePostById/{id}")
     public void deltePostById(@PathVariable int id){
