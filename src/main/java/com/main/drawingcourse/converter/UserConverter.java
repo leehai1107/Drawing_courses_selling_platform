@@ -26,11 +26,10 @@ public class UserConverter {
 		entity.setEmail(model.getEmail());
 		entity.setRole(roleRepository.getReferenceById(model.getRoleId()));
 		entity.setDescription(model.getDescription());
-		entity.setStatus(model.getStatus());
+		entity.setStatus(model.isStatus());
 		entity.setFullname(model.getFullname());
 		entity.setDob(model.getDob());
-		entity.setStatus(model.getStatus());
-		entity.setSex(model.isSex());
+		entity.setSex(model.getSex());
 		
 		return entity;
 	}
@@ -47,7 +46,7 @@ public class UserConverter {
 		dto.setDescription(entity.getDescription());
 		dto.setFullname(entity.getFullname());
 		dto.setDob(entity.getDob());
-		dto.setStatus(entity.getStatus());
+		dto.setStatus(entity.isStatus());
 		dto.setSex(entity.getSex());
 		dto.setRoleModelResponse(roleConverter.toDto(entity.getRole()));
 		return dto;

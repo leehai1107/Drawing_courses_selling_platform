@@ -63,6 +63,7 @@ public class SercurityController {
                 .map(GrantedAuthority::getAuthority)
                 .findFirst()
                 .orElse("");
+		User userData = userService.findUserByUserName(userDetails.getUsername());
 		
 		RefreshToken refreshToken = refreshTokenService.createRefreshToken(loginRequest.getUsername());
 
@@ -71,7 +72,7 @@ public class SercurityController {
 	                new JwtResponse(
 	                        jwt,
 	                        refreshToken.getToken(),
-	                        userDetails.getUsername(),
+	                        userData.getFullname(),
 	                        role)
 	        );
 	}
