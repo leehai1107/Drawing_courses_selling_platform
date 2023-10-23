@@ -1,10 +1,13 @@
 package com.main.drawingcourse.repository;
 
+import com.main.drawingcourse.dto.OrderHistory;
+import com.main.drawingcourse.dto.OrderHistoryResult;
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Course_Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -14,6 +17,7 @@ import com.main.drawingcourse.entity.User;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -51,15 +55,15 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 
 	List<User> findAll();
 
-	@Query(value = "SELECT u.fullname AS username, o.order_date AS order_date, c.title AS course_name\n" +
+	@Query(value = "SELECT u.fullname AS username, o.order_date AS orderDate, c.title AS courseName\n" +
 			"FROM users u\n" +
 			"INNER JOIN orders o ON u.user_id = o.user_id\n" +
-			"INNER JOIN dbo.course_order od ON o.order_id = od.order_id\n" +
+			"INNER JOIN course_order od ON o.order_id = od.order_id\n" +
 			"INNER JOIN courses c ON od.course_id = c.course_id\n" +
 			"WHERE u.fullname = :username " +
 			"ORDER BY o.order_date",
 			nativeQuery = true)
-	List<User> findOrderHistoryByUsername(@Param("username") String username);
+	List<Map<String, OrderHistory>> findOrderHistoryByUsername(@Param("username") String username);
 
 
 	User findByUserName(String username);

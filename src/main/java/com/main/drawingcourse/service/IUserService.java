@@ -2,11 +2,13 @@ package com.main.drawingcourse.service;
 
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.Course_OrderModel;
+import com.main.drawingcourse.dto.OrderHistory;
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.entity.Course_Order;
 import com.main.drawingcourse.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IUserService {
 
@@ -25,5 +27,5 @@ public interface IUserService {
 
 	User findUserByEmail(String email);
 
-	List<UserModel> findByUsernameAndOrderDate(String username);
+	List<Map<String, OrderHistory>> findOrderHistoryByUsername(String username);
 }
