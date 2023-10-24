@@ -13,7 +13,6 @@ public  interface IPostService {
     List<ResponsePostByCate> findPostByID(int id);
     void deleteByPostId(int id);
 
-
     List<PostModel> findPostByPostcategoryId(int id);
 	List<ResponsePostByCate> findPostByPostcategory(int id);
 

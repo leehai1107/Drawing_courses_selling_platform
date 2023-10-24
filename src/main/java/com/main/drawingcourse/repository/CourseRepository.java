@@ -18,7 +18,7 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
-    @Query(value = "SELECT courses.course_id, courses.course_image, courses.description, courses.price, courses.rating, courses.title, courses.instructor_id, drawing_categories.draw_category_id, drawing_categories.draw_category_name, levels.level_id, levels.level_name, users.user_id, users.fullname FROM courses JOIN drawing_categories ON courses.draw_category_id = drawing_categories.draw_category_id JOIN levels ON courses.level_id = levels.level_id JOIN users ON courses.instructor_id = users.user_id where instructor_id = :id", nativeQuery = true)
+    @Query(value = "SELECT courses.course_id, courses.course_image, courses.description, courses.price, courses.rating, courses.title, courses.instructor_id, courses.status, drawing_categories.draw_category_id, drawing_categories.draw_category_name, levels.level_id, levels.level_name, users.user_id, users.fullname FROM courses JOIN drawing_categories ON courses.draw_category_id = drawing_categories.draw_category_id JOIN levels ON courses.level_id = levels.level_id JOIN users ON courses.instructor_id = users.user_id where instructor_id = :id", nativeQuery = true)
     List<Course> findAllCoursesByInstructorId(@Param("id") int id);
 
 
@@ -42,12 +42,12 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
     @Query(
-            value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id FROM Courses c INNER JOIN Users u ON c.instructor_id = u.user_id WHERE c.course_id IN (SELECT course_id FROM course_order)AND u.user_name = :name",
+            value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status FROM Courses c INNER JOIN Users u ON c.instructor_id = u.user_id WHERE c.course_id IN (SELECT course_id FROM course_order)AND u.user_name = :name",
             nativeQuery = true)
     List<Course> findAllCourseHasOrder(@Param("name") String name);
 
     @Query(
-            value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id FROM Courses c JOIN Users u ON c.instructor_id = u.user_id WHERE u.user_name = :name",
+            value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status FROM Courses c JOIN Users u ON c.instructor_id = u.user_id WHERE u.user_name = :name",
             nativeQuery = true)
     List<Course> findAllCourseOfInstructorByUserName(@Param("name") String name);
 
@@ -57,7 +57,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
 
-    @Query(value = "SELECT TOP 4 c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id FROM Courses c JOIN course_order co ON c.course_id = co.course_id GROUP BY c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id ORDER BY COUNT(co.order_id) DESC", nativeQuery = true)
+    @Query(value = "SELECT TOP 4 c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status FROM Courses c JOIN course_order co ON c.course_id = co.course_id GROUP BY c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status ORDER BY COUNT(co.order_id) DESC", nativeQuery = true)
     List<Course> findTop4BestSellerCourse();
 
 
