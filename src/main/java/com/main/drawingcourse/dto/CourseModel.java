@@ -24,6 +24,7 @@ public class CourseModel {
     private LevelModel levelModel;
     private int instructorId;
     private UserModelRespone userModelRespone;
+    private boolean status;
 
 
 

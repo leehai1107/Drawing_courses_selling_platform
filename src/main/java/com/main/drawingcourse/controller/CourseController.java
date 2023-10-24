@@ -64,7 +64,7 @@ public class CourseController {
             courseModel1.setLevelId(courseModel.getLevelId());
             courseModel1.setDrawCategoryId(courseModel.getDrawCategoryId());
             courseModel1.setInstructorId(courseModel.getInstructorId());
-
+            courseModel1.setStatus(courseModel1.isStatus());
             // Update the courseImage if it's not null in CourseModel
             if (courseModel.getCourseImage() != null) {
                 courseModel1.setCourseImage(courseModel.getCourseImage());
