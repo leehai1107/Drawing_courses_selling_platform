@@ -138,6 +138,23 @@ public class PostImpl implements IPostService {
         return postModels;
     }
 
+    @Override
+    public String UpdatePostStatus(int id) {
+        Post post = postRepository.findPostByID(id);
+
+        if (post != null) {
+            if (post.isStatus()) {
+                return "The course status is already true";
+            } else {
+                post.setStatus(true);
+                postRepository.save(post);
+                return "Successfully changed the course status";
+            }
+        }
+
+        return "No course found";
+    }
+
 //    public List<ResponsePostByCate> getAllPosts() {
 //        List<ResponsePostByCate> postModels = postRepository.findAll().stream()
 //                .map(postConverter::toResponse)

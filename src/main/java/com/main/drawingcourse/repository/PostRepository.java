@@ -1,6 +1,7 @@
 package com.main.drawingcourse.repository;
 
 
+import ch.qos.logback.classic.spi.EventArgUtil;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.dto.PostModel;
 import com.main.drawingcourse.entity.Post;
@@ -47,6 +48,11 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             value = "SELECT * FROM POSTS p WHERE p.status = 1",nativeQuery = true
     )
     List<Post> viewpostbystatustrue(@Param("status") boolean status);
+
+    @Query (
+            value = "SELECT * FROM POSTS p where p.post_id = :id", nativeQuery = true
+    )
+    Post findPostByID (int id);
 
 //    @Query("SELECT\n" +
 //            "    p.post_id," +
