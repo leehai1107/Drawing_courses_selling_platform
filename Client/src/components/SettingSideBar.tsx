@@ -8,10 +8,8 @@ import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import EditProfile from "../page/EditProfile";
 import ChangePassword from "../page/ChangePassword";
 import SideBar from "./SideBar";
-
 import ReportPage from "../page/ReportPage";
 import OrderHistory from "../page/OrderHistory";
-
 
 const options = [
   {
@@ -54,15 +52,11 @@ const SettingSideBar = () => {
       case "Edit Profile":
         return <EditProfile />;
       case "Change Password":
-
-        return <ChangePassword />;     
-
         return <ChangePassword />;
       case "Report":
         return <ReportPage />;
       case "Order History":
         return <OrderHistory />;
-
       default:
         return <EditProfile />;
     }

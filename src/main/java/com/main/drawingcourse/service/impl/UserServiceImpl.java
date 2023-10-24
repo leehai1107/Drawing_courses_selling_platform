@@ -1,16 +1,16 @@
 package com.main.drawingcourse.service.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 
 import com.main.drawingcourse.converter.Course_OrderConverter;
 import com.main.drawingcourse.converter.UserConverter;
-import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.dto.Course_OrderModel;
-import com.main.drawingcourse.dto.UserModel;
+import com.main.drawingcourse.dto.*;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Course_Order;
 import com.main.drawingcourse.repository.RoleRepository;
@@ -57,15 +57,13 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public List<UserModel> findByUsernameAndOrderDate(String username) {
-		List<User> UserEntity = userRepository.findOrderHistoryByUsername(username);
-		List<UserModel> UserModels = UserEntity.stream()
-				.map(userConverter::toDto)
-				.collect(Collectors.toList());
-		return UserModels;
+	public List<Map<String, OrderHistory>> findOrderHistoryByUsername(String username) {
 
 
 
+return  userRepository.findOrderHistoryByUsername(username);
+
+		
 	}
 
 
@@ -180,25 +178,22 @@ public class UserServiceImpl implements IUserService {
 	public void Edit_User(UserModel userModel) {
 		User user = userConverter.toEntity(userModel);
 
-			user.setAvatar(user.getAvatar());
-			user.setDescription(user.getDescription());
-			user.setDob(user.getDob());
-			user.setEmail(user.getEmail());
-			user.setFullname(user.getFullname());
-			user.setPassword(user.getPassword());
-			user.setPhone(user.getPhone());
-			user.setSex(user.getSex());
-			user.setStatus(user.isStatus());
-			user.setUserName(user.getUserName());
+			user.setAvatar(userModel.getAvatar());
+			user.setDescription(userModel.getDescription());
+			user.setDob(userModel.getDob());
+			user.setEmail(userModel.getEmail());
+			user.setFullname(userModel.getFullname());
 
-			var u = roleRepository.findById(user.getUserId()).orElse(null);
-			if(u !=null){
-				user.setRole(u);
-			}
+			user.setPhone(userModel.getPhone());
+			user.setSex(userModel.getSex());
+
+
+
+
 			user = userRepository.save(user);
 
 			// You can return the updated CourseModel if needed
-			UserModel updatedUserModel = userConverter.toDto(user);
+		userModel = userConverter.toDto(user);
 
 
 	}

@@ -53,7 +53,7 @@ public class CourseController {
         CourseService.DeleteCoursebyid(id);
     }
 
-    @PutMapping("edit/{id}")
+    @PutMapping("/edit/{id}")
     public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
         CourseModel courseModel1 = CourseService.GetCoursebyid(id);
         if (courseModel != null) {
@@ -105,6 +105,25 @@ public class CourseController {
     public List<ResponseCourse> viewcoursehasstatustrue(boolean status) {
 
         return CourseService.viewcoursehasstatustrue(status);
+    }
+    
+    @GetMapping("/find/{id}")
+    public CourseModel findCourseById (@PathVariable int id) {
+    	return CourseService.GetCoursebyid(id);
+    }
+
+
+    @PutMapping("/update-status/{id}")
+    public ResponseEntity<String> updateStatusOfCourseById(@PathVariable("id") int id) {
+        String result = CourseService.UpdateStatusOfCourse(id);
+        if (result.equals("Successfully changed the course status")) {
+            return ResponseEntity.ok(result);
+        } else if (result.equals("The course status is already true")) {
+            return ResponseEntity.badRequest().body(result);
+        }else if(result.equals("No course found")){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return null;
     }
 
 }

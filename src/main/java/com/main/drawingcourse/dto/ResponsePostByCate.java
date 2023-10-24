@@ -18,4 +18,5 @@ public class ResponsePostByCate {
 	 private UserModelRespone userInfo;
 	 private PostCategoryModel cateInfo;
 	 private String postImage;
+	 private boolean status;
 }

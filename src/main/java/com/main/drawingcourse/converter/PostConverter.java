@@ -39,6 +39,7 @@ public class PostConverter {
         entity.setPostCategory(categoryRepository.getReferenceById(postModel.getPostCategoryId()));
         entity.setUser(userRepository.getReferenceById(postModel.getUserId()));
         entity.setPostImage(postModel.getPostImage());
+        entity.setStatus(postModel.isStatus());
         return entity;
     }
 
@@ -53,6 +54,8 @@ public class PostConverter {
         dto.setPostCategoryId(post.getPostCategory().getPostCategoryId());
         dto.setUserId(post.getUser().getUserId());
         dto.setPostImage(post.getPostImage());
+        dto.setStatus(post.isStatus());
+
         return dto;
     }
 
