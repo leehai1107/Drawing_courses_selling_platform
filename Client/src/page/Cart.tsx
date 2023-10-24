@@ -6,11 +6,21 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import CartData from "../data/CartData";
-import { numberToVietnameseDong } from "../util/util";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { cartState } from "../atom/atom";
+import { CartElement, Course } from "../Type/Type";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const Cart = () => {
+  const [cart, setCart]: any = useRecoilState(cartState);
+  const removeFromCart = (course: Course) => {
+    const removeCourse = cart.filter(
+      (c: CartElement) => c?.Course.courseid !== course.courseid
+    );
+
+    setCart(removeCourse);
+  };
   return (
     <>
       <div className="bg-lime-300 pt-40 font-medium">
@@ -27,27 +37,33 @@ const Cart = () => {
                     <TableCell align="right">Level</TableCell>
                     <TableCell align="right">Giáo Viên</TableCell>
                     <TableCell align="right">Ngày đăng ký</TableCell>
-                    <TableCell align="right">Giá tiền&nbsp;(VND)</TableCell>
+                    <TableCell align="right">Giá tiền&nbsp;($)</TableCell>
+                    <TableCell align="right"></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {CartData.map((data, index) => (
+                  {cart.map((data: CartElement, index: number) => (
                     <TableRow
                       key={index}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        {data.Course}
+                        {data.Course.title}
                       </TableCell>
                       <TableCell align="right">
-                        {data?.Level === undefined
+                        {data?.Course?.levelinfo === undefined
                           ? "CHƯA LỰA CHỌN CẤP ĐỘ"
-                          : data.Level}
+                          : data.Course.levelinfo?.levelName}
                       </TableCell>
                       <TableCell align="right">{data.Teacher}</TableCell>
-                      <TableCell align="right">{data.EnrollDate}</TableCell>
                       <TableCell align="right">
-                        {numberToVietnameseDong(data.UnitPrice)}
+                        {data.EnrollDate.toDateString()}
+                      </TableCell>
+                      <TableCell align="right">{data.Course.price}</TableCell>
+                      <TableCell align="right">
+                        <div onClick={() => removeFromCart(data.Course)}>
+                          <RemoveIcon />
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -57,11 +73,19 @@ const Cart = () => {
           </div>
         </div>
         <div className="text-center">
-          <Link to={"/Payment"}>
-            <button className="text-white bg-orange-500 py-2 px-6 mb-20">
-              Xác nhận
-            </button>
-          </Link>
+          {cart.length < 1 ? (
+            <Link to={"/Courses"}>
+              <button className="text-white bg-orange-500 py-2 px-6 mb-20">
+                Đăng Kí Học
+              </button>
+            </Link>
+          ) : (
+            <Link to={"/Payment"}>
+              <button className="text-white bg-orange-500 py-2 px-6 mb-20">
+                Xác nhận
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </>
