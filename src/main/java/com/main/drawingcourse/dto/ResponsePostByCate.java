@@ -14,6 +14,7 @@ public class ResponsePostByCate {
 	 private String title;
 	 private String content;
 	 private LocalDate postDate;
+	 private boolean status;
 	 private UserModelRespone userInfo;
 	 private PostCategoryModel cateInfo;
 	 private String postImage;
