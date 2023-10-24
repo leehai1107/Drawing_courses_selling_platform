@@ -27,7 +27,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
 	
-	@Column(unique = true,columnDefinition = "varchar(10) not null")
+	@Column(unique = true,columnDefinition = "varchar(50) not null")
 	private String orderCode;
 	
 	@Column(columnDefinition = "DATE")
