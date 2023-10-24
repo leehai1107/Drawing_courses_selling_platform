@@ -47,7 +47,7 @@ public class CourseImpl implements ICourseService {
     public CourseModel AddCourse(CourseModel courseModel) {
         Course existingCourse = courseRepository.findCoursesByTitleAndInstructorID(courseModel.getTitle(), courseModel.getInstructorId());
         List<User> instructor = userRepository.findAllInstructor();
-        if (existingCourse !=null ) {
+        if (existingCourse != null) {
             throw new IllegalArgumentException("Course already exists");
         }
 
@@ -85,11 +85,6 @@ public class CourseImpl implements ICourseService {
 
         return courseModels;
 
-//        List<ResponsePostByCate> postModels = postRepository.findAll().stream()
-//                .map(postConverter::toResponse)
-//                .collect(Collectors.toList());
-//
-//        return postModels;
     }
 
     @Override
@@ -156,18 +151,18 @@ public class CourseImpl implements ICourseService {
     public void editCourse(int courseId, CourseModel courseModel) {
         Course existingCourse = courseRepository.findCourseByID(courseId);
 
-        if(existingCourse != null){
+        if (existingCourse != null) {
             // Update the existing course with the new data from the courseModel
             BeanUtils.copyProperties(courseModel, existingCourse, "courseId");
 
             // Save the updated course
             courseRepository.save(existingCourse);
         }
-            }
+    }
 
     @Override
-	public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
-        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price,end_price);
+    public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
+        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price, end_price);
         List<CourseModel> courseModels = courseEntity.stream()
                 .map(courseConverter::toDTO)
                 .collect(Collectors.toList());
@@ -203,6 +198,23 @@ public class CourseImpl implements ICourseService {
         return courseModels;
     }
 
+    @Override
+    public String UpdateStatusOfCourse(int id) {
+        Course course = courseRepository.findCourseByID(id);
+
+        if (course != null) {
+            if (course.isStatus()) {
+                return "The course status is already true";
+            } else {
+                course.setStatus(true);
+                courseRepository.save(course);
+                return "Successfully changed the course status";
+            }
+        }
+
+        return "No course found";
+    }
+
 
     @Override
     public Course findByCoursebyId(int id) {
@@ -221,69 +233,6 @@ public class CourseImpl implements ICourseService {
         return courseModels;
     }
 
-
-
-  /*   @Override
-    public CourseModel EditCourse(int id, CourseModel courseModel) {
-        Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Course not found"));
-
-        // Update the course details
-        course.setTitle(courseModel.getTitle());
-        course.setDescription(courseModel.getDescription());
-        course.setPrice(courseModel.getPrice());
-        course.setRating(courseModel.getRating());
-        course.setProgress(courseModel.getProgress());
-
-        // Update the relationships
-        int instructorId = courseModel.getInstructorId();
-        if (instructorId > 0) {
-           User instructor = userRepository.findByIdAndRole(instructorId)
-                 .orElseThrow(() -> new EntityNotFoundException("Instructor not found"));
-            course.setUser(instructor);
-        }
-
-        int levelId = courseModel.getLevelId();
-        if (levelId > 0) {
-            Level level = levelRepository.findById(levelId)
-                    .orElseThrow(() -> new EntityNotFoundException("Level not found"));
-            course.setLevel(level);
-        }
-
-
-        int drawingCategoryId = courseModel.getDrawCategoryId();
-        if (drawingCategoryId > 0) {
-            DrawingCategory drawingCategory = drawingCategoryRepository.findById(drawingCategoryId)
-                    .orElseThrow(() -> new EntityNotFoundException("Drawing Category not found"));
-            course.setDrawingCategory(drawingCategory);
-        }
-
-        // Save the updated course
-        Course updatedCourse = courseRepository.save(course);
-
-        return courseConverter.toDTO(updatedCourse);
-
-    }*/
-
 }
 
-    //    public List<DrawingCategory> findAll() {
-//        return categoryRepository.findAll();
-//    }
-//
-//    public List<DrawingCategory> findAllById(Iterable<Integer> integers) {
-//        return categoryRepository.findAllById(integers);
-//    }
-//
-//    public <S extends DrawingCategory> S save(S entity) {
-//        return categoryRepository.save(entity);
-//    }
-//
-//    public void delete(DrawingCategory entity) {
-//        categoryRepository.delete(entity);
-//    }
-//
-//    public void deleteAll() {
-//        categoryRepository.deleteAll();
-//    }ư
 
