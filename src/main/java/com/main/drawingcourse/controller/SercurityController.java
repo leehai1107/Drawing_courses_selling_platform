@@ -69,6 +69,11 @@ public class SercurityController {
 		data.setUsername(userData.getUserName());
 		data.setFullname(userData.getFullname());
 		data.setUserid(userData.getUserId());
+		data.setAvatar(userData.getAvatar());
+		data.setPhone(userData.getPhone());
+		data.setDob(userData.getDob());
+		data.setSex(userData.getSex());
+		data.setDescription(userData.getDescription());
 
 		String jwt = jwtUtility.generateToken(data);		
 		RefreshToken refreshToken = refreshTokenService.createRefreshToken(loginRequest.getUsername());
@@ -104,6 +109,11 @@ public class SercurityController {
 	    response.setFullname(data.getFullname());
 	    response.setUsername(data.getUserName());
 	    response.setRolename(data.getRole().getRoleName());
+	    response.setAvatar(data.getAvatar());
+	    response.setPhone(data.getPhone());
+	    response.setDob(data.getDob());
+	    response.setSex(data.getSex());
+	    response.setDescription(data.getDescription());
 	    String jwt = jwtUtility.generateToken(response);
 	    
 	    return ResponseEntity.ok(
