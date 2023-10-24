@@ -1,6 +1,7 @@
 package com.main.drawingcourse.repository;
 
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.Course;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -60,6 +61,9 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     @Query(value = "SELECT TOP 4 c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status FROM Courses c JOIN course_order co ON c.course_id = co.course_id GROUP BY c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status ORDER BY COUNT(co.order_id) DESC", nativeQuery = true)
     List<Course> findTop4BestSellerCourse();
 
-
+    @Query (
+            value = "SELECT * FROM COURSES c WHERE c.status = 1", nativeQuery = true
+    )
+    List<Course> viewcoursewithstatustrue (@Param("status") boolean status);
 
 }

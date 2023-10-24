@@ -17,4 +17,6 @@ public  interface IPostService {
 	List<ResponsePostByCate> findPostByPostcategory(int id);
 
     List<ResponsePostByCate> getAllPosts();
+
+    List<ResponsePostByCate> viewpostbystatustrue(boolean status);
 }

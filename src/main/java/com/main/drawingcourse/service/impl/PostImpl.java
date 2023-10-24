@@ -15,6 +15,7 @@ import com.main.drawingcourse.repository.PostRepository;
 import com.main.drawingcourse.repository.UserRepository;
 import com.main.drawingcourse.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -92,6 +93,21 @@ public class PostImpl implements IPostService {
         return postModels;
 
     }
+
+    public List<ResponsePostByCate> viewpostbystatustrue(boolean status){
+        List<ResponsePostByCate> postModels = postRepository.viewpostbystatustrue(status).stream()
+                .map(postConverter::toResponse)
+                .collect(Collectors.toList());
+        return postModels;
+    }
+
+//    public List<ResponsePostByCate> getAllPosts() {
+//        List<ResponsePostByCate> postModels = postRepository.findAll().stream()
+//                .map(postConverter::toResponse)
+//                .collect(Collectors.toList());
+//
+//        return postModels;
+//    }
     
     @Override
 	public List<ResponsePostByCate> findPostByPostcategory(int id) {
