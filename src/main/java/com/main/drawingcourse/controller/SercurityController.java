@@ -68,6 +68,7 @@ public class SercurityController {
 		data.setRolename(role);
 		data.setUsername(userData.getUserName());
 		data.setFullname(userData.getFullname());
+		data.setUserid(userData.getUserId());
 
 		String jwt = jwtUtility.generateToken(data);		
 		RefreshToken refreshToken = refreshTokenService.createRefreshToken(loginRequest.getUsername());
@@ -99,6 +100,7 @@ public class SercurityController {
 	    RefreshToken refreshToken = refreshTokenService.findByToken(refreshTokenRequest.getToken());
 	    User data = refreshTokenService.verifyExpiration(refreshToken).getUser();
 	    LoginResponse response = new LoginResponse();
+	    response.setUserid(data.getUserId());
 	    response.setFullname(data.getFullname());
 	    response.setUsername(data.getUserName());
 	    response.setRolename(data.getRole().getRoleName());

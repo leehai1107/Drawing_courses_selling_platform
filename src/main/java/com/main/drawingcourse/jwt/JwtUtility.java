@@ -60,6 +60,7 @@ public class JwtUtility {
 	        claims.put("username", loginResponse.getUsername());
 	        claims.put("rolename", loginResponse.getRolename());
 	        claims.put("fullname", loginResponse.getFullname());
+	        claims.put("userid", loginResponse.getUserid());
 	        return createToken(claims);
 	    }
 
