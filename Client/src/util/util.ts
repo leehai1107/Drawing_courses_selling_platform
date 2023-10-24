@@ -41,9 +41,12 @@ export function formatDateToYYYYMMDD(date:Date) {
 export function generateShortUUID(characters: string) {
   let shortUUID = '';
 
-  for (let i = 0; i < 8; i++) {
+  while(shortUUID.length<10){
     const randomIndex = Math.floor(Math.random() * characters.length);
-    shortUUID += characters.charAt(randomIndex);
+    const randomChar = characters.charAt(randomIndex);
+    if (randomChar !== '-') {
+      shortUUID += randomChar;
+    }
   }
 
   return shortUUID;

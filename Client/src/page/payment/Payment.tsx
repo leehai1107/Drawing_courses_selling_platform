@@ -38,10 +38,10 @@ const Payment = () => {
     const result = await API.payment(orderData)
     console.log(result)
     if(result?.data){
-      window.open(result.data)
+      window.location.href = result.data;
     }
 
-    navigate("/SuccessPayment")
+   
     
   };
   return (
