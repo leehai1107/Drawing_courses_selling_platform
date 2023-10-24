@@ -19,6 +19,7 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
+
     @Query(value = "SELECT courses.course_id, courses.course_image, courses.description, courses.price, courses.rating, courses.title, courses.instructor_id, courses.status, drawing_categories.draw_category_id, drawing_categories.draw_category_name, levels.level_id, levels.level_name, users.user_id, users.fullname FROM courses JOIN drawing_categories ON courses.draw_category_id = drawing_categories.draw_category_id JOIN levels ON courses.level_id = levels.level_id JOIN users ON courses.instructor_id = users.user_id where instructor_id = :id", nativeQuery = true)
     List<Course> findAllCoursesByInstructorId(@Param("id") int id);
 
@@ -53,7 +54,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     List<Course> findAllCourseOfInstructorByUserName(@Param("name") String name);
 
 
-    @Query(value = "SELECT * FROM COURSES WHERE courseId = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM COURSES WHERE course_id = :id", nativeQuery = true)
     Course findCourseByID(@Param("id") int id);
 
 
@@ -65,5 +66,12 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             value = "SELECT * FROM COURSES c WHERE c.status = 1", nativeQuery = true
     )
     List<Course> viewcoursewithstatustrue (@Param("status") boolean status);
+
+
+    @Query (
+            value = "UPDATE Courses SET status = 'true' WHERE course_id = :id AND status = 'false' ", nativeQuery = true
+    )
+    Course UpdateStatusOfCourse (@Param("id") int id);
+
 
 }

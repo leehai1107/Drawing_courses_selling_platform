@@ -20,6 +20,5 @@ public class PostModel {
     private int userId;
     private int postCategoryId;
     private String postImage;
-    private boolean status;
 
 }

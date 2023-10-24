@@ -36,6 +36,8 @@ public interface ICourseService {
 
     List<CourseModel> findTop4BestSellerCourse();
 
+    String UpdateStatusOfCourse(int id);
+
     List<ResponseCourse> viewcoursehasstatustrue(boolean status);
 
 }

@@ -47,7 +47,7 @@ public class CourseImpl implements ICourseService {
     public CourseModel AddCourse(CourseModel courseModel) {
         Course existingCourse = courseRepository.findCoursesByTitleAndInstructorID(courseModel.getTitle(), courseModel.getInstructorId());
         List<User> instructor = userRepository.findAllInstructor();
-        if (existingCourse !=null ) {
+        if (existingCourse != null) {
             throw new IllegalArgumentException("Course already exists");
         }
 
@@ -151,18 +151,18 @@ public class CourseImpl implements ICourseService {
     public void editCourse(int courseId, CourseModel courseModel) {
         Course existingCourse = courseRepository.findCourseByID(courseId);
 
-        if(existingCourse != null){
+        if (existingCourse != null) {
             // Update the existing course with the new data from the courseModel
             BeanUtils.copyProperties(courseModel, existingCourse, "courseId");
 
             // Save the updated course
             courseRepository.save(existingCourse);
         }
-            }
+    }
 
     @Override
-	public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
-        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price,end_price);
+    public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
+        List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price, end_price);
         List<CourseModel> courseModels = courseEntity.stream()
                 .map(courseConverter::toDTO)
                 .collect(Collectors.toList());
@@ -198,6 +198,23 @@ public class CourseImpl implements ICourseService {
         return courseModels;
     }
 
+    @Override
+    public String UpdateStatusOfCourse(int id) {
+        Course course = courseRepository.findCourseByID(id);
+
+        if (course != null) {
+            if (course.isStatus()) {
+                return "The course status is already true";
+            } else {
+                course.setStatus(true);
+                courseRepository.save(course);
+                return "Successfully changed the course status";
+            }
+        }
+
+        return "No course found";
+    }
+
 
     @Override
     public Course findByCoursebyId(int id) {
@@ -215,9 +232,6 @@ public class CourseImpl implements ICourseService {
                 .collect(Collectors.toList());
         return courseModels;
     }
-
-
-
 
 }
 
