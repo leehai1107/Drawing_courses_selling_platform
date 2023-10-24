@@ -53,7 +53,7 @@ public class CourseConverter {
         entity.setDrawingCategory(categoryRepository.getReferenceById(courseModel.getDrawCategoryId()));
         entity.setLevel(levelRepository.getReferenceById(courseModel.getLevelId()));
         entity.setUser(userRepository.getReferenceById(courseModel.getInstructorId()));
-
+        entity.setStatus(courseModel.isStatus());
 
         return entity;
     }
@@ -72,6 +72,7 @@ public class CourseConverter {
         dto.setDrawingCategoryModel(drawingCateforyConverter.toDto(courseEntity.getDrawingCategory()));
         dto.setLevelModel(levelConverter. toDto(courseEntity.getLevel()));
         dto.setUserModelRespone(userConverter.toResponse(courseEntity.getUser()));
+        dto.setStatus(courseEntity.isStatus());
 
         return dto;
     }

@@ -45,13 +45,13 @@ public class UserController {
             userModel1.setDescription(userModel.getDescription());
             userModel1.setDob(userModel.getDob());
             userModel1.setFullname(userModel.getFullname());
-            userModel1.setPassword(userModel.getPassword());
+
             userModel1.setSex(userModel.getSex());
             userModel1.setStatus(userModel.isStatus());
             userModel1.setPhone(userModel.getPhone());
-            userModel1.setUsername(userModel.getUsername());
+
             userModel1.setEmail(userModel.getEmail());
-            userService.Edit_User( userModel1);
+            userService.Edit_User(userModel1);
         }
 
         // You can return a response as needed

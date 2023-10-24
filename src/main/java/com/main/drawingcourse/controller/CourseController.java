@@ -112,6 +112,20 @@ public class CourseController {
     	return CourseService.GetCoursebyid(id);
     }
 
+
+    @PutMapping("/update-status/{id}")
+    public ResponseEntity<String> updateStatusOfCourseById(@PathVariable("id") int id) {
+        String result = CourseService.UpdateStatusOfCourse(id);
+        if (result.equals("Successfully changed the course status")) {
+            return ResponseEntity.ok(result);
+        } else if (result.equals("The course status is already true")) {
+            return ResponseEntity.badRequest().body(result);
+        }else if(result.equals("No course found")){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return null;
+    }
+
 }
 
 
