@@ -1,16 +1,16 @@
 package com.main.drawingcourse.service.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 
 import com.main.drawingcourse.converter.Course_OrderConverter;
 import com.main.drawingcourse.converter.UserConverter;
-import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.dto.Course_OrderModel;
-import com.main.drawingcourse.dto.UserModel;
+import com.main.drawingcourse.dto.*;
 import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.entity.Course_Order;
 import com.main.drawingcourse.repository.RoleRepository;
@@ -57,15 +57,13 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public List<UserModel> findByUsernameAndOrderDate(String username) {
-		List<User> UserEntity = userRepository.findOrderHistoryByUsername(username);
-		List<UserModel> UserModels = UserEntity.stream()
-				.map(userConverter::toDto)
-				.collect(Collectors.toList());
-		return UserModels;
+	public List<Map<String, OrderHistory>> findOrderHistoryByUsername(String username) {
 
 
 
+return  userRepository.findOrderHistoryByUsername(username);
+
+		
 	}
 
 

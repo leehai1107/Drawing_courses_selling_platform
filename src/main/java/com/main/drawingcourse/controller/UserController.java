@@ -1,16 +1,15 @@
 package com.main.drawingcourse.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.main.drawingcourse.dto.OrderHistory;
+import com.main.drawingcourse.dto.request.UserHistoryRequestDTO;
 import com.main.drawingcourse.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.main.drawingcourse.dto.UserModel;
 import com.main.drawingcourse.service.IUserService;
@@ -57,9 +56,10 @@ public class UserController {
 
         // You can return a response as needed
     }
-    @GetMapping("/order-history/{username}")
-    public List<UserModel> getOrderHistoryByUsername(@PathVariable String username) {
-        List<UserModel> userModels = userService.findByUsernameAndOrderDate(username);
-        return userModels;
+    @GetMapping("/Order-History/{username}")
+    public List<Map<String, OrderHistory>> getOrderHistoryByUsername(@PathVariable String username) {
+
+
+        return userService.findOrderHistoryByUsername(username);
     }
 }
