@@ -67,7 +67,7 @@ public class OrderController {
                 orderRepository.save(order);
             }
 
-            response.sendRedirect("http://localhost:5173/info-student");//to done page
+            response.sendRedirect("http://localhost:5173/SuccessPayment");//to done page
             } else {
                 // Giao dịch thất bại
                 // Thực hiện các xử lý cần thiết, ví dụ: không cập nhật CSDL\

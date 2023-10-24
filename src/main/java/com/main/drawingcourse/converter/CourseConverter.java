@@ -55,7 +55,6 @@ public class CourseConverter {
         entity.setUser(userRepository.getReferenceById(courseModel.getInstructorId()));
         entity.setStatus(courseModel.isStatus());
 
-
         return entity;
     }
 
