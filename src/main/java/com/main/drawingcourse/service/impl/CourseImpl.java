@@ -140,6 +140,9 @@ public class CourseImpl implements ICourseService {
             if (CourseModel.getCourseImage() != null) {
                 course.setCourseImage(CourseModel.getCourseImage());
             }
+            if (CourseModel.isStatus()) {
+                course.setStatus(CourseModel.isStatus());
+            }
 
             // Finally, save the updated course entity
             course = courseRepository.save(course);

@@ -19,4 +19,6 @@ public  interface IPostService {
     List<ResponsePostByCate> getAllPosts();
 
     List<ResponsePostByCate> viewpostbystatustrue(boolean status);
+
+    String UpdatePostStatus(int id);
 }
