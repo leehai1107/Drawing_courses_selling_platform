@@ -52,7 +52,8 @@ public class User {
 	@Column(columnDefinition = "nvarchar(MAX) ")
 	private String description;
 	
-	private Boolean status;
+	@Column
+	private boolean status;
 	
 	@ManyToOne
 	@JoinColumn(name = "roleId")

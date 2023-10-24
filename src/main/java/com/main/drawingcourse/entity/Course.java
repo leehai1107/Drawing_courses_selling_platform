@@ -39,6 +39,9 @@ public class Course {
 
 	@Column
 	private Integer rating;
+	
+	@Column
+	private boolean status;
 
 	@ManyToOne
 	@JoinColumn(name = "instructorId")

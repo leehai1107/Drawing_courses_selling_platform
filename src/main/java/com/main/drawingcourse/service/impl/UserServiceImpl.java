@@ -186,7 +186,7 @@ public class UserServiceImpl implements IUserService {
 			user.setPassword(user.getPassword());
 			user.setPhone(user.getPhone());
 			user.setSex(user.getSex());
-			user.setStatus(user.getStatus());
+			user.setStatus(user.isStatus());
 			user.setUserName(user.getUserName());
 
 			var u = roleRepository.findById(user.getUserId()).orElse(null);
@@ -224,6 +224,15 @@ public class UserServiceImpl implements IUserService {
 		}
 
 		return sb.toString();
+	}
+
+
+	public String changePassword(User user,String passwordEnter, String newPassword) {
+		if(passwordEncoder.matches(passwordEnter, user.getPassword())) {
+			userRepository.saveNewPassword(passwordEncoder.encode(newPassword), user.getUserName());
+			return "Password has changed!";
+		}
+		return "Password has enter does not match with old password!";
 	}
 
 

@@ -27,5 +27,11 @@ public interface IUserService {
 
 	User findUserByEmail(String email);
 
+
 	List<Map<String, OrderHistory>> findOrderHistoryByUsername(String username);
+
+	String changePassword(User user,String passwordEnter, String newPassword);
+
+
+
 }

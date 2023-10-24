@@ -38,7 +38,7 @@ public class UserDetailsImpl implements UserDetails {
 		GrantedAuthority authority = new SimpleGrantedAuthority(account.getRole().getRoleName());
 		
 		return new UserDetailsImpl(account.getUserId(), account.getUserName(), account.getPassword(), authority,
-				account.getStatus());
+				account.isStatus());
 	}
 
 	@Override
