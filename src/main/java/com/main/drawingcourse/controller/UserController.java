@@ -62,4 +62,13 @@ public class UserController {
 
         return userService.findOrderHistoryByUsername(username);
     }
+
+    @GetMapping("/infor/{id}")
+    public UserModel getUserById(@PathVariable int id, UserModel userModel) {
+        var user = userService.GetUserbyid(id);
+        if(user != null){
+            userModel=user;
+        }
+        return userModel;
+    }
 }
