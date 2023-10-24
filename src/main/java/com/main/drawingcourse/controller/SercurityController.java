@@ -21,6 +21,7 @@ import com.main.drawingcourse.jwt.RefreshTokenRequest;
 import com.main.drawingcourse.jwt.RefreshTokenResponse;
 import com.main.drawingcourse.payload.ForgotPasswordRequest;
 import com.main.drawingcourse.payload.LoginRequest;
+import com.main.drawingcourse.payload.LoginResponse;
 import com.main.drawingcourse.payload.LogoutRequest;
 import com.main.drawingcourse.repository.RefreshTokenRepository;
 import com.main.drawingcourse.service.IUserService;
@@ -57,23 +58,31 @@ public class SercurityController {
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtility.generateToken(loginRequest.getUsername());
 		UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String role = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .findFirst()
                 .orElse("");
 		User userData = userService.findUserByUserName(userDetails.getUsername());
-		
+		LoginResponse data = new LoginResponse();
+		data.setRolename(role);
+		data.setUsername(userData.getUserName());
+		data.setFullname(userData.getFullname());
+		data.setUserid(userData.getUserId());
+		data.setAvatar(userData.getAvatar());
+		data.setPhone(userData.getPhone());
+		data.setDob(userData.getDob());
+		data.setSex(userData.getSex());
+		data.setDescription(userData.getDescription());
+
+		String jwt = jwtUtility.generateToken(data);		
 		RefreshToken refreshToken = refreshTokenService.createRefreshToken(loginRequest.getUsername());
 
 		
 		 return ResponseEntity.ok(
 	                new JwtResponse(
 	                        jwt,
-	                        refreshToken.getToken(),
-	                        userData.getFullname(),
-	                        role)
+	                        refreshToken.getToken())
 	        );
 	}
 	
@@ -94,8 +103,18 @@ public class SercurityController {
 	@PostMapping("/refreshToken")
 	public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
 	    RefreshToken refreshToken = refreshTokenService.findByToken(refreshTokenRequest.getToken());
-	    
-	    String jwt = jwtUtility.generateToken(refreshTokenService.verifyExpiration(refreshToken).getUser().getUserName());
+	    User data = refreshTokenService.verifyExpiration(refreshToken).getUser();
+	    LoginResponse response = new LoginResponse();
+	    response.setUserid(data.getUserId());
+	    response.setFullname(data.getFullname());
+	    response.setUsername(data.getUserName());
+	    response.setRolename(data.getRole().getRoleName());
+	    response.setAvatar(data.getAvatar());
+	    response.setPhone(data.getPhone());
+	    response.setDob(data.getDob());
+	    response.setSex(data.getSex());
+	    response.setDescription(data.getDescription());
+	    String jwt = jwtUtility.generateToken(response);
 	    
 	    return ResponseEntity.ok(
                 new RefreshTokenResponse(

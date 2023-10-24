@@ -53,7 +53,7 @@ public class CourseController {
         CourseService.DeleteCoursebyid(id);
     }
 
-    @PutMapping("edit/{id}")
+    @PutMapping("/edit/{id}")
     public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
         CourseModel courseModel1 = CourseService.GetCoursebyid(id);
         if (courseModel != null) {
@@ -100,7 +100,19 @@ public class CourseController {
     }
 
 
+    @GetMapping("/coursestatustrue")
+
+    public List<ResponseCourse> viewcoursehasstatustrue(boolean status) {
+
+        return CourseService.viewcoursehasstatustrue(status);
     }
+    
+    @GetMapping("/find/{id}")
+    public CourseModel findCourseById (@PathVariable int id) {
+    	return CourseService.GetCoursebyid(id);
+    }
+
+}
 
 
 

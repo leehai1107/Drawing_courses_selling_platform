@@ -43,6 +43,11 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             nativeQuery = true)
     void deleteByPostId(@Param("id") int id);
 
+    @Query(
+            value = "SELECT * FROM POSTS p WHERE p.status = 1",nativeQuery = true
+    )
+    List<Post> viewpostbystatustrue(@Param("status") boolean status);
+
 //    @Query("SELECT\n" +
 //            "    p.post_id," +
 //            "    p.Title," +

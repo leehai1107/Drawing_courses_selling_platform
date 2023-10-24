@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.main.drawingcourse.dto.ResponseCourse;
+import com.main.drawingcourse.dto.ResponsePostByCate;
 import com.main.drawingcourse.entity.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -213,7 +214,12 @@ public class CourseImpl implements ICourseService {
         return new Course();
     }
 
-
+    public List<ResponseCourse> viewcoursehasstatustrue(boolean status){
+        List<ResponseCourse> courseModels = courseRepository.viewcoursewithstatustrue(status).stream()
+                .map(courseConverter::toResponse)
+                .collect(Collectors.toList());
+        return courseModels;
+    }
 
 
 
