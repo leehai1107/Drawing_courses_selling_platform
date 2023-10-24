@@ -178,25 +178,22 @@ return  userRepository.findOrderHistoryByUsername(username);
 	public void Edit_User(UserModel userModel) {
 		User user = userConverter.toEntity(userModel);
 
-			user.setAvatar(user.getAvatar());
-			user.setDescription(user.getDescription());
-			user.setDob(user.getDob());
-			user.setEmail(user.getEmail());
-			user.setFullname(user.getFullname());
-			user.setPassword(user.getPassword());
-			user.setPhone(user.getPhone());
-			user.setSex(user.getSex());
-			user.setStatus(user.isStatus());
-			user.setUserName(user.getUserName());
+			user.setAvatar(userModel.getAvatar());
+			user.setDescription(userModel.getDescription());
+			user.setDob(userModel.getDob());
+			user.setEmail(userModel.getEmail());
+			user.setFullname(userModel.getFullname());
 
-			var u = roleRepository.findById(user.getUserId()).orElse(null);
-			if(u !=null){
-				user.setRole(u);
-			}
+			user.setPhone(userModel.getPhone());
+			user.setSex(userModel.getSex());
+
+
+
+
 			user = userRepository.save(user);
 
 			// You can return the updated CourseModel if needed
-			UserModel updatedUserModel = userConverter.toDto(user);
+		userModel = userConverter.toDto(user);
 
 
 	}
