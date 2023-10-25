@@ -31,7 +31,7 @@ public class Course {
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
 
-	@Column(columnDefinition = "nvarchar(200) not null")
+	@Column(columnDefinition = "nvarchar(max) not null")
 	private String description;
 
 	@Column
@@ -63,7 +63,7 @@ public class Course {
 
 
 	
-	@Column(name ="CourseImage",columnDefinition = "nvarchar(500) not null")
+	@Column(name ="CourseImage",columnDefinition = "varchar(max) not null")
 	private String courseImage;
 
 
