@@ -35,7 +35,7 @@ public class User {
 	@Column
 	private String password;
 	
-	@Column(columnDefinition = "varchar(50)")
+	@Column(columnDefinition = "nvarchar(50)")
 	private String fullname;
 	
 	@Column(unique = true,columnDefinition = "varchar(50)")
@@ -46,7 +46,7 @@ public class User {
 	
 	@Column
 	private Boolean sex;
-	@Column(columnDefinition = "nvarchar(MAX)")
+	@Column(columnDefinition = "varchar(MAX)")
 	private String avatar;
 	
 	@Column(columnDefinition = "nvarchar(MAX) ")

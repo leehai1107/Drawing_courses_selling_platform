@@ -17,7 +17,7 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int postId;
-	@Column(columnDefinition = "nvarchar(50) not null")
+	@Column(columnDefinition = "nvarchar(100) not null")
 	private String title;
 	@Column(columnDefinition = "nvarchar(max) not null")
 	private String content;
@@ -35,7 +35,7 @@ public class Post {
 	@JoinColumn(name="postCategoryId")
 	private PostCategory postCategory;
 	
-	@Column(columnDefinition = "nvarchar(500) not null")
+	@Column(columnDefinition = "varchar(max) not null")
 	private String postImage;
 
 

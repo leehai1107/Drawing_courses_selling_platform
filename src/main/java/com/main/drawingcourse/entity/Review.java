@@ -18,7 +18,7 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reviewId;
 	
-	@Column
+	@Column(columnDefinition = "nvarchar(250)")
 	private String comment;
 	
 	
