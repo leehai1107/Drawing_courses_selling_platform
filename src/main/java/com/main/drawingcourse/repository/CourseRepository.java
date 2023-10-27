@@ -20,7 +20,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
 
-    @Query(value = "SELECT courses.course_id, courses.course_image, courses.description, courses.price, courses.rating, courses.title, courses.instructor_id, courses.status, drawing_categories.draw_category_id, drawing_categories.draw_category_name, levels.level_id, levels.level_name, users.user_id, users.fullname FROM courses JOIN drawing_categories ON courses.draw_category_id = drawing_categories.draw_category_id JOIN levels ON courses.level_id = levels.level_id JOIN users ON courses.instructor_id = users.user_id where instructor_id = :id", nativeQuery = true)
+    @Query(value = "select * from courses where instructor_id = :id", nativeQuery = true)
     List<Course> findAllCoursesByInstructorId(@Param("id") int id);
 
 
@@ -34,7 +34,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             value = "SELECT * FROM COURSES c WHERE c.title = :title",
             nativeQuery = true
             )
-    Course findCoursesByTitle(@Param("title") String title);
+    List<Course> findCoursesByTitle(@Param("title") String title);
 
 
     @Query(
@@ -72,6 +72,9 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             value = "UPDATE Courses SET status = 'true' WHERE course_id = :id AND status = 'false' ", nativeQuery = true
     )
     Course UpdateStatusOfCourse (@Param("id") int id);
+
+
+
 
 
 }
