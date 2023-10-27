@@ -18,4 +18,6 @@ public class ResponseCourse {
     private LevelModel levelinfo;
     private DrawingCategoryModel CateInfo;
     private String courseImg;
+    private int lession_count = 0 ;
+
 }

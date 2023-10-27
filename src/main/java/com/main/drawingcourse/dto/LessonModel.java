@@ -21,5 +21,6 @@ public class LessonModel {
     private String videoUrl;
     private LocalTime videoduration;
     private boolean lessonstatus;
-        private int courseId;
+    private int courseId;
+
 }
