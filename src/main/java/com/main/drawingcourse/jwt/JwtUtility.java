@@ -1,6 +1,7 @@
 package com.main.drawingcourse.jwt;
 
 import java.security.Key;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,17 +62,21 @@ public class JwtUtility {
 	        claims.put("rolename", loginResponse.getRolename());
 	        claims.put("fullname", loginResponse.getFullname());
 	        claims.put("userid", loginResponse.getUserid());
-	        claims.put("dob", loginResponse.getDob().toString());
+	        LocalDate dob = loginResponse.getDob();
+	        if (dob != null) {
+	            claims.put("dob", dob.toString());
+	        }
 	        claims.put("description", loginResponse.getDescription());
 	        claims.put("phone", loginResponse.getPhone());
 	        claims.put("avatar", loginResponse.getAvatar());
 	        claims.put("sex", loginResponse.getSex());
-	        return createToken(claims);
+	        return createToken(claims,loginResponse.getUsername());
 	    }
 
-	    private String createToken(Map<String, Object> claims) {
+	    private String createToken(Map<String, Object> claims,String username) {
 	        return Jwts.builder()
 	                .setClaims(claims)
+	                .setSubject(username)
 	                .setIssuedAt(new Date(System.currentTimeMillis()))
 	                .setExpiration(new Date(System.currentTimeMillis()+JWT_TOKEN_VALIDITY))
 	                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
