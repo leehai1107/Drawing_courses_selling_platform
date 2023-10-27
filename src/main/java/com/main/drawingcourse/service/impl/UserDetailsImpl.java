@@ -36,7 +36,6 @@ public class UserDetailsImpl implements UserDetails {
 //This func help you guys get account information to AccountDetailService
 	public static UserDetailsImpl build(User account) {
 		GrantedAuthority authority = new SimpleGrantedAuthority(account.getRole().getRoleName());
-		
 		return new UserDetailsImpl(account.getUserId(), account.getUserName(), account.getPassword(), authority,
 				account.isStatus());
 	}

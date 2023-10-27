@@ -94,10 +94,10 @@ public class SercurityController {
     }
 	
 	@GetMapping("/hello")
-	@PreAuthorize("hasAuthority('CUSTOMER')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	// change by role name in db here the roleName is CUSTOMER
 	public String sayHello ()
-    { return "Hello CUSTOMER" ;}
+    { return "Hello ADMIN" ;}
 	
 	
 	@PostMapping("/refreshToken")
