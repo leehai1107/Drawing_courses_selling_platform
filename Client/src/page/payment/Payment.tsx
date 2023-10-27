@@ -6,7 +6,7 @@ import { CartElement } from "../../Type/Type";
 import { v4 as uuidv4 } from 'uuid'; 
 import { toast } from "react-toastify";
 import { API } from "../../API/API";
-import { formatDateToYYYYMMDD, generateShortUUID } from "../../util/util";
+import { generateShortUUID } from "../../util/util";
 
 const Payment = () => {
   const cart: CartElement[] = useRecoilValue(cartState);
@@ -27,7 +27,6 @@ const Payment = () => {
 
     const orderData = {
       order_code: generateShortUUID(uuidv4().toString()),
-      order_date: formatDateToYYYYMMDD(new Date()),
       price: formData.get(`ammount`),
       user_id: account.userid,
       courseIds: cart.map(c => c.Course.courseid)
