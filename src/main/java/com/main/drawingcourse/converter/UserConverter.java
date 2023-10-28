@@ -18,7 +18,7 @@ public class UserConverter {
 	public User toEntity(UserModel model) {
 		User entity = new User();
 		
-		entity.setUserId(model.getId());
+		entity.setUserId(model.getUserid());
 		entity.setUserName(model.getUsername());
 		entity.setPassword(model.getPassword());
 		entity.setAvatar(model.getAvatar());
@@ -36,7 +36,7 @@ public class UserConverter {
 
 	public UserModel toDto(User entity){
 		UserModel dto = new UserModel();
-		dto.setId(entity.getUserId());
+		dto.setUserid(entity.getUserId());
 		dto.setUsername(entity.getUserName());
 		dto.setPassword(entity.getPassword());
 		dto.setAvatar(entity.getAvatar());

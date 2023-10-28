@@ -73,6 +73,7 @@ public class SercurityController {
 		data.setPhone(userData.getPhone());
 		data.setDob(userData.getDob());
 		data.setSex(userData.getSex());
+		data.setEmail(userData.getEmail());
 		data.setDescription(userData.getDescription());
 
 		String jwt = jwtUtility.generateToken(data);		
@@ -156,7 +157,7 @@ public class SercurityController {
 
 	@PutMapping("/change-password")
 	public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
-		User user = userService.findUserByUserName(request.getUsername());
+		User user = userService.getReferenceById(request.getUserid());
 		String result = "Change password fail!";
 		if(user!=null) {
 			result = userService.changePassword(user, request.getPasswordEntered(),request.getNewPassword());

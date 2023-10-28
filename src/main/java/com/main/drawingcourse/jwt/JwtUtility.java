@@ -62,6 +62,7 @@ public class JwtUtility {
 	        claims.put("rolename", loginResponse.getRolename());
 	        claims.put("fullname", loginResponse.getFullname());
 	        claims.put("userid", loginResponse.getUserid());
+	        claims.put("email", loginResponse.getEmail());
 	        LocalDate dob = loginResponse.getDob();
 	        if (dob != null) {
 	            claims.put("dob", dob.toString());

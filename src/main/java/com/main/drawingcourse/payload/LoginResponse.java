@@ -19,5 +19,5 @@ public class LoginResponse {
 	private String description;
 	private String phone;
 	private String avatar;
-
+	private String email;
 }
