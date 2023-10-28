@@ -183,8 +183,8 @@ public class CourseImpl implements ICourseService {
 
 
     @Override
-    public List<ResponseCourse> findAllCourseHasOrder(String name) {
-        List<Course> courseEntity = courseRepository.findAllCourseHasOrder(name);
+    public List<ResponseCourse> findAllCourseHasOrderByUserId(int id) {
+        List<Course> courseEntity = courseRepository.findAllCourseHasOrderByUserId(id);
         List<ResponseCourse> courseModels = courseEntity.stream()
                 .map(courseConverter::toResponse)
                 .collect(Collectors.toList());

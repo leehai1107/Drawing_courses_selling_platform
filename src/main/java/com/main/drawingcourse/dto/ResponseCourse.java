@@ -16,11 +16,8 @@ public class ResponseCourse {
     private String title;
     private int rating;
     private boolean status;
-    private int drawCategoryId;
     private DrawingCategoryModel drawingCategoryModel;
-    private int levelId;
     private LevelModel levelModel;
-    private int instructorId;
     private UserModelRespone userModelRespone;
     private int lession_count = 0 ;
 

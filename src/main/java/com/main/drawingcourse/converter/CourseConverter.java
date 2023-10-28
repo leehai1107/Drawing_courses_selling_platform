@@ -85,9 +85,6 @@ public class CourseConverter {
         dto.setPrice(course.getPrice());
         dto.setRating(course.getRating());
         dto.setCourseImage(course.getCourseImage());
-        dto.setDrawCategoryId(course.getDrawingCategory().getDrawCategoryId());
-        dto.setLevelId(course.getLevel().getLevelId());
-        dto.setInstructorId(course.getUser().getUserId());
         dto.setDrawingCategoryModel(drawingCateforyConverter.toDto(course.getDrawingCategory()));
         dto.setLevelModel(levelConverter. toDto(course.getLevel()));
         dto.setUserModelRespone(userConverter.toResponse(course.getUser()));
