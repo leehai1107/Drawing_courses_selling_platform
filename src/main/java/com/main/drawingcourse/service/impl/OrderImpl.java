@@ -10,6 +10,7 @@ import com.main.drawingcourse.entity.Order;
 import com.main.drawingcourse.repository.CourseRepository;
 import com.main.drawingcourse.repository.Course_OrderRepository;
 import com.main.drawingcourse.repository.OrderRepository;
+import com.main.drawingcourse.repository.UserRepository;
 import com.main.drawingcourse.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ public class OrderImpl implements IOrderService {
     CourseRepository courseRepository;
     @Autowired
     Course_OrderConverter courseOrderConverter;
+    @Autowired
+    UserRepository userRepository;
 
 
 
@@ -88,7 +91,10 @@ public class OrderImpl implements IOrderService {
         return null;
     }
 
-
+    @Override
+	public List<Order> getOrderHistoryByUserId(int userId) {
+        return orderRepository.findByUser(userRepository.getReferenceById(userId));
+    }
 
 }
 

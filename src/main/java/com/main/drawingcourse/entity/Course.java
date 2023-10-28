@@ -2,15 +2,12 @@ package com.main.drawingcourse.entity;
 
 import java.util.Collection;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -60,12 +57,8 @@ public class Course {
 
 	@OneToMany(mappedBy = "course")
 	private Collection<Course_Order> course_Orders;
-
-
 	
 	@Column(name ="CourseImage",columnDefinition = "varchar(max) not null")
 	private String courseImage;
-
-
 
 }

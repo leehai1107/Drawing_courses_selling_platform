@@ -1,14 +1,16 @@
 package com.main.drawingcourse.converter;
 
-import com.main.drawingcourse.dto.CourseModel;
-import com.main.drawingcourse.dto.Course_OrderModel;
-import com.main.drawingcourse.entity.Course;
-import com.main.drawingcourse.entity.Course_Order;
-import com.main.drawingcourse.entity.Order;
-import com.main.drawingcourse.repository.CourseRepository;
-import com.main.drawingcourse.repository.OrderRepository;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.main.drawingcourse.dto.Course_OrderModel;
+import com.main.drawingcourse.entity.Course_Order;
+import com.main.drawingcourse.repository.CourseRepository;
+import com.main.drawingcourse.repository.OrderRepository;
 
 @Component
 public class Course_OrderConverter {
@@ -45,5 +47,23 @@ public class Course_OrderConverter {
         orderModel.setOrder_id(courseOrder.getOrder().getOrderId());
 
         return orderModel;
+    }
+    
+    public Collection<Course_Order> convertToCourseOrderCollection(List<Course_OrderModel> courseOrderModels) {
+        Collection<Course_Order> courseOrders = new ArrayList<>();
+        for (Course_OrderModel courseOrderModel : courseOrderModels) {
+            Course_Order courseOrder = toEntity(courseOrderModel);
+            courseOrders.add(courseOrder);
+        }
+        return courseOrders;
+    }
+    
+    public List<Course_OrderModel> convertToCourseOrderModelList(Collection<Course_Order> courseOrders) {
+        List<Course_OrderModel> courseOrderModels = new ArrayList<>();
+        for (Course_Order courseOrder : courseOrders) {
+            Course_OrderModel courseOrderModel = toDTO(courseOrder);
+            courseOrderModels.add(courseOrderModel);
+        }
+        return courseOrderModels;
     }
 }
