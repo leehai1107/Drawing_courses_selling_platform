@@ -32,6 +32,8 @@ public interface IUserService {
 
 	String changePassword(User user,String passwordEnter, String newPassword);
 
+	User getReferenceById(Integer id);
+
 
 
 }

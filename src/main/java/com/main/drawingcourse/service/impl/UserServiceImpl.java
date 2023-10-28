@@ -46,6 +46,12 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	Course_OrderConverter courseOrderConverter;
 
+	
+	@Override
+	public User getReferenceById(Integer id) {
+		return userRepository.getReferenceById(id);
+	}
+
 	@Override
 	public User findUserByUserName(String userName) {
 		return userRepository.findUserByUserName(userName);
@@ -59,11 +65,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<Map<String, OrderHistory>> findOrderHistoryByUsername(String username) {
 
-
-
 return  userRepository.findOrderHistoryByUsername(username);
-
-		
+	
 	}
 
 
