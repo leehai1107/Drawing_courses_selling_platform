@@ -14,4 +14,11 @@ public interface LessonRepository extends JpaRepository<Lesson, Integer> {
             value = "SELECT * FROM LESSONS l WHERE l.course_id = :id",
             nativeQuery = true)
     List<Lesson> findLessonsByID(@Param("id") int id);
+
+    @Query (
+            value = "SELECT  COUNT(l.lesson_id) AS lesson_count FROM courses c LEFT JOIN lessons l ON c.course_id = l.course_id", nativeQuery = true
+    )
+    int countLession ();
+
+
 }

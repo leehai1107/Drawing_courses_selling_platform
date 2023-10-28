@@ -1,5 +1,6 @@
 package com.main.drawingcourse.controller;
 
+import com.main.drawingcourse.converter.CourseConverter;
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.Course;
@@ -26,6 +27,9 @@ import java.util.Optional;
 public class CourseController {
     @Autowired
     ICourseService CourseService;
+    
+    @Autowired
+    CourseConverter courseConverter;
 
 
     @PostMapping(value = "/addCourse")
@@ -34,7 +38,7 @@ public class CourseController {
     }
 
     @GetMapping(value = "/find-by-title")
-    public CourseModel findByCourseName(@RequestParam("title") String title) {
+    public List<ResponseCourse> findByCourseName(@RequestParam("title") String title) {
         return CourseService.findByCourseTitle(title);
     }
 
@@ -75,27 +79,27 @@ public class CourseController {
     }
 
     @GetMapping(value = "/find-Course-By-PriceRange/{start_price}/{end_price}")
-    public List<CourseModel> findCourseByPriceRange(@PathVariable("start_price") double start_price, @PathVariable("end_price") double end_price ){
+    public List<ResponseCourse> findCourseByPriceRange(@PathVariable("start_price") double start_price, @PathVariable("end_price") double end_price ){
         return CourseService.findCoursesByPriceRange(start_price, end_price);
     }
 
-    @GetMapping(value = "/find-Course-Has-Order")
-    public List<CourseModel> findAllCourseHasOrder(@RequestParam("name") String name){
-        return CourseService.findAllCourseHasOrder(name);
+    @GetMapping(value = "/find-Course-Has-Order/{id}")
+    public List<ResponseCourse> findAllCourseHasOrderByUserId(@PathVariable int id){
+        return CourseService.findAllCourseHasOrderByUserId(id);
     }
 
     @GetMapping("/find-by-InstructorId/{id}")
-    public List<CourseModel> getCoursesByInstructorId(@PathVariable int id) {
+    public List<ResponseCourse> getCoursesByInstructorId(@PathVariable int id) {
         return CourseService.findCourseByInstructorID(id);
     }
 
     @GetMapping(value = "/find-Course-Of-Instructor-By-UserName")
-    public List<CourseModel> findAllCourseOfInstructorByUserName(@RequestParam("name") String name) {
+    public List<ResponseCourse> findAllCourseOfInstructorByUserName(@RequestParam("name") String name) {
         return CourseService.findAllCourseOfInstructorByUserName(name);
     }
 
     @GetMapping(value = "/find-Top4-Best-Seller-Course")
-    public List<CourseModel> findTop4BestSellerCourse(){
+    public List<ResponseCourse> findTop4BestSellerCourse(){
         return CourseService.findTop4BestSellerCourse();
     }
 
@@ -108,8 +112,8 @@ public class CourseController {
     }
     
     @GetMapping("/find/{id}")
-    public CourseModel findCourseById (@PathVariable int id) {
-    	return CourseService.GetCoursebyid(id);
+    public ResponseCourse findCourseById (@PathVariable int id) {
+    	return courseConverter.toResponse(CourseService.getReferenceById(id));
     }
 
 

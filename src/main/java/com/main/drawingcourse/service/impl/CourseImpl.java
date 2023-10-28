@@ -44,6 +44,11 @@ public class CourseImpl implements ICourseService {
 
 
     @Override
+	public Course getReferenceById(Integer id) {
+		return courseRepository.getReferenceById(id);
+	}
+
+	@Override
     public CourseModel AddCourse(CourseModel courseModel) {
         Course existingCourse = courseRepository.findCoursesByTitleAndInstructorID(courseModel.getTitle(), courseModel.getInstructorId());
         List<User> instructor = userRepository.findAllInstructor();
@@ -51,21 +56,30 @@ public class CourseImpl implements ICourseService {
             throw new IllegalArgumentException("Course already exists");
         }
 
+        // Kiểm tra và khởi tạo drawing category
         DrawingCategory categoryEntity = categoryRepository.findOneByDrawCategoryId(courseModel.getDrawCategoryId());
+        if (categoryEntity == null) {
+            throw new IllegalArgumentException("Invalid drawing category");
+        }
+
+        // Chuyển đổi courseModel thành entity và thiết lập drawing category
         Course courseEntity = courseConverter.toEntity(courseModel);
         courseEntity.setDrawingCategory(categoryEntity);
+
+        // Lưu courseEntity
         courseEntity = courseRepository.save(courseEntity);
 
+        // Trả về courseModel đã được chuyển đổi từ entity
         return courseConverter.toDTO(courseEntity);
     }
 
     @Override
-    public CourseModel findByCourseTitle(String title) {
-        Course course = courseRepository.findCoursesByTitle(title);
-        if (course != null) {
-            return courseConverter.toDTO(course);
-        }
-        return new CourseModel();
+    public List<ResponseCourse> findByCourseTitle(String title) {
+        List<ResponseCourse> courseModels = courseRepository.findCoursesByTitle(title).stream()
+                .map(courseConverter::toResponse)
+                .collect(Collectors.toList());
+
+        return courseModels;
     }
 
     @Override
@@ -88,10 +102,10 @@ public class CourseImpl implements ICourseService {
     }
 
     @Override
-    public List<CourseModel> findCourseByInstructorID(int instructorId) {
+    public List<ResponseCourse> findCourseByInstructorID(int instructorId) {
         List<Course> courseEntities = courseRepository.findAllCoursesByInstructorId(instructorId);
-        List<CourseModel> courseModels = courseEntities.stream()
-                .map(courseConverter::toDTO)
+        List<ResponseCourse> courseModels = courseEntities.stream()
+                .map(courseConverter::toResponse)
                 .collect(Collectors.toList());
 
         return courseModels;
@@ -162,40 +176,41 @@ public class CourseImpl implements ICourseService {
             courseRepository.save(existingCourse);
         }
     }
-
     @Override
-    public List<CourseModel> findCoursesByPriceRange(double start_price, double end_price) {
+    public List<ResponseCourse> findCoursesByPriceRange(double start_price, double end_price) {
         List<Course> courseEntity = courseRepository.findCoursesByPriceRange(start_price, end_price);
-        List<CourseModel> courseModels = courseEntity.stream()
-                .map(courseConverter::toDTO)
+        List<ResponseCourse> courseModels = courseEntity.stream()
+                .map(courseConverter::toResponse)
                 .collect(Collectors.toList());
         return courseModels;
     }
 
+
+
     @Override
-    public List<CourseModel> findAllCourseHasOrder(String name) {
-        List<Course> courseEntity = courseRepository.findAllCourseHasOrder(name);
-        List<CourseModel> courseModels = courseEntity.stream()
-                .map(courseConverter::toDTO)
+    public List<ResponseCourse> findAllCourseHasOrderByUserId(int id) {
+        List<Course> courseEntity = courseRepository.findAllCourseHasOrderByUserId(id);
+        List<ResponseCourse> courseModels = courseEntity.stream()
+                .map(courseConverter::toResponse)
                 .collect(Collectors.toList());
 
         return courseModels;
     }
 
     @Override
-    public List<CourseModel> findAllCourseOfInstructorByUserName(String name) {
+    public List<ResponseCourse> findAllCourseOfInstructorByUserName(String name) {
         List<Course> courseEntity = courseRepository.findAllCourseOfInstructorByUserName(name);
-        List<CourseModel> courseModels = courseEntity.stream()
-                .map(courseConverter::toDTO)
+        List<ResponseCourse> courseModels = courseEntity.stream()
+                .map(courseConverter::toResponse)
                 .collect(Collectors.toList());
 
         return courseModels;
     }
 
     @Override
-    public List<CourseModel> findTop4BestSellerCourse() {
-        List<CourseModel> courseModels = courseRepository.findTop4BestSellerCourse().stream()
-                .map(courseConverter::toDTO)
+    public List<ResponseCourse> findTop4BestSellerCourse() {
+        List<ResponseCourse> courseModels = courseRepository.findTop4BestSellerCourse().stream()
+                .map(courseConverter::toResponse)
                 .collect(Collectors.toList());
 
         return courseModels;

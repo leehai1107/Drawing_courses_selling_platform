@@ -9,13 +9,13 @@ import java.util.List;
 public interface ICourseService {
     CourseModel AddCourse(CourseModel courseModel);
 
-    CourseModel findByCourseTitle(String title);
+    List<ResponseCourse> findByCourseTitle(String title);
 
     CourseModel GetCoursebyid(int id);
 
     List<ResponseCourse> findAll();
 
-    List<CourseModel> findCourseByInstructorID(int instructor_id);
+    List<ResponseCourse> findCourseByInstructorID(int instructor_id);
 
 
     void DeleteCoursebyid (int id);
@@ -26,18 +26,20 @@ public interface ICourseService {
     Course findByCoursebyId(int id);
 
 
-	List<CourseModel> findCoursesByPriceRange(double start_price, double end_price);
+	List<ResponseCourse> findCoursesByPriceRange(double start_price, double end_price);
 
 
 
-    List<CourseModel> findAllCourseHasOrder(String name);
+    List<ResponseCourse> findAllCourseHasOrderByUserId(int id);
 
-    List<CourseModel> findAllCourseOfInstructorByUserName(String name);
+    List<ResponseCourse> findAllCourseOfInstructorByUserName(String name);
 
-    List<CourseModel> findTop4BestSellerCourse();
+    List<ResponseCourse> findTop4BestSellerCourse();
 
     String UpdateStatusOfCourse(int id);
 
     List<ResponseCourse> viewcoursehasstatustrue(boolean status);
+
+	Course getReferenceById(Integer id);
 
 }

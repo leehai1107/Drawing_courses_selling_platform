@@ -9,13 +9,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseCourse {
-    private int courseid;
+    private int courseId;
+    private String courseImage;
     private String description;
     private Double price;
     private String title;
     private int rating;
-    private UserModelRespone userinfo;
-    private LevelModel levelinfo;
-    private DrawingCategoryModel CateInfo;
-    private String courseImg;
+    private boolean status;
+    private DrawingCategoryModel drawingCategoryModel;
+    private LevelModel levelModel;
+    private UserModelRespone userModelRespone;
+    private int lession_count = 0 ;
+
+
+
+
 }
