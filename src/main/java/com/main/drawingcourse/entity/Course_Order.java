@@ -1,5 +1,6 @@
 package com.main.drawingcourse.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -30,7 +31,7 @@ public class Course_Order {
 	private int rating;
 	
 	@Column(columnDefinition = "DATE")
-	LocalDateTime registeredAt;
+	LocalDate registeredAt;
 	
 	@Column
 	private float progress;
