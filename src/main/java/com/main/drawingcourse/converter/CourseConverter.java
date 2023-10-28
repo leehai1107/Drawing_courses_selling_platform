@@ -73,22 +73,25 @@ public class CourseConverter {
         dto.setLevelModel(levelConverter. toDto(courseEntity.getLevel()));
         dto.setUserModelRespone(userConverter.toResponse(courseEntity.getUser()));
         dto.setStatus(courseEntity.isStatus());
-//        dto.setLession_count(courseEntity.getLessons().size());
         return dto;
     }
 
     public ResponseCourse toResponse(Course course) {
         ResponseCourse dto = new ResponseCourse();
 
-        dto.setCourseid(course.getCourseId());
+        dto.setCourseId(course.getCourseId());
         dto.setDescription(course.getDescription());
         dto.setTitle(course.getTitle());
         dto.setPrice(course.getPrice());
         dto.setRating(course.getRating());
-        dto.setCourseImg(course.getCourseImage());
-        dto.setUserinfo(userConverter.toResponse(course.getUser()));
-        dto.setLevelinfo(levelConverter.toDto(course.getLevel()));
-        dto.setCateInfo(drawingCateforyConverter.toDto(course.getDrawingCategory()));
+        dto.setCourseImage(course.getCourseImage());
+        dto.setDrawCategoryId(course.getDrawingCategory().getDrawCategoryId());
+        dto.setLevelId(course.getLevel().getLevelId());
+        dto.setInstructorId(course.getUser().getUserId());
+        dto.setDrawingCategoryModel(drawingCateforyConverter.toDto(course.getDrawingCategory()));
+        dto.setLevelModel(levelConverter. toDto(course.getLevel()));
+        dto.setUserModelRespone(userConverter.toResponse(course.getUser()));
+        dto.setStatus(course.isStatus());
         dto.setLession_count(course.getLessons().size());
         return dto;
     }
