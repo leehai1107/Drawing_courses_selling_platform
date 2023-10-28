@@ -1,17 +1,21 @@
 package com.main.drawingcourse.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import com.main.drawingcourse.dto.OrderHistory;
-import com.main.drawingcourse.dto.request.UserHistoryRequestDTO;
-import com.main.drawingcourse.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.main.drawingcourse.converter.OrderConverter;
+import com.main.drawingcourse.dto.OrderModel;
 import com.main.drawingcourse.dto.UserModel;
+import com.main.drawingcourse.entity.Order;
+import com.main.drawingcourse.service.IOrderService;
 import com.main.drawingcourse.service.IUserService;
 
 @RequestMapping("public/user")
@@ -20,6 +24,12 @@ public class UserController {
 
     @Autowired
     IUserService userService;
+    
+    @Autowired
+    IOrderService orderService;
+    
+    @Autowired
+    OrderConverter orderConverter;
 
 
     @GetMapping(value = "/find-All-Instructor")
@@ -38,29 +48,29 @@ public class UserController {
     }
 
     @PutMapping("edit/{id}")
-    public void updateUser(@PathVariable int id, @RequestBody UserModel userModel) {
+    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserModel userModel) {
         UserModel userModel1 = userService.GetUserbyid(id);
+
         if(userModel1!=null){
             userModel1.setAvatar(userModel.getAvatar());
             userModel1.setDescription(userModel.getDescription());
             userModel1.setDob(userModel.getDob());
             userModel1.setFullname(userModel.getFullname());
-
             userModel1.setSex(userModel.getSex());
-            userModel1.setStatus(userModel.isStatus());
             userModel1.setPhone(userModel.getPhone());
-
             userModel1.setEmail(userModel.getEmail());
             userService.Edit_User(userModel1);
+            return ResponseEntity.ok("User updated successfully");
         }
-
-        // You can return a response as needed
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
-    @GetMapping("/Order-History/{username}")
-    public List<Map<String, OrderHistory>> getOrderHistoryByUsername(@PathVariable String username) {
-
-
-        return userService.findOrderHistoryByUsername(username);
+    
+    @GetMapping("/orders/{userid}")
+    public List<OrderModel> getOrderHistoryByUsername(@PathVariable int userid) {
+    	List<Order> list = orderService.getOrderHistoryByUserId(userid);
+        return orderConverter.convertToOrderModelList(list);
     }
 
     @GetMapping("/infor/{id}")

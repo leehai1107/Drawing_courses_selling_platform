@@ -1,12 +1,11 @@
 package com.main.drawingcourse.dto;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,10 +17,6 @@ public class OrderModel {
     private LocalDate order_date;
     private boolean order_status;
     private double price;
-    private int user_id;
+    private int userid;
     private List<Integer> courseIds;
-
-    public void setCourseOrders(List<Course_OrderModel> courseOrders) {
-        this.courseOrders = courseOrders;
-    }
 }
