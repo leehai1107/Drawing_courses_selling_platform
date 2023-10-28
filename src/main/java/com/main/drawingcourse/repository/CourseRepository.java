@@ -42,11 +42,12 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             nativeQuery = true)
     List<Course> findCoursesByPriceRange(@Param("start_price") double start_price, @Param("end_price") double end_price);
 
-
     @Query(
-            value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status FROM Courses c INNER JOIN Users u ON c.instructor_id = u.user_id WHERE c.course_id IN (SELECT course_id FROM course_order)AND u.user_name = :name",
+            value = "SELECT c.* FROM Courses c INNER JOIN course_order co ON c.course_id = co.course_id INNER JOIN orders o ON co.order_id = o.order_id WHERE o.user_id = :id",
             nativeQuery = true)
-    List<Course> findAllCourseHasOrder(@Param("name") String name);
+    List<Course> findAllCourseHasOrderByUserId(@Param("id") int id);
+
+
 
     @Query(
             value = "SELECT c.course_id, c.title, c.description, c.price, c.rating, c.course_image, c.draw_category_id, c.level_id, c.instructor_id, c.status FROM Courses c JOIN Users u ON c.instructor_id = u.user_id WHERE u.user_name = :name",

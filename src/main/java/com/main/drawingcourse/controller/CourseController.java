@@ -79,9 +79,9 @@ public class CourseController {
         return CourseService.findCoursesByPriceRange(start_price, end_price);
     }
 
-    @GetMapping(value = "/find-Course-Has-Order")
-    public List<ResponseCourse> findAllCourseHasOrder(@RequestParam("name") String name){
-        return CourseService.findAllCourseHasOrder(name);
+    @GetMapping(value = "/find-Course-Has-Order/{id}")
+    public List<ResponseCourse> findAllCourseHasOrderByUserId(@PathVariable int id){
+        return CourseService.findAllCourseHasOrderByUserId(id);
     }
 
     @GetMapping("/find-by-InstructorId/{id}")

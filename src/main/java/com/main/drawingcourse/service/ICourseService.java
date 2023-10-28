@@ -30,7 +30,7 @@ public interface ICourseService {
 
 
 
-    List<ResponseCourse> findAllCourseHasOrder(String name);
+    List<ResponseCourse> findAllCourseHasOrderByUserId(int id);
 
     List<ResponseCourse> findAllCourseOfInstructorByUserName(String name);
 
