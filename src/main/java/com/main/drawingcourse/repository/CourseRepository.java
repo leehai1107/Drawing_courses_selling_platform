@@ -19,7 +19,6 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 
-
     @Query(value = "select * from courses where instructor_id = :id", nativeQuery = true)
     List<Course> findAllCoursesByInstructorId(@Param("id") int id);
 

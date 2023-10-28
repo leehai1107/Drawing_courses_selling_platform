@@ -44,6 +44,11 @@ public class CourseImpl implements ICourseService {
 
 
     @Override
+	public Course getReferenceById(Integer id) {
+		return courseRepository.getReferenceById(id);
+	}
+
+	@Override
     public CourseModel AddCourse(CourseModel courseModel) {
         Course existingCourse = courseRepository.findCoursesByTitleAndInstructorID(courseModel.getTitle(), courseModel.getInstructorId());
         List<User> instructor = userRepository.findAllInstructor();

@@ -40,4 +40,6 @@ public interface ICourseService {
 
     List<ResponseCourse> viewcoursehasstatustrue(boolean status);
 
+	Course getReferenceById(Integer id);
+
 }

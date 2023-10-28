@@ -1,5 +1,6 @@
 package com.main.drawingcourse.controller;
 
+import com.main.drawingcourse.converter.CourseConverter;
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.Course;
@@ -26,6 +27,9 @@ import java.util.Optional;
 public class CourseController {
     @Autowired
     ICourseService CourseService;
+    
+    @Autowired
+    CourseConverter courseConverter;
 
 
     @PostMapping(value = "/addCourse")
@@ -108,8 +112,8 @@ public class CourseController {
     }
     
     @GetMapping("/find/{id}")
-    public CourseModel findCourseById (@PathVariable int id) {
-    	return CourseService.GetCoursebyid(id);
+    public ResponseCourse findCourseById (@PathVariable int id) {
+    	return courseConverter.toResponse(CourseService.getReferenceById(id));
     }
 
 
