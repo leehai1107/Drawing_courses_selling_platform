@@ -28,7 +28,7 @@ public interface ICourseService {
 
 	List<ResponseCourse> findCoursesByPriceRange(double start_price, double end_price);
 
-
+	List<ResponseCourse> findAllCourseHasOrderTrueByUserId(int id);
 
     List<ResponseCourse> findAllCourseHasOrderByUserId(int id);
 

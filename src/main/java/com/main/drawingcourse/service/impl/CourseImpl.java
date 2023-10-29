@@ -266,6 +266,16 @@ public class CourseImpl implements ICourseService {
         }
         return false;
     }
+    
+    @Override
+    public List<ResponseCourse> findAllCourseHasOrderTrueByUserId(int id) {
+        List<Course> courseEntity = courseRepository.findAllCourseHasOrderTrueByUserId(id);
+        List<ResponseCourse> courseModels = courseEntity.stream()
+                .map(courseConverter::toResponse)
+                .collect(Collectors.toList());
+
+        return courseModels;
+    }
 
 }
 
