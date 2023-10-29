@@ -6,4 +6,5 @@ public interface OrderHistoryResult {
     String getUsername();
     LocalDate getOrderDate();
     String getCourseName();
+
 }
