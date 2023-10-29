@@ -41,5 +41,8 @@ public interface ICourseService {
     List<ResponseCourse> viewcoursehasstatustrue(boolean status);
 
 	Course getReferenceById(Integer id);
+	
+	List<Course> findByCateIdandLevelId(int cateid, int levelid);
+
 
 }
