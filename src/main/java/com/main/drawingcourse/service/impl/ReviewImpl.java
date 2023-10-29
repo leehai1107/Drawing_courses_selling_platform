@@ -30,18 +30,22 @@ public class ReviewImpl implements IReviewService {
         int courseId = reviewModel.getCourse_id();
         int orderId = reviewModel.getOrder_id();
 
-        // Kiểm tra xem course_id và order_id có nằm trong bảng course_order không
-        Course_Order courseOrder = courseOrderRepository.findById(reviewModel.getId()).orElse(null);
-        if (courseOrder == null || courseOrder.getCourse().getCourseId() != courseId || courseOrder.getOrder().getOrderId() != orderId) {
-            throw new IllegalArgumentException("Invalid course_id or order_id");
+        int id = courseOrderRepository.findCourseAndOrderID(courseId, orderId);
+        if (id != 0) {
+            Review review = reviewConverter.toEntity(reviewModel);
+            Course_Order courseOrder = courseOrderRepository.getReferenceById(id);
+            if (courseOrder != null) {
+                review.setCourse_Order(courseOrder);
+                review.setReviewDate(LocalDate.now());
+                review = reviewRepositoty.save(review);
+                return reviewConverter.toResponse(review);
+            } else {
+                // Xử lý trường hợp không tìm thấy đối tượng Course_Order tương ứng
+                return null; // hoặc trả về response error/tin nhắn thông báo cho người dùng
+            }
         }
 
-
-        Review review = reviewConverter.toEntity(reviewModel);
-        review.setReviewDate(LocalDate.now());
-        review = reviewRepositoty.save(review);
-        return reviewConverter.toResponse(review);
-
+        return null;
     }
 
     @Override

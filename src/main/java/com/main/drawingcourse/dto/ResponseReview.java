@@ -14,7 +14,7 @@ public class ResponseReview {
     private int reviewId;
     private String comment;
     private LocalDate reviewDate;
-    private int id;
     private int course_id;
     private int order_id;
+
 }
