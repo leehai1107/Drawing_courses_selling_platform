@@ -47,11 +47,12 @@ public class OrderImpl implements IOrderService {
 
         if (existingOrder == null) {
             // Lưu đơn hàng vào cơ sở dữ liệu
-            order.setOrderCode(orderModel.getOrder_code()); // Fix typo: getOrderCode() instead of order.getOrderCode()
+            order.setOrderCode(order.getOrderCode()); // Fix typo: getOrderCode() instead of order.getOrderCode()
             order.setOrderDate(LocalDate.now());
             order.setOrderStatus(false); // Mặc định là đã đặt hàng
             order = orderRepository.save(order);
-
+            orderConverter.toDTO(order);
+            
             // Tạo danh sách để lưu thông tin các Course_Order đã thêm
             List<Course_Order> addedCourseOrders = new ArrayList<>();
 
@@ -69,7 +70,6 @@ public class OrderImpl implements IOrderService {
                     courseOrder.setCourse(course);
                     courseOrder.setRating(course.getRating());
                     courseOrder.setOrder(order);
-                    courseOrder.setRegisteredAt(LocalDate.now());
                     courseOrder.setProgress(0.0f);
                     courseOrderRepository.save(courseOrder);
 
@@ -90,7 +90,7 @@ public class OrderImpl implements IOrderService {
 
         return null;
     }
-
+    
     @Override
 	public List<Order> getOrderHistoryByUserId(int userId) {
         return orderRepository.findByUser(userRepository.getReferenceById(userId));

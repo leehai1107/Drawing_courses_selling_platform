@@ -25,7 +25,9 @@ public class OrderConverter {
         entity.setOrderStatus(orderModel.isOrder_status());
         entity.setPrice(orderModel.getPrice());
         entity.setUser(userRepository.getReferenceById(orderModel.getUserid()));
-        entity.setCourse_Orders(course_OrderConverter.convertToCourseOrderCollection(orderModel.getCourseOrders()));
+        if(orderModel.getCourseOrders()!= null) {
+            entity.setCourse_Orders(course_OrderConverter.convertToCourseOrderCollection(orderModel.getCourseOrders()));
+        }
         return entity;
     }
 
@@ -37,7 +39,9 @@ public class OrderConverter {
         dto.setOrder_status(orderEntity.getOrderStatus());
         dto.setPrice(orderEntity.getPrice());
         dto.setUserid(orderEntity.getUser().getUserId());
-        dto.setCourseOrders(course_OrderConverter.convertToCourseOrderModelList(orderEntity.getCourse_Orders()));
+        if(orderEntity.getCourse_Orders() != null) {
+            dto.setCourseOrders(course_OrderConverter.convertToCourseOrderModelList(orderEntity.getCourse_Orders()));
+        }
         return dto;
     }
     
