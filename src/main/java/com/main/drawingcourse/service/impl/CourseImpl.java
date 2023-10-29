@@ -244,11 +244,17 @@ public class CourseImpl implements ICourseService {
         return new Course();
     }
 
-    public List<ResponseCourse> viewcoursehasstatustrue(boolean status){
+    @Override
+	public List<ResponseCourse> viewcoursehasstatustrue(boolean status){
         List<ResponseCourse> courseModels = courseRepository.viewcoursewithstatustrue(status).stream()
                 .map(courseConverter::toResponse)
                 .collect(Collectors.toList());
         return courseModels;
+    }
+    
+    @Override
+    public List<Course> findByCateIdandLevelId(int cateid,int levelid){
+    	return courseRepository.findbycateidandlevelid(cateid, levelid);
     }
 
 }

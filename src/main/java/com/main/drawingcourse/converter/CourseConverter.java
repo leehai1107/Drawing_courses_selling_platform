@@ -1,17 +1,19 @@
 package com.main.drawingcourse.converter;
 
-import com.main.drawingcourse.dto.CourseModel;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.main.drawingcourse.dto.ResponseCourse;
-
-import com.main.drawingcourse.dto.DrawingCategoryModel;
-import com.main.drawingcourse.dto.LevelModel;
-
-import com.main.drawingcourse.entity.Course;
-import com.main.drawingcourse.entity.Lesson;
-import com.main.drawingcourse.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.ResponseCourse;
+import com.main.drawingcourse.entity.Course;
+import com.main.drawingcourse.repository.DrawingCategoryRepository;
+import com.main.drawingcourse.repository.LessonRepository;
+import com.main.drawingcourse.repository.LevelRepository;
+import com.main.drawingcourse.repository.OrderRepository;
+import com.main.drawingcourse.repository.UserRepository;
 
 
 @Component
@@ -91,5 +93,16 @@ public class CourseConverter {
         dto.setStatus(course.isStatus());
         dto.setLession_count(course.getLessons().size());
         return dto;
+    }
+    
+    public List<ResponseCourse> toResponseList(List<Course> courseList) {
+        List<ResponseCourse> responseCourseList = new ArrayList<>();
+
+        for (Course course : courseList) {
+            ResponseCourse responseCourse = toResponse(course);
+            responseCourseList.add(responseCourse);
+        }
+
+        return responseCourseList;
     }
 }

@@ -73,8 +73,8 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     )
     Course UpdateStatusOfCourse (@Param("id") int id);
 
-
-
+    @Query(value = "select * from COURSES c  where c.level_id = :levelid and c.draw_category_id = :cateid  and c.status = 1",nativeQuery = true)
+    List<Course> findbycateidandlevelid(@Param("cateid")int cateid,@Param("levelid") int levelid);
 
 
 }
