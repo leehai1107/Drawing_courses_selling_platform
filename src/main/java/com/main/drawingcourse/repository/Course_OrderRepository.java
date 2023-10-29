@@ -19,4 +19,5 @@ public interface Course_OrderRepository extends JpaRepository<Course_Order, Inte
     Double getTotalSalesAmount();
 
 
+
 }
