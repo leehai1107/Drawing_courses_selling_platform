@@ -18,5 +18,9 @@ public interface Course_OrderRepository extends JpaRepository<Course_Order, Inte
             "JOIN co.order o")
     Double getTotalSalesAmount();
 
+    @Query(
+            value = "select id from course_order where course_id = :cid AND order_id = :oid",
+            nativeQuery = true)
+    int findCourseAndOrderID(@Param("cid") int cid, @Param("oid") int oid);
 
 }

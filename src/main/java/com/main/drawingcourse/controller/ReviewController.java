@@ -1,6 +1,7 @@
 package com.main.drawingcourse.controller;
 
 import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.dto.ResponseReview;
 import com.main.drawingcourse.dto.ReviewModel;
 import com.main.drawingcourse.repository.ReviewRepositoty;
 import com.main.drawingcourse.service.IReviewService;
@@ -21,7 +22,7 @@ public class ReviewController {
 
 
     @PostMapping(value = "/add")
-    public ReviewModel AddFeedBack(@RequestBody ReviewModel reviewModel) {
+    public ResponseReview AddFeedBack(@RequestBody ReviewModel reviewModel) {
         return iReviewService.addFeedBack(reviewModel);
     }
 
