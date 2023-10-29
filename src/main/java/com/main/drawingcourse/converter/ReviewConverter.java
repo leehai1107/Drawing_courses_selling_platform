@@ -51,7 +51,6 @@ public class ReviewConverter {
         dto.setReviewId(review.getReviewId());
         dto.setReviewDate(review.getReviewDate());
         dto.setComment(review.getComment());
-        dto.setId(review.getCourse_Order().getId());
         dto.setCourse_id(review.getCourse_Order().getCourse().getCourseId());
         dto.setOrder_id(review.getCourse_Order().getOrder().getOrderId());
         return dto;
