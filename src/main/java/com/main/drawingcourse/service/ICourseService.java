@@ -44,5 +44,7 @@ public interface ICourseService {
 	
 	List<Course> findByCateIdandLevelId(int cateid, int levelid);
 
+	boolean containsResponseCourse(List<ResponseCourse> responseCourseList, ResponseCourse desiredResponseCourse);
+
 
 }
