@@ -46,6 +46,10 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             nativeQuery = true)
     List<Course> findAllCourseHasOrderByUserId(@Param("id") int id);
 
+    @Query(
+            value = "SELECT c.* FROM Courses c INNER JOIN course_order co ON c.course_id = co.course_id INNER JOIN orders o ON co.order_id = o.order_id WHERE o.user_id = :id and o.order_status  = 1",
+            nativeQuery = true)
+    List<Course> findAllCourseHasOrderTrueByUserId(@Param("id") int id);
 
 
     @Query(
