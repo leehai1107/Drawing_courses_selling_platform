@@ -109,9 +109,14 @@ public class CourseController {
         return CourseService.viewcoursehasstatustrue(status);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseCourse findCourseById (@PathVariable int id) {
-    	return courseConverter.toResponse(CourseService.getReferenceById(id));
+    @GetMapping("/get")
+    public ResponseCourse findCourseById (@RequestParam int courseid, @RequestParam int userid) {
+    	ResponseCourse result =  courseConverter.toResponse(CourseService.getReferenceById(courseid));
+    	List<ResponseCourse> list = CourseService.findAllCourseHasOrderByUserId(userid);
+    	if(CourseService.containsResponseCourse(list, result)) {
+    		result.setHasorder(true);
+    	}
+    	return result;
     }
 
 

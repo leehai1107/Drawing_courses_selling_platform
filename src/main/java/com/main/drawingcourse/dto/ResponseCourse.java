@@ -20,8 +20,6 @@ public class ResponseCourse {
     private LevelModel levelModel;
     private UserModelRespone userModelRespone;
     private int lession_count = 0 ;
-
-
-
+    private boolean hasorder = false;
 
 }

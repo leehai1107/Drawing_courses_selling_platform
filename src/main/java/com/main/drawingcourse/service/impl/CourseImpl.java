@@ -256,6 +256,16 @@ public class CourseImpl implements ICourseService {
     public List<Course> findByCateIdandLevelId(int cateid,int levelid){
     	return courseRepository.findbycateidandlevelid(cateid, levelid);
     }
+    
+    @Override
+	public boolean containsResponseCourse(List<ResponseCourse> responseCourseList, ResponseCourse desiredResponseCourse) {
+        for (ResponseCourse course : responseCourseList) {
+            if (course.equals(desiredResponseCourse)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
 
