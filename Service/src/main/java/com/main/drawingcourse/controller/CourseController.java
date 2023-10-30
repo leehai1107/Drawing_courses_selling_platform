@@ -17,137 +17,121 @@ import org.springframework.web.bind.annotation.RestController;
 import com.main.drawingcourse.converter.CourseConverter;
 import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.ResponseCourse;
-import com.main.drawingcourse.entity.Course;
 import com.main.drawingcourse.service.ICourseService;
 
 @RestController
 @RequestMapping("public/course")
 public class CourseController {
-    @Autowired
-    ICourseService CourseService;
-    
-    @Autowired
-    CourseConverter courseConverter;
+	@Autowired
+	ICourseService CourseService;
 
+	@Autowired
+	CourseConverter courseConverter;
 
-    @PostMapping(value = "/addCourse")
-    public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
-        return CourseService.AddCourse(courseModel);
-    }
+	@PostMapping(value = "/addCourse")
+	public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
+		return CourseService.AddCourse(courseModel);
+	}
 
-    @GetMapping(value = "/find-by-title")
-    public List<ResponseCourse> findByCourseName(@RequestParam("title") String title) {
-        return CourseService.findByCourseTitle(title);
-    }
+	@GetMapping(value = "/find-by-title")
+	public List<ResponseCourse> findByCourseName(@RequestParam("title") String title) {
+		return CourseService.findByCourseTitle(title);
+	}
 
+	@GetMapping("/view")
 
-    @GetMapping("/view")
+	public List<ResponseCourse> findAll() {
 
-    public List<ResponseCourse> findAll() {
+		return CourseService.findAll();
+	}
 
+	@DeleteMapping("/delete/{id}")
+	public void deleteCourseById(@PathVariable int id) {
 
-        return CourseService.findAll();
-    }
+		CourseService.DeleteCoursebyid(id);
+	}
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteCourseById(@PathVariable int id) {
+	@PutMapping("/edit/{id}")
+	public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
+		CourseModel courseModel1 = CourseService.GetCoursebyid(id);
+		if (courseModel != null) {
+			courseModel1.setTitle(courseModel.getTitle());
+			courseModel1.setDescription(courseModel.getDescription());
+			courseModel1.setPrice(courseModel.getPrice());
+			courseModel1.setRating(courseModel.getRating());
+			courseModel1.setLevelId(courseModel.getLevelId());
+			courseModel1.setDrawCategoryId(courseModel.getDrawCategoryId());
+			courseModel1.setInstructorId(courseModel.getInstructorId());
+			courseModel1.setStatus(courseModel1.isStatus());
+			// Update the courseImage if it's not null in CourseModel
+			if (courseModel.getCourseImage() != null) {
+				courseModel1.setCourseImage(courseModel.getCourseImage());
+			}
 
-        CourseService.DeleteCoursebyid(id);
-    }
+			CourseService.UpdateCourse(courseModel1);
+		}
+	}
 
-    @PutMapping("/edit/{id}")
-    public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
-        CourseModel courseModel1 = CourseService.GetCoursebyid(id);
-        if (courseModel != null) {
-            courseModel1.setTitle(courseModel.getTitle());
-            courseModel1.setDescription(courseModel.getDescription());
-            courseModel1.setPrice(courseModel.getPrice());
-            courseModel1.setRating(courseModel.getRating());
-            courseModel1.setLevelId(courseModel.getLevelId());
-            courseModel1.setDrawCategoryId(courseModel.getDrawCategoryId());
-            courseModel1.setInstructorId(courseModel.getInstructorId());
-            courseModel1.setStatus(courseModel1.isStatus());
-            // Update the courseImage if it's not null in CourseModel
-            if (courseModel.getCourseImage() != null) {
-                courseModel1.setCourseImage(courseModel.getCourseImage());
-            }
+	@GetMapping(value = "/find-Course-By-PriceRange/{start_price}/{end_price}")
+	public List<ResponseCourse> findCourseByPriceRange(@PathVariable("start_price") double start_price,
+			@PathVariable("end_price") double end_price) {
+		return CourseService.findCoursesByPriceRange(start_price, end_price);
+	}
 
-            CourseService.UpdateCourse(courseModel1);
-        }
-    }
+	@GetMapping(value = "/find-Course-Has-Order/{id}")
+	public List<ResponseCourse> findAllCourseHasOrderByUserId(@PathVariable int id) {
+		return CourseService.findAllCourseHasOrderByUserId(id);
+	}
 
-    @GetMapping(value = "/find-Course-By-PriceRange/{start_price}/{end_price}")
-    public List<ResponseCourse> findCourseByPriceRange(@PathVariable("start_price") double start_price, @PathVariable("end_price") double end_price ){
-        return CourseService.findCoursesByPriceRange(start_price, end_price);
-    }
+	@GetMapping("/find-by-InstructorId/{id}")
+	public List<ResponseCourse> getCoursesByInstructorId(@PathVariable int id) {
+		return CourseService.findCourseByInstructorID(id);
+	}
 
-    @GetMapping(value = "/find-Course-Has-Order/{id}")
-    public List<ResponseCourse> findAllCourseHasOrderByUserId(@PathVariable int id){
-        return CourseService.findAllCourseHasOrderByUserId(id);
-    }
+	@GetMapping(value = "/find-Course-Of-Instructor-By-UserName")
+	public List<ResponseCourse> findAllCourseOfInstructorByUserName(@RequestParam("name") String name) {
+		return CourseService.findAllCourseOfInstructorByUserName(name);
+	}
 
-    @GetMapping("/find-by-InstructorId/{id}")
-    public List<ResponseCourse> getCoursesByInstructorId(@PathVariable int id) {
-        return CourseService.findCourseByInstructorID(id);
-    }
+	@GetMapping(value = "/find-Top4-Best-Seller-Course")
+	public List<ResponseCourse> findTop4BestSellerCourse() {
+		return CourseService.findTop4BestSellerCourse();
+	}
 
-    @GetMapping(value = "/find-Course-Of-Instructor-By-UserName")
-    public List<ResponseCourse> findAllCourseOfInstructorByUserName(@RequestParam("name") String name) {
-        return CourseService.findAllCourseOfInstructorByUserName(name);
-    }
+	@GetMapping("/coursestatustrue")
 
-    @GetMapping(value = "/find-Top4-Best-Seller-Course")
-    public List<ResponseCourse> findTop4BestSellerCourse(){
-        return CourseService.findTop4BestSellerCourse();
-    }
+	public List<ResponseCourse> viewcoursehasstatustrue(boolean status) {
 
+		return CourseService.viewcoursehasstatustrue(status);
+	}
 
-    @GetMapping("/coursestatustrue")
+	@GetMapping("/get")
+	public ResponseCourse findCourseById(@RequestParam int courseid, @RequestParam int userid) {
+		ResponseCourse result = courseConverter.toResponse(CourseService.getReferenceById(courseid));
+		List<ResponseCourse> list = CourseService.findAllCourseHasOrderByUserId(userid);
+		if (CourseService.containsResponseCourse(list, result)) {
+			result.setHasorder(true);
+		}
+		return result;
+	}
 
-    public List<ResponseCourse> viewcoursehasstatustrue(boolean status) {
+	@PutMapping("/update-status/{id}")
+	public ResponseEntity<String> updateStatusOfCourseById(@PathVariable("id") int id) {
+		String result = CourseService.UpdateStatusOfCourse(id);
+		if (result.equals("Successfully changed the course status")) {
+			return ResponseEntity.ok(result);
+		} else if (result.equals("The course status is already true")) {
+			return ResponseEntity.badRequest().body(result);
+		} else if (result.equals("No course found")) {
+			return ResponseEntity.badRequest().body(result);
+		}
+		return null;
+	}
 
-        return CourseService.viewcoursehasstatustrue(status);
-    }
-    
-    @GetMapping("/get")
-    public ResponseCourse findCourseById (@RequestParam int courseid, @RequestParam int userid) {
-    	ResponseCourse result =  courseConverter.toResponse(CourseService.getReferenceById(courseid));
-    	List<ResponseCourse> list = CourseService.findAllCourseHasOrderByUserId(userid);
-    	if(CourseService.containsResponseCourse(list, result)) {
-    		result.setHasorder(true);
-    	}
-    	return result;
-    }
-
-
-    @PutMapping("/update-status/{id}")
-    public ResponseEntity<String> updateStatusOfCourseById(@PathVariable("id") int id) {
-        String result = CourseService.UpdateStatusOfCourse(id);
-        if (result.equals("Successfully changed the course status")) {
-            return ResponseEntity.ok(result);
-        } else if (result.equals("The course status is already true")) {
-            return ResponseEntity.badRequest().body(result);
-        }else if(result.equals("No course found")){
-            return ResponseEntity.badRequest().body(result);
-        }
-        return null;
-    }
-    
-    @GetMapping("/find")
-    public List<ResponseCourse> getCoursesByCategoryAndLevel(
-    		@RequestParam("category") int categoryId,
-            @RequestParam("level") int levelId) {
-        return courseConverter.toResponseList(CourseService.findByCateIdandLevelId(categoryId, levelId));
-    }
+	@GetMapping("/find")
+	public List<ResponseCourse> getCoursesByCategoryAndLevel(@RequestParam("category") int categoryId,
+			@RequestParam("level") int levelId) {
+		return courseConverter.toResponseList(CourseService.findByCateIdandLevelId(categoryId, levelId));
+	}
 
 }
-
-
-
-
-
-
-
-
-
-

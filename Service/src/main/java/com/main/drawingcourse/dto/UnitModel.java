@@ -8,10 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-
 public class UnitModel {
-    private int unitId;
-    private String title;
-    private String content;
-    private int courseId;
+	private int unitId;
+	private String title;
+	private String content;
+	private int courseId;
 }

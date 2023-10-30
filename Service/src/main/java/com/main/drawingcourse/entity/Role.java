@@ -22,10 +22,10 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleId;
-	
+
 	@Column(columnDefinition = "varchar(20) not null")
 	private String roleName;
-	
+
 	@OneToMany(mappedBy = "role")
 	private Collection<User> users;
 }

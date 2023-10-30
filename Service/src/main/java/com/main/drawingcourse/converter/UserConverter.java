@@ -14,10 +14,10 @@ public class UserConverter {
 	RoleRepository roleRepository;
 	@Autowired
 	RoleConverter roleConverter;
-	
+
 	public User toEntity(UserModel model) {
 		User entity = new User();
-		
+
 		entity.setUserId(model.getUserid());
 		entity.setUserName(model.getUsername());
 		entity.setPassword(model.getPassword());
@@ -30,11 +30,11 @@ public class UserConverter {
 		entity.setFullname(model.getFullname());
 		entity.setDob(model.getDob());
 		entity.setSex(model.getSex());
-		
+
 		return entity;
 	}
 
-	public UserModel toDto(User entity){
+	public UserModel toDto(User entity) {
 		UserModel dto = new UserModel();
 		dto.setUserid(entity.getUserId());
 		dto.setUsername(entity.getUserName());
@@ -51,8 +51,8 @@ public class UserConverter {
 		dto.setRoleModelResponse(roleConverter.toDto(entity.getRole()));
 		return dto;
 	}
-	
-	public UserModelRespone toResponse(User entity){
+
+	public UserModelRespone toResponse(User entity) {
 		UserModelRespone dto = new UserModelRespone();
 		dto.setId(entity.getUserId());
 		dto.setRoleInfo(roleConverter.toDto(entity.getRole()));

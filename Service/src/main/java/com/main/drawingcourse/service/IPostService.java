@@ -1,24 +1,24 @@
 package com.main.drawingcourse.service;
 
+import java.util.List;
+
 import com.main.drawingcourse.dto.PostModel;
 import com.main.drawingcourse.dto.ResponsePostByCate;
 
+public interface IPostService {
+	PostModel AddPost(PostModel postModel);
 
-import java.util.List;
+	List<ResponsePostByCate> findPostByID(int id);
 
-public  interface IPostService {
-    PostModel AddPost(PostModel postModel);
+	void deleteByPostId(int id);
 
+	List<PostModel> findPostByPostcategoryId(int id);
 
-    List<ResponsePostByCate> findPostByID(int id);
-    void deleteByPostId(int id);
-
-    List<PostModel> findPostByPostcategoryId(int id);
 	List<ResponsePostByCate> findPostByPostcategory(int id);
 
-    List<ResponsePostByCate> getAllPosts();
+	List<ResponsePostByCate> getAllPosts();
 
-    List<ResponsePostByCate> viewpostbystatustrue(boolean status);
+	List<ResponsePostByCate> viewpostbystatustrue(boolean status);
 
-    String UpdatePostStatus(int id);
+	String UpdatePostStatus(int id);
 }

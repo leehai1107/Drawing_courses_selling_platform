@@ -20,14 +20,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RefreshToken {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    private String token;
+	private String token;
 
-    private Instant expiryDate;
+	private Instant expiryDate;
 
-    @OneToOne
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
-    private User user;
+	@OneToOne
+	@JoinColumn(name = "userId", referencedColumnName = "userId")
+	private User user;
 }

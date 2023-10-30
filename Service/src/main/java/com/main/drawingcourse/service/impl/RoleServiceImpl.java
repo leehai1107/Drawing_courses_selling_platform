@@ -7,7 +7,7 @@ import com.main.drawingcourse.repository.RoleRepository;
 import com.main.drawingcourse.service.IRoleService;
 
 @Service
-public class RoleServiceImpl implements IRoleService{
+public class RoleServiceImpl implements IRoleService {
 	@Autowired
 	RoleRepository roleRepository;
 }

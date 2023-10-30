@@ -11,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.main.drawingcourse.entity.User;
 
-
-
 public class UserDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -24,8 +22,7 @@ public class UserDetailsImpl implements UserDetails {
 	private String password;
 	GrantedAuthority authority = null;
 
-	public UserDetailsImpl(Integer id, String username, String password, GrantedAuthority authority,
-			Boolean enabled) {
+	public UserDetailsImpl(Integer id, String username, String password, GrantedAuthority authority, Boolean enabled) {
 		this.id = id;
 		this.username = username;
 		this.password = password;

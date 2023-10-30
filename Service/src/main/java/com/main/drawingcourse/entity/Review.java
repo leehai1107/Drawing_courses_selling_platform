@@ -23,17 +23,15 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reviewId;
-	
+
 	@Column(columnDefinition = "nvarchar(250)")
 	private String comment;
-	
-	
+
 	@Column(columnDefinition = "DATE")
 	private LocalDate reviewDate;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private Course_Order course_Order;
-	
 
 }

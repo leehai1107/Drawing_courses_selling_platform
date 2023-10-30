@@ -1,12 +1,12 @@
 package com.main.drawingcourse.service;
 
-import com.main.drawingcourse.dto.LevelModel;
 import java.util.List;
 
+import com.main.drawingcourse.dto.LevelModel;
 
 public interface ILevelService {
-    LevelModel AddLevel(LevelModel levelModel);
+	LevelModel AddLevel(LevelModel levelModel);
 
-    List<LevelModel> findAll();
+	List<LevelModel> findAll();
 
 }

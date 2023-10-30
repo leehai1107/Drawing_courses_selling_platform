@@ -22,11 +22,11 @@ public class Level {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int levelId;
-	
+
 	@Column(columnDefinition = "nvarchar(20) not null")
 	private String levelName;
-	
+
 	@OneToMany(mappedBy = "level")
 	private Collection<Course> courses;
-	
+
 }
