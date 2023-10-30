@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class DrawingCategoryModel {
-    private int drawCategoryId;
-    private String drawCategoryName;
+	private int drawCategoryId;
+	private String drawCategoryName;
 }

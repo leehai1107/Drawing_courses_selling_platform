@@ -22,10 +22,10 @@ public class PostCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int postCategoryId;
-	
+
 	@Column(columnDefinition = "nvarchar(20) not null")
 	private String postCategoryName;
-	
+
 	@OneToMany(mappedBy = "postCategory")
 	private Collection<Post> posts;
 

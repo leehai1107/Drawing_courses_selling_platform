@@ -26,99 +26,95 @@ import com.main.drawingcourse.service.IOrderService;
 
 @Service
 public class OrderImpl implements IOrderService {
-    @Autowired
-    OrderConverter orderConverter;
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    Course_OrderRepository courseOrderRepository;
-    @Autowired
-    CourseRepository courseRepository;
-    @Autowired
-    Course_OrderConverter courseOrderConverter;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    CourseConverter courseConverter;
-    @Autowired
-    ICourseService courseService;
+	@Autowired
+	OrderConverter orderConverter;
+	@Autowired
+	OrderRepository orderRepository;
+	@Autowired
+	Course_OrderRepository courseOrderRepository;
+	@Autowired
+	CourseRepository courseRepository;
+	@Autowired
+	Course_OrderConverter courseOrderConverter;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	CourseConverter courseConverter;
+	@Autowired
+	ICourseService courseService;
 
+	@Override
+	public OrderModel addOrder(OrderModel orderModel) {
 
-    @Override
-    public OrderModel addOrder(OrderModel orderModel) {
-    	
-    	List<Integer> courseIdList = orderModel.getCourseIds();
-    			List<ResponseCourse> responseCourseList = new ArrayList<>();
+		List<Integer> courseIdList = orderModel.getCourseIds();
+		List<ResponseCourse> responseCourseList = new ArrayList<>();
 
-    			for (Integer courseId : courseIdList) {
-    			    ResponseCourse result = courseConverter.toResponse(courseService.getReferenceById(courseId));
-    			    responseCourseList.add(result);
-    			}
-    			List<ResponseCourse> databaseList = courseService.findAllCourseHasOrderTrueByUserId(orderModel.getUserid());
-    	
-    	
-       if(!hasCommonItems(responseCourseList, databaseList)) {
-    	   // Chuyển đổi OrderModel thành Order entity
-           Order order = orderConverter.toEntity(orderModel);
+		for (Integer courseId : courseIdList) {
+			ResponseCourse result = courseConverter.toResponse(courseService.getReferenceById(courseId));
+			responseCourseList.add(result);
+		}
+		List<ResponseCourse> databaseList = courseService.findAllCourseHasOrderTrueByUserId(orderModel.getUserid());
 
-           // Kiểm tra xem đơn hàng đã tồn tại trong cơ sở dữ liệu chưa
-           Order existingOrder = orderRepository.findByOrderCode(orderModel.getOrder_code());
+		if (!hasCommonItems(responseCourseList, databaseList)) {
+			// Chuyển đổi OrderModel thành Order entity
+			Order order = orderConverter.toEntity(orderModel);
 
-           if (existingOrder == null) {
-               // Lưu đơn hàng vào cơ sở dữ liệu
-               order.setOrderCode(order.getOrderCode());
-               order.setOrderDate(LocalDate.now());
-               order.setOrderStatus(false); // Mặc định là đã đặt hàng
-               order = orderRepository.save(order);
-               orderConverter.toDTO(order);
+			// Kiểm tra xem đơn hàng đã tồn tại trong cơ sở dữ liệu chưa
+			Order existingOrder = orderRepository.findByOrderCode(orderModel.getOrder_code());
 
-               // Tạo danh sách để lưu thông tin các Course_Order đã thêm
-               List<Course_Order> addedCourseOrders = new ArrayList<>();
+			if (existingOrder == null) {
+				// Lưu đơn hàng vào cơ sở dữ liệu
+				order.setOrderCode(order.getOrderCode());
+				order.setOrderDate(LocalDate.now());
+				order.setOrderStatus(false); // Mặc định là đã đặt hàng
+				order = orderRepository.save(order);
+				orderConverter.toDTO(order);
 
-               // Thêm các khóa học vào đơn hàng thông qua Course_Order
-               for (Integer courseId : orderModel.getCourseIds()) {
-                   Course_Order courseOrder = new Course_Order();
-                   Course course = courseRepository.findById(courseId).orElse(null);
-                   if (course != null) {
-                       courseOrder.setCourse(course);
-                       courseOrder.setRating(course.getRating());
-                       courseOrder.setRegisteredAt(LocalDate.now());
-                       courseOrder.setOrder(order);
-                       courseOrderRepository.save(courseOrder);
-                       addedCourseOrders.add(courseOrder);
-                   }
-               }
+				// Tạo danh sách để lưu thông tin các Course_Order đã thêm
+				List<Course_Order> addedCourseOrders = new ArrayList<>();
 
-               // Chuyển đổi danh sách các Course_Order thành danh sách Course_OrderModel
-               List<Course_OrderModel> courseOrderModels = addedCourseOrders.stream()
-                       .map(courseOrderConverter::toDTO)
-                       .collect(Collectors.toList());
+				// Thêm các khóa học vào đơn hàng thông qua Course_Order
+				for (Integer courseId : orderModel.getCourseIds()) {
+					Course_Order courseOrder = new Course_Order();
+					Course course = courseRepository.findById(courseId).orElse(null);
+					if (course != null) {
+						courseOrder.setCourse(course);
+						courseOrder.setRating(course.getRating());
+						courseOrder.setRegisteredAt(LocalDate.now());
+						courseOrder.setOrder(order);
+						courseOrderRepository.save(courseOrder);
+						addedCourseOrders.add(courseOrder);
+					}
+				}
 
-               // Trả về OrderModel cùng với danh sách các Course_OrderModel
-               OrderModel result = orderConverter.toDTO(order);
-               result.setCourseOrders(courseOrderModels);
-               return result;
-           }
+				// Chuyển đổi danh sách các Course_Order thành danh sách Course_OrderModel
+				List<Course_OrderModel> courseOrderModels = addedCourseOrders.stream().map(courseOrderConverter::toDTO)
+						.collect(Collectors.toList());
 
-           return null;
-       }else {
-    	   return null;
-       }
-    }
+				// Trả về OrderModel cùng với danh sách các Course_OrderModel
+				OrderModel result = orderConverter.toDTO(order);
+				result.setCourseOrders(courseOrderModels);
+				return result;
+			}
 
-    @Override
+			return null;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
 	public List<Order> getOrderHistoryByUserId(int userId) {
-        return orderRepository.findByUser(userRepository.getReferenceById(userId));
-    }
-    
-    private boolean hasCommonItems(List<ResponseCourse> list1, List<ResponseCourse> list2) {
-        for (ResponseCourse item : list1) {
-            if (list2.contains(item)) {
-                return true;
-            }
-        }
-        return false;
-    }
+		return orderRepository.findByUser(userRepository.getReferenceById(userId));
+	}
+
+	private boolean hasCommonItems(List<ResponseCourse> list1, List<ResponseCourse> list2) {
+		for (ResponseCourse item : list1) {
+			if (list2.contains(item)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
-

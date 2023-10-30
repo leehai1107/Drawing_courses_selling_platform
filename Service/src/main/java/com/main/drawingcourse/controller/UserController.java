@@ -22,63 +22,61 @@ import com.main.drawingcourse.service.IUserService;
 @RestController
 public class UserController {
 
-    @Autowired
-    IUserService userService;
-    
-    @Autowired
-    IOrderService orderService;
-    
-    @Autowired
-    OrderConverter orderConverter;
+	@Autowired
+	IUserService userService;
 
+	@Autowired
+	IOrderService orderService;
 
-    @GetMapping(value = "/find-All-Instructor")
-    public List<UserModel> findAllInstructor(){
-        return userService.findAllInstructor();
-    }
+	@Autowired
+	OrderConverter orderConverter;
 
-    @GetMapping(value = "/find-All-Staff")
-    public List<UserModel> findAllStaff(){
-        return userService.findAllStaff();
-    }
+	@GetMapping(value = "/find-All-Instructor")
+	public List<UserModel> findAllInstructor() {
+		return userService.findAllInstructor();
+	}
 
-    @GetMapping(value = "/find-All-Customer")
-    public List<UserModel> findAllCustomer(){
-        return userService.findAllCustomer();
-    }
+	@GetMapping(value = "/find-All-Staff")
+	public List<UserModel> findAllStaff() {
+		return userService.findAllStaff();
+	}
 
-    @PutMapping("edit/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserModel userModel) {
-        UserModel userModel1 = userService.GetUserbyid(id);
+	@GetMapping(value = "/find-All-Customer")
+	public List<UserModel> findAllCustomer() {
+		return userService.findAllCustomer();
+	}
 
-        if(userModel1!=null){
-            userModel1.setAvatar(userModel.getAvatar());
-            userModel1.setDescription(userModel.getDescription());
-            userModel1.setDob(userModel.getDob());
-            userModel1.setFullname(userModel.getFullname());
-            userModel1.setSex(userModel.getSex());
-            userModel1.setPhone(userModel.getPhone());
-            userModel1.setEmail(userModel.getEmail());
-            userService.Edit_User(userModel1);
-            return ResponseEntity.ok("User updated successfully");
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    
-    @GetMapping("/orders/{userid}")
-    public List<OrderModel> getOrderHistoryByUsername(@PathVariable int userid) {
-    	List<Order> list = orderService.getOrderHistoryByUserId(userid);
-        return orderConverter.convertToOrderModelList(list);
-    }
+	@PutMapping("edit")
+	public ResponseEntity<?> updateUser(@RequestBody UserModel userModel) {
+		UserModel userModel1 = userService.GetUserbyid(userModel.getUserid());
 
-    @GetMapping("/infor/{id}")
-    public UserModel getUserById(@PathVariable int id, UserModel userModel) {
-        var user = userService.GetUserbyid(id);
-        if(user != null){
-            userModel=user;
-        }
-        return userModel;
-    }
+		if (userModel1 != null) {
+			userModel1.setAvatar(userModel.getAvatar());
+			userModel1.setDescription(userModel.getDescription());
+			userModel1.setDob(userModel.getDob());
+			userModel1.setFullname(userModel.getFullname());
+			userModel1.setSex(userModel.getSex());
+			userModel1.setPhone(userModel.getPhone());
+			userModel1.setEmail(userModel.getEmail());
+			userService.Edit_User(userModel1);
+			return ResponseEntity.ok("User updated successfully");
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@GetMapping("/orders/{userid}")
+	public List<OrderModel> getOrderHistoryByUsername(@PathVariable int userid) {
+		List<Order> list = orderService.getOrderHistoryByUserId(userid);
+		return orderConverter.convertToOrderModelList(list);
+	}
+
+	@GetMapping("/infor/{id}")
+	public UserModel getUserById(@PathVariable int id, UserModel userModel) {
+		var user = userService.GetUserbyid(id);
+		if (user != null) {
+			userModel = user;
+		}
+		return userModel;
+	}
 }

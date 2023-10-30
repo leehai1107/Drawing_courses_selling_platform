@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponsePostByCate {
-	 private int postId;
-	 private String title;
-	 private String content;
-	 private LocalDate postDate;
-	 private boolean status;
-	 private UserModelRespone userInfo;
-	 private PostCategoryModel cateInfo;
-	 private String postImage;
+	private int postId;
+	private String title;
+	private String content;
+	private LocalDate postDate;
+	private boolean status;
+	private UserModelRespone userInfo;
+	private PostCategoryModel cateInfo;
+	private String postImage;
 }

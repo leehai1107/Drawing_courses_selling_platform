@@ -11,7 +11,7 @@ import com.main.drawingcourse.service.IUserService;
 
 @Component
 @Order(2)
-public class AdminLoader implements CommandLineRunner{
+public class AdminLoader implements CommandLineRunner {
 	@Autowired
 	private RoleRepository roleRepository;
 
@@ -19,18 +19,19 @@ public class AdminLoader implements CommandLineRunner{
 	private final IUserService service;
 
 	public AdminLoader(IUserService service) {
-		this.service= service;
+		this.service = service;
 	}
+
 	@Override
 	public void run(String... args) throws Exception {
-		if(service.findUserByUserName("ADMIN") == null) {
+		if (service.findUserByUserName("ADMIN") == null) {
 			User admin = new User();
 			admin.setDescription("Who control the system");
 			admin.setRole(roleRepository.getReferenceById(1));
 			admin.setFullname("Administrator");
 			admin.setStatus(true);
-			admin.setUserName("ADMIN");//admin user name
-			admin.setPassword("ADMIN@@@");//this is admin password
+			admin.setUserName("ADMIN");// admin user name
+			admin.setPassword("ADMIN@@@");// this is admin password
 			service.addUser(admin);
 		}
 

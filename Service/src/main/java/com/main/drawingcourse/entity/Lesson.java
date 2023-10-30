@@ -23,22 +23,22 @@ public class Lesson {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int lessonId;
-	
+
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String title;
-	
+
 	@Column(columnDefinition = "nvarchar(MAX) not null")
 	private String content;
-	
+
 	@Column(columnDefinition = "nvarchar(MAX) not null")
 	private String videoUrl;
-	
+
 	@Column
 	private LocalTime videoDuration;
-	
+
 	@Column
 	private Boolean lessonStatus;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "courseId")
 	private Course course;

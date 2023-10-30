@@ -25,47 +25,47 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
-	
-	@Column(unique = true,columnDefinition = "varchar(50)")
+
+	@Column(unique = true, columnDefinition = "varchar(50)")
 	private String userName;
-	
-	@Column(unique = true,columnDefinition = "varchar(50)")
+
+	@Column(unique = true, columnDefinition = "varchar(50)")
 	private String email;
-	
+
 	@Column
 	private String password;
-	
+
 	@Column(columnDefinition = "nvarchar(50)")
 	private String fullname;
-	
-	@Column(unique = true,columnDefinition = "varchar(50)")
+
+	@Column(unique = true, columnDefinition = "varchar(50)")
 	private String phone;
-	
+
 	@Column
 	private LocalDate dob;
-	
+
 	@Column
 	private Boolean sex;
 	@Column(columnDefinition = "varchar(MAX)")
 	private String avatar;
-	
+
 	@Column(columnDefinition = "nvarchar(MAX) ")
 	private String description;
-	
+
 	@Column
 	private boolean status;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "roleId")
 	private Role role;
-	
+
 	@OneToMany(mappedBy = "user")
 	private Collection<Course> course;
-	
+
 	@OneToMany(mappedBy = "user")
 	private Collection<Order> oders;
-	
+
 	@OneToMany(mappedBy = "user")
 	private Collection<Post> posts;
-	
+
 }

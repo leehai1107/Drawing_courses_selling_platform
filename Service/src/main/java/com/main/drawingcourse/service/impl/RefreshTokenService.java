@@ -19,14 +19,13 @@ public class RefreshTokenService {
 	private RefreshTokenRepository refreshTokenRepository;
 	@Autowired
 	private UserRepository userInfoRepository;
-	
 
 	public RefreshToken createRefreshToken(String username) {
 		User user = userInfoRepository.findUserByUserName(username);
-		RefreshToken refreshToken = RefreshToken.builder().user(user)
-				.token(UUID.randomUUID().toString()).expiryDate(Instant.now().plusMillis(JWT_TOKEN_VALIDITY)).build();
+		RefreshToken refreshToken = RefreshToken.builder().user(user).token(UUID.randomUUID().toString())
+				.expiryDate(Instant.now().plusMillis(JWT_TOKEN_VALIDITY)).build();
 
-		if(refreshTokenRepository.findByUser(user)!=null) {
+		if (refreshTokenRepository.findByUser(user) != null) {
 			refreshTokenRepository.delete(refreshTokenRepository.findByUser(user));
 		}
 
@@ -48,7 +47,7 @@ public class RefreshTokenService {
 
 	public void removeFromInstance(RefreshToken token) {
 		refreshTokenRepository.delete(token);
-		
+
 	}
 
 }

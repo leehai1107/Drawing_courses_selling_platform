@@ -1,10 +1,10 @@
 package com.main.drawingcourse.dto;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -12,13 +12,13 @@ import java.time.LocalDate;
 
 public class PostModel {
 
-    private int postId;
-    private String title;
-    private String content;
-    private LocalDate postDate;
-    private boolean status;
-    private int userId;
-    private int postCategoryId;
-    private String postImage;
+	private int postId;
+	private String title;
+	private String content;
+	private LocalDate postDate;
+	private boolean status;
+	private int userId;
+	private int postCategoryId;
+	private String postImage;
 
 }

@@ -36,7 +36,7 @@ public class Course {
 
 	@Column
 	private Integer rating;
-	
+
 	@Column
 	private boolean status;
 
@@ -57,8 +57,8 @@ public class Course {
 
 	@OneToMany(mappedBy = "course")
 	private Collection<Course_Order> course_Orders;
-	
-	@Column(name ="CourseImage",columnDefinition = "varchar(max) not null")
+
+	@Column(name = "CourseImage", columnDefinition = "varchar(max) not null")
 	private String courseImage;
 
 }

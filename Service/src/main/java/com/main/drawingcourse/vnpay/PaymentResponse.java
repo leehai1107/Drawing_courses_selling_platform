@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PaymentResponse {
 	private String code;
-    private String message;
-    private String data;
+	private String message;
+	private String data;
 }

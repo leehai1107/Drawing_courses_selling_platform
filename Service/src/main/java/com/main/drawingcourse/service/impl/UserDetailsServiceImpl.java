@@ -15,15 +15,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username)  {
-        User account = userRepository.findUserByUserName(username);
-        if(account==null){
-            throw new UsernameNotFoundException("User " + username + " was not found in the database");
-        }
-        return UserDetailsImpl.build(account);
-    }
-	
+	@Transactional
+	public UserDetails loadUserByUsername(String username) {
+		User account = userRepository.findUserByUserName(username);
+		if (account == null) {
+			throw new UsernameNotFoundException("User " + username + " was not found in the database");
+		}
+		return UserDetailsImpl.build(account);
+	}
+
 }

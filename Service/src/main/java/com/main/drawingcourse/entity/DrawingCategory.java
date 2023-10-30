@@ -22,10 +22,10 @@ public class DrawingCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int drawCategoryId;
-	
+
 	@Column(columnDefinition = "nvarchar(50) not null")
 	private String drawCategoryName;
-	
+
 	@OneToMany(mappedBy = "drawingCategory")
 	private Collection<Course> courses;
 }
