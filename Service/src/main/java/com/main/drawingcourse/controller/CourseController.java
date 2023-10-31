@@ -2,6 +2,7 @@ package com.main.drawingcourse.controller;
 
 import java.util.List;
 
+import com.main.drawingcourse.dto.PostModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -132,6 +133,12 @@ public class CourseController {
 	public List<ResponseCourse> getCoursesByCategoryAndLevel(@RequestParam("category") int categoryId,
 			@RequestParam("level") int levelId) {
 		return courseConverter.toResponseList(CourseService.findByCateIdandLevelId(categoryId, levelId));
+	}
+
+	@GetMapping(value = "/find-courses-by-category/{id}")
+	public List<CourseModel> findCourseBycategoryID(@PathVariable int id) {
+		return CourseService.findCourseByCategoryid(id);
+
 	}
 
 }

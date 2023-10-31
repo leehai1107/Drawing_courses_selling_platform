@@ -3,6 +3,9 @@ package com.main.drawingcourse.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.main.drawingcourse.dto.PostModel;
+import com.main.drawingcourse.dto.ResponsePostByCate;
+import com.main.drawingcourse.entity.Post;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -253,6 +256,14 @@ public class CourseImpl implements ICourseService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public List<CourseModel> findCourseByCategoryid(int id) {
+		List<Course> courseEntity = courseRepository.findAllPostByPostCategoryID(id);
+		List<CourseModel> courseModels = courseEntity.stream().map(courseConverter::toDTO).collect(Collectors.toList());
+
+		return courseModels;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.main.drawingcourse.service;
 import java.util.List;
 
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.PostModel;
 import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.Course;
 
@@ -44,5 +45,7 @@ public interface ICourseService {
 	List<Course> findByCateIdandLevelId(int cateid, int levelid);
 
 	boolean containsResponseCourse(List<ResponseCourse> responseCourseList, ResponseCourse desiredResponseCourse);
+
+	List<CourseModel> findCourseByCategoryid(int id);
 
 }

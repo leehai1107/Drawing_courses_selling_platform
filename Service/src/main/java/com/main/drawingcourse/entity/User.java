@@ -38,7 +38,7 @@ public class User {
 	@Column(columnDefinition = "nvarchar(50)")
 	private String fullname;
 
-	@Column(columnDefinition = "varchar(50)")
+	@Column(unique = true, columnDefinition = "varchar(50)")
 	private String phone;
 
 	@Column
