@@ -2,6 +2,7 @@ package com.main.drawingcourse.repository;
 
 import java.util.List;
 
+import com.main.drawingcourse.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -50,4 +51,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	@Query(value = "select * from COURSES c  where c.level_id = :levelid and c.draw_category_id = :cateid  and c.status = 1", nativeQuery = true)
 	List<Course> findbycateidandlevelid(@Param("cateid") int cateid, @Param("levelid") int levelid);
 
+	@Query(value = "SELECT * FROM COURSES c WHERE c.draw_category_id = :id", nativeQuery = true)
+	List<Course> findAllPostByPostCategoryID(@Param("id") int id);
 }
