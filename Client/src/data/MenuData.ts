@@ -6,7 +6,7 @@ const MenuData = [
     },
     {
         label:"Các khóa học cho bé",
-        link:"/"
+        link:"/CourseCategories"
     },
     {
         label:"Blog",
@@ -16,10 +16,6 @@ const MenuData = [
         label:"Khóa học thử 3 ngày",
         link:"/"
     },
-    {
-        label:"Khóa học đã đăng ký",
-        link:"/"
-    }
 ]
 
 export default MenuData

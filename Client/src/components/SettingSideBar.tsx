@@ -5,11 +5,11 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import LockIcon from "@mui/icons-material/Lock";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
-import EditProfile from "../page/EditProfile";
+import EditProfile from "../page/EditProfile/EditProfile";
 import ChangePassword from "../page/ChangePassword";
 import SideBar from "./SideBar";
 import ReportPage from "../page/ReportPage";
-import OrderHistory from "../page/OrderHistory";
+import OrderHistory from "../page/OrderHistory/OrderHistory";
 
 const options = [
   {

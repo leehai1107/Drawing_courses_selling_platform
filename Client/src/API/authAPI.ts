@@ -38,7 +38,6 @@ const logoutApi = async (token:string) => {
       .catch((err) => {
         console.log(err.message);
         toast("unauthenticated", {type: toast.TYPE.ERROR})
-        setTimeout(() => window.location.href = "http://localhost:5173", 3000)
       });
     console.log(res);
 }
