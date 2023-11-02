@@ -41,15 +41,21 @@ export function formatDateToYYYYMMDD(date:Date) {
 export function generateShortUUID(characters: string) {
   let shortUUID = '';
 
-  while(shortUUID.length<10){
+  for (let i = 0; i < 8; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
-    const randomChar = characters.charAt(randomIndex);
-    if (randomChar !== '-') {
-      shortUUID += randomChar;
-    }
+    shortUUID += characters.charAt(randomIndex);
   }
 
   return shortUUID;
+}
+
+export function isPhoneNumberValid(phoneNumber:string) {
+  // Define a regular expression pattern for a typical phone number.
+  // This pattern assumes a North American phone number format.
+  const phonePattern = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+
+  // Test the input phoneNumber against the pattern.
+  return phonePattern.test(phoneNumber);
 }
 
 export {numberToVietnameseDong}
