@@ -1,6 +1,38 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
+import { accountState } from "../atom/atom";
+import { API } from "../API/API";
 
 const ChangePassword = () => {
+  const account:any = useRecoilValue(accountState)
+
+  const navigate = useNavigate()
+
+  const submitChange = async(event:any) => {
+      event.preventDefault(); 
+      const formData = new FormData(event.target)
+      const passwordEntered = formData.get('passwordEntered')
+      const newPassword = formData.get('newPassword')
+      const confPassword = formData.get('confPassword')
+      if(newPassword!==confPassword) {
+        toast("new password and confirm password are different", {type: toast.TYPE.WARNING})
+      }else{
+        const result = await API.changePassword({
+          userid: account.userid,
+          passwordEntered,
+          newPassword
+        })
+
+        if(result==="Change password fail!"||result==="Password has enter does not match with old password!"){
+          toast(result, {type: toast.TYPE.ERROR})
+        }
+        else{
+          sessionStorage.clear()
+          navigate("/SignIn")
+        }
+      }
+  }
   return (
     <div className="pt-32 pl-20">
       <div className="flex justify-between items-center w-full font-bold text-3xl">
@@ -10,18 +42,18 @@ const ChangePassword = () => {
           src="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg"
         />
       </div>
-      <Form method="post" className="mt-10 mb-36 font-bold">
+      <Form onSubmit={submitChange} method="post" className="mt-10 mb-36 font-bold">
         <div className="mb-3">
           <label>Old password</label>
-          <input type="password" className="block p-2 w-full border" />
+          <input required name="passwordEntered" type="password" className="block p-2 w-full border" />
         </div>
         <div className="mb-3">
           <label>New Password</label>
-          <input type="password" className="block p-2 w-full border" />
+          <input required name="newPassword" type="password" className="block p-2 w-full border" />
         </div>
         <div className="mb-3">
           <label>Confirm Password</label>
-          <input type="password" className="block p-2 w-full border" />
+          <input required name="confPassword" type="password" className="block p-2 w-full border" />
         </div>
 
         <div className="flex justify-center px-20 mt-10">

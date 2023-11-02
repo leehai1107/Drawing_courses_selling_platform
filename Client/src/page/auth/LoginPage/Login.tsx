@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRecoilState } from 'recoil'
 import { accountState } from '../../../atom/atom'
+import { setTitem } from "../../../util/sessionExtension";
 
 const Login = () => {
   const [account, setAccount] = useRecoilState(accountState)
@@ -17,6 +18,7 @@ const Login = () => {
     }
     else if(result){
       setAccount(result)
+      setTitem("account", result)
       navigate("/")
     }
 

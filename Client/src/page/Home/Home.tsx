@@ -27,11 +27,11 @@ const Home = () => {
           }}
           className="border-b-4 border-black"
         >
-          <img className="w-4/5 m-auto mt-5 mb-10" src={course.courseImg} />
+          <img className="w-4/5 m-auto mt-5 mb-10" src={course.courseImage} />
           <div className="flex justify-end">
             <div className="text-center text-xs bg-yellow-500 w-1/4">
-              {course?.levelinfo !== undefined
-                ? course?.levelinfo?.levelName
+              {course?.levelModel !== undefined
+                ? course?.levelModel?.levelName
                 : "CHƯA LỰA CHỌN CẤP ĐỘ"}
             </div>
           </div>

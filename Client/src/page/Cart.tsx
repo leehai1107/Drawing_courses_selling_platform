@@ -16,11 +16,12 @@ const Cart = () => {
   const [cart, setCart]: any = useRecoilState(cartState);
   const removeFromCart = (course: Course) => {
     const removeCourse = cart.filter(
-      (c: CartElement) => c?.Course.courseid !== course.courseid
+      (c: CartElement) => c?.Course.courseId !== course.courseId
     );
 
     setCart(removeCourse);
   };
+  console.log("cart",cart);
   return (
     <>
       <div className="bg-lime-300 pt-40 font-medium">
@@ -51,11 +52,11 @@ const Cart = () => {
                         {data.Course.title}
                       </TableCell>
                       <TableCell align="right">
-                        {data?.Course?.levelinfo === undefined
+                        {data?.Course?.levelModel === undefined
                           ? "CHƯA LỰA CHỌN CẤP ĐỘ"
-                          : data.Course.levelinfo?.levelName}
+                          : data.Course.levelModel?.levelName}
                       </TableCell>
-                      <TableCell align="right">{data.Teacher}</TableCell>
+                      <TableCell align="right">{data.Course?.userModelRespone?.fullname}</TableCell>
                       <TableCell align="right">
                         {data.EnrollDate.toDateString()}
                       </TableCell>
