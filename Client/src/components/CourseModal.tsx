@@ -1,24 +1,26 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { CartElement, Course } from "../Type/Type";
 import { accountState, cartState } from "../atom/atom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export const CourseModal = ({ course }: { course: Course | any }) => {
   const account: any = useRecoilValue(accountState);
   const [cart, setCart]: any = useRecoilState(cartState);
+  const navigate = useNavigate()
 
   const addToCart = () => {
     var cartCourse = cart.find(
-      (c: CartElement) => c?.Course.courseid === course.courseid
+      (c: CartElement) => c?.Course.courseId === course.courseId
     );
     if (cartCourse) {
       toast("Course already added", { type: toast.TYPE.WARNING });
     } else {
       setCart([
         ...cart,
-        { Course: course, EnrollDate: new Date(), Teacher: "cô A" },
+        { Course: course, EnrollDate: new Date() },
       ]);
+      navigate("/Cart")
     }
   };
   return (
@@ -28,12 +30,12 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
           {course?.title}
         </div>
         <div className="flex">
-          <img className="w-1/2" src={course?.courseImg} />
+          <img className="w-1/2" src={course?.courseImage} />
           <div className="w-1/2 px-5 flex flex-col">
             <div className="flex-1">{course?.description}</div>
             <div className="mt-10">
               <span className="p-3 bg-orange-500 text-white font-medium">
-                {course?.levelinfo?.levelName}
+                {course?.levelModel?.levelName}
               </span>
             </div>
           </div>
