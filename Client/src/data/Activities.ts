@@ -1,6 +1,0 @@
-const Activities = [
-    {
-        image:'',
-        title:''
-    }
-]
