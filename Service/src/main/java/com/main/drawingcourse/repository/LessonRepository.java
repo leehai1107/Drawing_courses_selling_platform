@@ -16,4 +16,6 @@ public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 	@Query(value = "SELECT  COUNT(l.lesson_id) AS lesson_count FROM courses c LEFT JOIN lessons l ON c.course_id = l.course_id", nativeQuery = true)
 	int countLession();
 
+	@Query(value = "DELETE FROM Lessons WHERE course_id = :id", nativeQuery = true)
+	void deleteByCourseId(@Param("id") int id);
 }

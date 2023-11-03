@@ -140,5 +140,10 @@ public class CourseController {
 		return CourseService.findCourseByCategoryid(id);
 
 	}
+	@GetMapping("/getcourse/{courseid}")
+	public ResponseCourse getCourse(@PathVariable int courseid) {
+		ResponseCourse result = courseConverter.toResponse(CourseService.getReferenceById(courseid));
+		return result;
+	}
 
 }

@@ -1,9 +1,11 @@
+
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import SearchIcon from "@mui/icons-material/Search";
 import { BlackSwitch } from "./Switch";
 import adminJpg from "../assets/admin.jpg";
 
 const Navbar = () => {
+  
 
   return (
     <>
@@ -15,7 +17,10 @@ const Navbar = () => {
           </div>
           <div className="w-11/12 mx-24 flex items-center">
             <SearchIcon className="text-blue-600 absolute left-56" />
-            <input className="rounded-3xl p-2 px-12 mr-2 w-full" placeholder="Quick Search" />
+            <input
+              className="rounded-3xl p-2 px-12 mr-2 w-full"
+              placeholder="Quick Search"
+            />
           </div>
         </div>
         <div className="flex items-center w-2/12 justify-end">

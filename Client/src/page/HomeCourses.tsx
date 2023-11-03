@@ -1,15 +1,14 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { Slide } from "react-slideshow-image";
 import { Course } from "../Type/Type";
 import { useLoaderData } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { modalCOurseStyle } from '../css/modalStyle';
+import { modalCOurseStyle } from "../css/modalStyle";
 import { CourseModal } from "../components/CourseModal";
 
-export const Courses = () => {
-
-    const [open, setOpen] = useState(false);
+export const HomeCourses = () => {
+  const [open, setOpen] = useState(false);
   const [modalCourse, setModalCourse]: any = useState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -26,11 +25,11 @@ export const Courses = () => {
           }}
           className="border-b-4 border-black"
         >
-          <img className="w-4/5 m-auto mt-5 mb-10" src={course.courseImg} />
+          <img className="w-4/5 m-auto mt-5 mb-10" src={course.courseImage} />
           <div className="flex justify-end">
             <div className="text-center text-xs bg-yellow-500 w-1/4">
-              {course?.levelinfo !== undefined
-                ? course?.levelinfo?.levelName
+              {course?.levelModal !== undefined
+                ? course?.levelModal?.levelName
                 : "CHƯA LỰA CHỌN CẤP ĐỘ"}
             </div>
           </div>
@@ -57,32 +56,33 @@ export const Courses = () => {
     return slides;
   };
 
-    return <>
-    <div className="bg-lime-400">
-    <div className="text-7xl font-medium text-center py-10">
-        KHÓA HỌC CHO BÉ
+  return (
+    <>
+      <div className="bg-lime-400 pt-20">
+        <div className="text-7xl font-medium text-center py-10">
+          KHÓA HỌC CHO BÉ
+        </div>
+        <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
+          BÁN CHẠY NHẤT
+        </div>
+        <div className="slide-container">
+          <Slide>{SlideShow(courses.slice(3))}</Slide>
+        </div>
+        <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
+          CHO BÉ BẮT ĐẦU
+        </div>
+        <div className="slide-container">
+          <Slide>{SlideShow(courses.slice(3))}</Slide>
+        </div>
+        <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
+          Mới Cập Nhập
+        </div>
+        <div className="slide-container">
+          <Slide>{SlideShow(courses)}</Slide>
+        </div>
       </div>
-      <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
-        BÁN CHẠY NHẤT
-      </div>
-      <div className="slide-container">
-        <Slide>{SlideShow(courses.slice(3))}</Slide>
-      </div>
-      <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
-        CHO BÉ BẮT ĐẦU
-      </div>
-      <div className="slide-container">
-        <Slide>{SlideShow(courses.slice(3))}</Slide>
-      </div>
-      <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
-        Mới Cập Nhập
-      </div>
-      <div className="slide-container">
-        <Slide>{SlideShow(courses)}</Slide>
-      </div>
-    </div>
 
-    <div>
+      <div>
         <Modal
           open={open}
           onClose={handleClose}
@@ -95,4 +95,5 @@ export const Courses = () => {
         </Modal>
       </div>
     </>
-}
+  );
+};
