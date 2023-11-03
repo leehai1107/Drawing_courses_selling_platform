@@ -18,6 +18,7 @@ import com.main.drawingcourse.entity.DrawingCategory;
 import com.main.drawingcourse.entity.User;
 import com.main.drawingcourse.repository.CourseRepository;
 import com.main.drawingcourse.repository.DrawingCategoryRepository;
+import com.main.drawingcourse.repository.LessonRepository;
 import com.main.drawingcourse.repository.LevelRepository;
 import com.main.drawingcourse.repository.UserRepository;
 import com.main.drawingcourse.service.ICourseService;
@@ -42,6 +43,9 @@ public class CourseImpl implements ICourseService {
 
 	@Autowired
 	DrawingCategoryRepository drawingCategoryRepository;
+	
+	@Autowired
+	LessonRepository lessonRepository;
 
 	@Override
 	public Course getReferenceById(Integer id) {
@@ -114,11 +118,8 @@ public class CourseImpl implements ICourseService {
 	@Override
 
 	public void DeleteCoursebyid(int id) {
-		var course = courseRepository.findById(id).orElse(null);
-		if (course != null) {
-			var courseDTO = courseConverter.toDTO(course);
-			courseRepository.delete(course);
-		}
+		lessonRepository.deleteLessonsByCourseId(id);
+		courseRepository.deleteById(id);
 	}
 
 	@Override
