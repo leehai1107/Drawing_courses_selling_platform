@@ -10,4 +10,6 @@ public interface ILessonService {
 	LessonModel AddLesson(LessonModel lessonModel);
 
 	List<ResponseLessonByCourseId> findLessonsByCourseID(int courseid);
+
+	void editLesson(List<LessonModel> list);
 }
