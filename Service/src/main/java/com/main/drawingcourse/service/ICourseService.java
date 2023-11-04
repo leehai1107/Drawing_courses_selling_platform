@@ -6,6 +6,7 @@ import com.main.drawingcourse.dto.CourseModel;
 import com.main.drawingcourse.dto.PostModel;
 import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.entity.Course;
+import org.springframework.data.repository.query.Param;
 
 public interface ICourseService {
 	CourseModel AddCourse(CourseModel courseModel);
@@ -47,5 +48,11 @@ public interface ICourseService {
 	boolean containsResponseCourse(List<ResponseCourse> responseCourseList, ResponseCourse desiredResponseCourse);
 
 	List<CourseModel> findCourseByCategoryid(int id);
+
+	List<ResponseCourse> coursehasstatus1bycateid(int cateid);
+
+	List<ResponseCourse> coursehasstatustruebylevelid(int levelid);
+
+	List<ResponseCourse> coursehasstatustruebylevelidandcateid(int cateid, int levelid);
 
 }

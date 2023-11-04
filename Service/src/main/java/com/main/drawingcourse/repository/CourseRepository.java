@@ -53,4 +53,13 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 	@Query(value = "SELECT * FROM COURSES c WHERE c.draw_category_id = :id", nativeQuery = true)
 	List<Course> findAllPostByPostCategoryID(@Param("id") int id);
+
+	@Query(value = "SELECT * FROM COURSES c WHERE c.status = 1 AND c.draw_category_id = :cateid", nativeQuery = true)
+	List<Course> coursehasstatus1bycateid(@Param("cateid") int cateid);
+
+	@Query(value = "SELECT * FROM COURSES c WHERE c.status = 1 AND c.level_id = :levelid", nativeQuery = true)
+	List<Course> coursehasstatustruebylevelid(@Param("levelid") int levelid);
+
+	@Query(value = "SELECT * FROM COURSES c WHERE c.status = 1 AND c.level_id = :levelid AND c.draw_category_id = :cateid", nativeQuery = true)
+	List<Course> coursehasstatustruebylevelidandcateid(@Param("cateid") int cateid, @Param("levelid") int levelid);
 }

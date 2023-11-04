@@ -2,7 +2,9 @@ package com.main.drawingcourse.controller;
 
 import java.util.List;
 
+import ch.qos.logback.classic.spi.EventArgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -149,6 +151,21 @@ public class CourseController {
 	public ResponseCourse getCourse(@PathVariable int courseid) {
 		ResponseCourse result = courseConverter.toResponse(CourseService.getReferenceById(courseid));
 		return result;
+	}
+
+	@GetMapping(value = "/course-status-1/by-cateid/{id}")
+	public List<ResponseCourse> findcoursestatus1bycateid(@PathVariable int id) {
+		return CourseService.coursehasstatus1bycateid(id);
+	}
+
+	@GetMapping(value = "/course-status-1/by-levelid/{id}")
+	public  List<ResponseCourse> findcoursestatus1bylevelid(@PathVariable int id) {
+		return CourseService.coursehasstatustruebylevelid(id);
+	}
+
+	@GetMapping(value = "/course-status-1/{cateid}/{levelid}")
+	public  List<ResponseCourse> viewcoursestatus1bylevelidandcateid(@PathVariable int cateid, @PathVariable int levelid) {
+		return CourseService.coursehasstatustruebylevelidandcateid(cateid,levelid);
 	}
 
 }

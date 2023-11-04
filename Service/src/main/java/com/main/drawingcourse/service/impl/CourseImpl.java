@@ -268,6 +268,29 @@ public class CourseImpl implements ICourseService {
 	}
 
 	@Override
+	public List<ResponseCourse> coursehasstatus1bycateid(int cateid) {
+		List<Course> courseEntity = courseRepository.coursehasstatus1bycateid(cateid);
+		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse).collect(Collectors.toList());
+
+		return courseModels;
+	}
+
+	@Override
+	public List<ResponseCourse> coursehasstatustruebylevelid(int levelid) {
+		List<Course> courseEntity = courseRepository.coursehasstatustruebylevelid(levelid);
+		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse).collect(Collectors.toList());
+
+		return courseModels;
+	}
+
+	@Override
+	public List<ResponseCourse> coursehasstatustruebylevelidandcateid(int cateid, int levelid) {
+		List<Course> courseEntity = courseRepository.coursehasstatustruebylevelidandcateid(cateid,levelid);
+		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse).collect(Collectors.toList());
+
+		return courseModels;	}
+
+	@Override
 	public List<ResponseCourse> findAllCourseHasOrderTrueByUserId(int id) {
 		List<Course> courseEntity = courseRepository.findAllCourseHasOrderTrueByUserId(id);
 		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse)
