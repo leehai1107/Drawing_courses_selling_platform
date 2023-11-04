@@ -2,8 +2,8 @@ package com.main.drawingcourse.controller;
 
 import java.util.List;
 
-import com.main.drawingcourse.dto.PostModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,11 +46,16 @@ public class CourseController {
 		return CourseService.findAll();
 	}
 
-	@DeleteMapping("/delete/{id}")
-	public void deleteCourseById(@PathVariable int id) {
 
-		CourseService.DeleteCoursebyid(id);
-	}
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCourseById(@PathVariable int id) {
+        try {
+            CourseService.DeleteCoursebyid(id);
+            return new ResponseEntity<>("Course deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to delete course: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 	@PutMapping("/edit/{id}")
 	public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
