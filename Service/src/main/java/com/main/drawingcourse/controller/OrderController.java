@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.main.drawingcourse.dto.OrderModel;
 import com.main.drawingcourse.entity.Order;
+import com.main.drawingcourse.repository.Course_OrderRepository;
 import com.main.drawingcourse.repository.OrderRepository;
 import com.main.drawingcourse.service.IOrderService;
 import com.main.drawingcourse.vnpay.PaymentResponse;
@@ -31,6 +32,8 @@ public class OrderController {
 	OrderRepository orderRepository;
 	@Autowired
 	private VNPayService vnPayService;
+	@Autowired
+	Course_OrderRepository course_OrderRepository;
 
 	@GetMapping("/view")
 	public void view() {
@@ -71,6 +74,8 @@ public class OrderController {
 			} else {
 				// Giao dịch thất bại
 				// Thực hiện các xử lý cần thiết, ví dụ: không cập nhật CSDL\
+				Order order = orderRepository.findByOrderCode(orderCode);
+				course_OrderRepository.deleteByOrderId(order.getOrderId());
 				response.sendRedirect("http://localhost:5173/payment-failed");// to fail page
 
 			}
