@@ -39,7 +39,7 @@ public interface ICourseService {
 
 	String UpdateStatusOfCourse(int id);
 
-	List<ResponseCourse> viewcoursehasstatustrue(boolean status);
+	List<ResponseCourse> viewcoursehasstatustrue();
 
 	Course getReferenceById(Integer id);
 
@@ -54,5 +54,7 @@ public interface ICourseService {
 	List<ResponseCourse> coursehasstatustruebylevelid(int levelid);
 
 	List<ResponseCourse> coursehasstatustruebylevelidandcateid(int cateid, int levelid);
+
+	List<ResponseCourse> findAllCourseNotVerify();
 
 }

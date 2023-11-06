@@ -237,8 +237,8 @@ public class CourseImpl implements ICourseService {
 	}
 
 	@Override
-	public List<ResponseCourse> viewcoursehasstatustrue(boolean status) {
-		List<ResponseCourse> courseModels = courseRepository.viewcoursewithstatustrue(status).stream()
+	public List<ResponseCourse> viewcoursehasstatustrue() {
+		List<ResponseCourse> courseModels = courseRepository.viewcoursewithstatustrue().stream()
 				.map(courseConverter::toResponse).collect(Collectors.toList());
 		return courseModels;
 	}
@@ -299,4 +299,11 @@ public class CourseImpl implements ICourseService {
 		return courseModels;
 	}
 
+	@Override
+	public List<ResponseCourse> findAllCourseNotVerify(){
+		List<Course> courseEntity = courseRepository.viewcoursewithstatusFalse();
+		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse)
+				.collect(Collectors.toList());
+		return courseModels;
+	}
 }

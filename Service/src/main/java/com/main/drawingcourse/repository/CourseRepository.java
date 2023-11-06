@@ -43,7 +43,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	List<Course> findTop4BestSellerCourse();
 
 	@Query(value = "SELECT * FROM COURSES c WHERE c.status = 1", nativeQuery = true)
-	List<Course> viewcoursewithstatustrue(@Param("status") boolean status);
+	List<Course> viewcoursewithstatustrue();
 
 	@Query(value = "UPDATE Courses SET status = 'true' WHERE course_id = :id AND status = 'false' ", nativeQuery = true)
 	Course UpdateStatusOfCourse(@Param("id") int id);
@@ -62,4 +62,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 	@Query(value = "SELECT * FROM COURSES c WHERE c.status = 1 AND c.level_id = :levelid AND c.draw_category_id = :cateid", nativeQuery = true)
 	List<Course> coursehasstatustruebylevelidandcateid(@Param("cateid") int cateid, @Param("levelid") int levelid);
+	
+	@Query(value = "SELECT * FROM COURSES c WHERE c.status = 0", nativeQuery = true)
+	List<Course> viewcoursewithstatusFalse();
 }
