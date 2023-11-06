@@ -108,9 +108,9 @@ public class CourseController {
 
 	@GetMapping("/coursestatustrue")
 
-	public List<ResponseCourse> viewcoursehasstatustrue(boolean status) {
+	public List<ResponseCourse> viewcoursehasstatustrue() {
 
-		return CourseService.viewcoursehasstatustrue(status);
+		return CourseService.viewcoursehasstatustrue();
 	}
 
 	@GetMapping("/get")
@@ -166,6 +166,11 @@ public class CourseController {
 	@GetMapping(value = "/course-status-1/{cateid}/{levelid}")
 	public  List<ResponseCourse> viewcoursestatus1bylevelidandcateid(@PathVariable int cateid, @PathVariable int levelid) {
 		return CourseService.coursehasstatustruebylevelidandcateid(cateid,levelid);
+	}
+	
+	@GetMapping(value = "/coursenotverify")
+	public List<ResponseCourse> viewCourseNotVerify(){
+		return CourseService.findAllCourseNotVerify();
 	}
 
 }
