@@ -29,4 +29,6 @@ public interface IUserService {
 
 	User getReferenceById(Integer id);
 
+	void updateUserStatus(int userId);
+
 }
