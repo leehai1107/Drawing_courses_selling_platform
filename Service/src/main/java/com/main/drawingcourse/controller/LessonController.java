@@ -3,9 +3,11 @@ package com.main.drawingcourse.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,12 @@ public class LessonController {
 	public List<ResponseLessonByCourseId> findLessonsByCourseID(@PathVariable int id) {
 		return lessonService.findLessonsByCourseID(id);
 
+	}
+	
+	@PutMapping(value = "/edit")
+	public ResponseEntity<?> editLesson(@RequestBody List<LessonModel> list){
+		lessonService.editLesson(list);
+		return ResponseEntity.ok("Edit success");
 	}
 
 }

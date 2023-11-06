@@ -39,4 +39,13 @@ public class LessonImpl implements ILessonService {
 		return lessonModels;
 
 	}
+	
+	@Override
+	public void editLesson(List<LessonModel> list) {
+		int courseid = list.get(0).getCourseId();
+		lessonRepository.deleteLessonsByCourseId(courseid);
+		for(LessonModel i: list) {
+			AddLesson(i);
+		}
+	}
 }

@@ -2,8 +2,10 @@ package com.main.drawingcourse.controller;
 
 import java.util.List;
 
-import com.main.drawingcourse.dto.PostModel;
+import ch.qos.logback.classic.spi.EventArgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,11 +48,16 @@ public class CourseController {
 		return CourseService.findAll();
 	}
 
-	@DeleteMapping("/delete/{id}")
-	public void deleteCourseById(@PathVariable int id) {
 
-		CourseService.DeleteCoursebyid(id);
-	}
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCourseById(@PathVariable int id) {
+        try {
+            CourseService.DeleteCoursebyid(id);
+            return new ResponseEntity<>("Course deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to delete course: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 	@PutMapping("/edit/{id}")
 	public void updateCourse(@PathVariable int id, @RequestBody CourseModel courseModel) {
@@ -139,6 +146,26 @@ public class CourseController {
 	public List<CourseModel> findCourseBycategoryID(@PathVariable int id) {
 		return CourseService.findCourseByCategoryid(id);
 
+	}
+	@GetMapping("/getcourse/{courseid}")
+	public ResponseCourse getCourse(@PathVariable int courseid) {
+		ResponseCourse result = courseConverter.toResponse(CourseService.getReferenceById(courseid));
+		return result;
+	}
+
+	@GetMapping(value = "/course-status-1/by-cateid/{id}")
+	public List<ResponseCourse> findcoursestatus1bycateid(@PathVariable int id) {
+		return CourseService.coursehasstatus1bycateid(id);
+	}
+
+	@GetMapping(value = "/course-status-1/by-levelid/{id}")
+	public  List<ResponseCourse> findcoursestatus1bylevelid(@PathVariable int id) {
+		return CourseService.coursehasstatustruebylevelid(id);
+	}
+
+	@GetMapping(value = "/course-status-1/{cateid}/{levelid}")
+	public  List<ResponseCourse> viewcoursestatus1bylevelidandcateid(@PathVariable int cateid, @PathVariable int levelid) {
+		return CourseService.coursehasstatustruebylevelidandcateid(cateid,levelid);
 	}
 
 }

@@ -18,6 +18,7 @@ import com.main.drawingcourse.entity.DrawingCategory;
 import com.main.drawingcourse.entity.User;
 import com.main.drawingcourse.repository.CourseRepository;
 import com.main.drawingcourse.repository.DrawingCategoryRepository;
+import com.main.drawingcourse.repository.LessonRepository;
 import com.main.drawingcourse.repository.LevelRepository;
 import com.main.drawingcourse.repository.UserRepository;
 import com.main.drawingcourse.service.ICourseService;
@@ -42,6 +43,9 @@ public class CourseImpl implements ICourseService {
 
 	@Autowired
 	DrawingCategoryRepository drawingCategoryRepository;
+	
+	@Autowired
+	LessonRepository lessonRepository;
 
 	@Override
 	public Course getReferenceById(Integer id) {
@@ -114,11 +118,8 @@ public class CourseImpl implements ICourseService {
 	@Override
 
 	public void DeleteCoursebyid(int id) {
-		var course = courseRepository.findById(id).orElse(null);
-		if (course != null) {
-			var courseDTO = courseConverter.toDTO(course);
-			courseRepository.delete(course);
-		}
+		lessonRepository.deleteLessonsByCourseId(id);
+		courseRepository.deleteById(id);
 	}
 
 	@Override
@@ -265,6 +266,29 @@ public class CourseImpl implements ICourseService {
 
 		return courseModels;
 	}
+
+	@Override
+	public List<ResponseCourse> coursehasstatus1bycateid(int cateid) {
+		List<Course> courseEntity = courseRepository.coursehasstatus1bycateid(cateid);
+		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse).collect(Collectors.toList());
+
+		return courseModels;
+	}
+
+	@Override
+	public List<ResponseCourse> coursehasstatustruebylevelid(int levelid) {
+		List<Course> courseEntity = courseRepository.coursehasstatustruebylevelid(levelid);
+		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse).collect(Collectors.toList());
+
+		return courseModels;
+	}
+
+	@Override
+	public List<ResponseCourse> coursehasstatustruebylevelidandcateid(int cateid, int levelid) {
+		List<Course> courseEntity = courseRepository.coursehasstatustruebylevelidandcateid(cateid,levelid);
+		List<ResponseCourse> courseModels = courseEntity.stream().map(courseConverter::toResponse).collect(Collectors.toList());
+
+		return courseModels;	}
 
 	@Override
 	public List<ResponseCourse> findAllCourseHasOrderTrueByUserId(int id) {
