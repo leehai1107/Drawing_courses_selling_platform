@@ -3,6 +3,7 @@ package com.main.drawingcourse.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,4 +80,16 @@ public class UserController {
 		}
 		return userModel;
 	}
+	
+	 @PutMapping("/toggle-status/{userId}")
+	    public ResponseEntity<String> toggleUserStatus(@PathVariable int userId) {
+	        try {
+	            userService.updateUserStatus(userId);
+	            return ResponseEntity.ok("User status updated successfully.");
+	        } catch (Exception e) {
+	            // Handle exceptions and return appropriate error response
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                                 .body("Failed to update user status: " + e.getMessage());
+	        }
+	    }
 }
