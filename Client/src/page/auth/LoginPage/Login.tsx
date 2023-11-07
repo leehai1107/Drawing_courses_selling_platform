@@ -2,27 +2,29 @@ import { Form, Link, useActionData, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useRecoilState } from 'recoil'
-import { accountState } from '../../../atom/atom'
+import { useRecoilState } from "recoil";
+import { accountState } from "../../../atom/atom";
 import { setTitem } from "../../../util/sessionExtension";
 
 const Login = () => {
-  const [account, setAccount] = useRecoilState(accountState)
+  const [account, setAccount] = useRecoilState(accountState);
   const [mount, setMount] = useState(true);
-  const result : any = useActionData();
-  const navigate = useNavigate()
+  const result: any = useActionData();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    setAccount(undefined);
     if (!result && !mount) {
-      toast("Unthentication", {type: toast.TYPE.ERROR})
-    }
-    else if(result){
-      setAccount(result)
-      setTitem("account", result)
-      navigate("/")
+      toast("Unthentication", { type: toast.TYPE.ERROR });
+    } else if (result) {
+      setAccount(result);
+      setTitem("account", result);
+      if (result?.rolename == "ADMIN") {
+        navigate("/admin");
+      } else navigate("/");
     }
 
-    setMount(false)
+    setMount(false);
   }, [result]);
   return (
     <>

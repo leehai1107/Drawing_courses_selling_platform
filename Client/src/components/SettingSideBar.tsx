@@ -1,13 +1,9 @@
 import { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import LockIcon from "@mui/icons-material/Lock";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import EditProfile from "../page/EditProfile/EditProfile";
 import ChangePassword from "../page/ChangePassword";
-import SideBar from "./SideBar";
 import ReportPage from "../page/ReportPage";
 import OrderHistory from "../page/OrderHistory/OrderHistory";
 
@@ -23,24 +19,9 @@ const options = [
     Link: "/Profile",
   },
   {
-    label: "View Profile",
-    Icon: RemoveRedEyeIcon,
-    Link: "/Profile",
-  },
-  {
     label: "Change Password",
     Icon: LockIcon,
     Link: "/Profile/ChangePassword",
-  },
-  {
-    label: "Help",
-    Icon: HelpOutlineIcon,
-    Link: "/Profile",
-  },
-  {
-    label: "Report",
-    Icon: ReportGmailerrorredIcon,
-    Link: "/Profile/Report",
   },
 ];
 
@@ -64,9 +45,8 @@ const SettingSideBar = () => {
 
   return (
     <>
-      <SideBar>
         <div className="flex h-full">
-          <div className="w-3/12 pt-36 px-5 flex flex-col items-center h-full border-r">
+          <div className="w-3/12 pt-36 px-5 flex flex-col items-center h-full">
             <div className="text-2xl font-bold mb-10"> Settings</div>
             <div className="flex flex-col justify-between font-medium text-neutral-600">
               {options.map((option) => (
@@ -92,7 +72,6 @@ const SettingSideBar = () => {
           </div>
           <div className="w-9/12">{prop()}</div>
         </div>
-      </SideBar>
     </>
   );
 };

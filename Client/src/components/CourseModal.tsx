@@ -3,11 +3,12 @@ import { CartElement, Course } from "../Type/Type";
 import { accountState, cartState } from "../atom/atom";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { numberToVietnameseDong } from "../util/util";
 
 export const CourseModal = ({ course }: { course: Course | any }) => {
   const account: any = useRecoilValue(accountState);
   const [cart, setCart]: any = useRecoilState(cartState);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const addToCart = () => {
     var cartCourse = cart.find(
@@ -16,15 +17,13 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
     if (cartCourse) {
       toast("Course already added", { type: toast.TYPE.WARNING });
     } else {
-      setCart([
-        ...cart,
-        { Course: course, EnrollDate: new Date() },
-      ]);
-      navigate("/Cart")
+      setCart([...cart, { Course: course, EnrollDate: new Date() }]);
+      navigate("/Cart");
     }
   };
   return (
     <>
+      {console.log("modal course", course)}
       <div className="w-full">
         <div className="text-center text-2xl font-bold mb-10">
           {course?.title}
@@ -34,13 +33,21 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
           <div className="w-1/2 px-5 flex flex-col">
             <div className="flex-1">{course?.description}</div>
             <div className="mt-10">
+              <div className="flex mb-5 justify-between">
+                <div>Tổng bài học: {course?.lession_count} </div>
+                <div>Giá: {numberToVietnameseDong(course?.price)} </div>
+              </div>
+              <Link to={`/InstructorProfile/${course?.userModelRespone.id}`} className="block text-blue-500 mb-5">Giáo viên: {course?.userModelRespone.fullname} </Link>
+              <span className="p-3 bg-orange-500 text-white font-medium mr-5">
+                {course?.drawingCategoryModel?.drawCategoryName}
+              </span>
               <span className="p-3 bg-orange-500 text-white font-medium">
                 {course?.levelModel?.levelName}
               </span>
             </div>
           </div>
         </div>
-        <div className="text-center mt-5">
+        <div className="text-center mt-10">
           {account?.rolename === "CUSTOMER" ? (
             <button
               onClick={addToCart}

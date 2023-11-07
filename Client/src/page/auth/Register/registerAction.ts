@@ -17,8 +17,8 @@ export const registerAction = async ({request}:{request:Request}) => {
 
     console.log(submitdata);
 
-    const result = await authAPI.registerApi(data)
+    const result = await authAPI.registerApi(submitdata)
 
-    return result
+    return result??null
     
 }
