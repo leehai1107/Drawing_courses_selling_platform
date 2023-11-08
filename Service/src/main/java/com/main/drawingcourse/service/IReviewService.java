@@ -12,4 +12,6 @@ public interface IReviewService {
 
 	List<ReviewModel> findAllFeedBackByCourse(int id);
 
+	List<ReviewModel> findAllFeedBacks();
+	ReviewModel findFeedBackByFeedBackId(int id);
 }

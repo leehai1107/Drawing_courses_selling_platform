@@ -38,4 +38,16 @@ public class ReviewController {
 	public List<ReviewModel> findAllFeedBacksByCourse(@PathVariable int id) {
 		return iReviewService.findAllFeedBackByCourse(id);
 	}
+
+	@GetMapping(value = "/find-All-FeedBacks")
+	public List<ReviewModel> findAllFeedBacks() {
+		return iReviewService.findAllFeedBacks();
+	}
+
+
+	@GetMapping(value = "/find-FeedBack-By-FeedBackId/{id}")
+	public ReviewModel findAllFeedBacksByFeedBackId(@PathVariable int id) {
+		return iReviewService.findFeedBackByFeedBackId(id);
+	}
+
 }

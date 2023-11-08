@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.DrawingCategoryModel;
+import com.main.drawingcourse.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,8 @@ public class ReviewImpl implements IReviewService {
 	ReviewConverter reviewConverter;
 	@Autowired
 	Course_OrderRepository courseOrderRepository;
+
+
 
 	@Override
 	public ResponseReview addFeedBack(ReviewModel reviewModel) {
@@ -64,4 +69,26 @@ public class ReviewImpl implements IReviewService {
 
 		return reviewModels;
 	}
+
+	@Override
+	public List<ReviewModel> findAllFeedBacks() {
+			List<ReviewModel> reviewModels = reviewRepositoty.findAll().stream()
+					.map(reviewConverter::toDto).collect(Collectors.toList());
+
+			return reviewModels;
+	}
+
+	@Override
+	public ReviewModel findFeedBackByFeedBackId(int id) {
+		Review review = reviewRepositoty.findFeedBackById(id);
+		ReviewModel reviewModel = null;
+
+		if (review != null) {
+			reviewModel = reviewConverter.toDto(review);
+		}
+
+		return reviewModel;
+	}
+
+
 }
