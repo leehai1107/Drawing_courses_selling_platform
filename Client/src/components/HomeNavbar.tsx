@@ -31,7 +31,7 @@ const HomeNavbar = () => {
 
   return (
     <>
-      <div className="flex items-center px-20 justify-between fixed bg-white bg-opacity-90">
+      <div className="flex items-center px-20 justify-between fixed z-10 bg-white bg-opacity-90">
         <div className="w-1/12">
           <Link to={"/"}>
             <img src={MenuLogo} alt="Logo" />
@@ -47,23 +47,46 @@ const HomeNavbar = () => {
             </Link>
           ))}
           {account?.rolename === "CUSTOMER" ? (
-            <Link
-              className="font-semibold mr-10 hover:text-yellow-500"
-              to={`/MyCourses/${account?.userid}`}
-            >
-              Khóa học của tôi
-            </Link>
-          ) : account?.rolename === "INSTRUCTOR" ?(
+            <>
+              <Link
+                className="font-semibold mr-10 hover:text-yellow-500"
+                to={`/MyCourses/${account?.userid}`}
+              >
+                Khóa học của tôi
+              </Link>
+              <Link to={"/Cart"}>
+                <ShoppingCartIcon
+                  sx={{ fontSize: "35px" }}
+                  className="hover:text-blue-500"
+                />
+              </Link>
+            </>
+          ) : account?.rolename === "INSTRUCTOR" ? (
             <Link
               className="font-semibold mr-10 hover:text-yellow-500"
               to={`/InstructorCourses/${account?.userid}`}
             >
               Khóa học đã tạo
             </Link>
-          ):""}
-        </div>
-        <div className="flex items-center">
-          {account? (
+          ) : account?.rolename === "STAFF" ? (
+            <>
+              <Link
+                className="font-semibold mr-10 hover:text-yellow-500"
+                to={"/FalseCourse"}
+              >
+                Duyệt khóa học
+              </Link>
+            </>
+          ) : account?.rolename === "ADMIN" ? (
+            <>
+              <Link
+                className="font-semibold mr-10 hover:text-yellow-500"
+                to={"/AccountManager"}
+              >
+                Quản lý tài khoản
+              </Link>
+            </>
+          ) : (
             <>
               <Link to={"/Cart"}>
                 <ShoppingCartIcon
@@ -71,22 +94,37 @@ const HomeNavbar = () => {
                   className="hover:text-blue-500"
                 />
               </Link>
+            </>
+          )}
+        </div>
+        <div className="flex items-center">
+          {account ? (
+            <>
               <div className="ml-5 hover:text-yellow-400 font-semibold py-2 px-5">
                 <Link to={"/Profile"}>{account?.username}</Link>
               </div>
-              <div className="mx-5 border-2 border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-white font-semibold rounded-full py-2 px-10">
-                <div onClick={logout}>Logout</div>
+              <div
+                onClick={logout}
+                className="mx-5 border-2 border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-white font-semibold rounded-full py-2 px-10"
+              >
+                <div>Logout</div>
               </div>
             </>
           ) : (
             <>
-              <div className="ml-5  hover:bg-black bg-white hover:text-white font-semibold rounded-full py-2 px-5">
-                <Link to={"/SignIn"}>Login</Link>
-              </div>
+              <Link
+                to={"/SignIn"}
+                className="ml-5 block hover:bg-black bg-white hover:text-white font-semibold rounded-full py-2 px-5"
+              >
+                Login
+              </Link>
 
-              <div className="mx-5 border-2 border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-white font-semibold rounded-full py-2 px-10">
-                <Link to={"/LandingPage"}>Đăng Ký Học</Link>
-              </div>
+              <Link
+                to={"/signUp"}
+                className="mx-5 block border-2 border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-white font-semibold rounded-full py-2 px-10"
+              >
+                Đăng Ký Học
+              </Link>
             </>
           )}
         </div>

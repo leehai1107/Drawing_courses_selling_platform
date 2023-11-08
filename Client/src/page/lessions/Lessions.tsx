@@ -1,8 +1,7 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Lession } from "../../Type/Type";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import YouTube from "react-youtube";
 import { API } from "../../API/API";
 
 export const Lessions = () => {
