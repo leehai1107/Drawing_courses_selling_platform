@@ -2,6 +2,7 @@ package com.main.drawingcourse.repository;
 
 import java.util.List;
 
+import com.main.drawingcourse.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +19,6 @@ public interface ReviewRepositoty extends JpaRepository<Review, Integer> {
 			+ "    co.course_id = :id", nativeQuery = true)
 	List<Review> findAllFeedBacksByCourse(@Param("id") int id);
 
+	@Query(value = "select * from Reviews where review_id = :id ;", nativeQuery = true)
+	Review findFeedBackById(@Param("id") int id);
 }
