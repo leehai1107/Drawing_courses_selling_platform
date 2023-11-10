@@ -2,6 +2,8 @@ package com.main.drawingcourse.dto;
 
 import java.time.LocalDate;
 
+import com.main.drawingcourse.dto.response.OrderResponse;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,6 @@ public class Course_OrderModel {
 	private float progress;
 	private int rating;
 	private LocalDate registered_at;
-	private int course_id;
-	private int order_id;
+	private CourseModel course;
+	private OrderResponse order;
 }

@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.main.drawingcourse.converter.CourseConverter;
 import com.main.drawingcourse.dto.CourseModel;
+import com.main.drawingcourse.dto.Course_OrderModel;
 import com.main.drawingcourse.dto.ResponseCourse;
 import com.main.drawingcourse.service.ICourseService;
+import com.main.drawingcourse.service.ICourse_OrderService;
 
 @RestController
 @RequestMapping("public/course")
@@ -30,6 +32,9 @@ public class CourseController {
 
 	@Autowired
 	CourseConverter courseConverter;
+	
+	@Autowired
+	ICourse_OrderService course_OrderService;
 
 	@PostMapping(value = "/addCourse")
 	public CourseModel AddCourse(@RequestBody CourseModel courseModel) {
@@ -87,8 +92,8 @@ public class CourseController {
 	}
 
 	@GetMapping(value = "/find-Course-Has-Order/{id}")
-	public List<ResponseCourse> findAllCourseHasOrderByUserId(@PathVariable int id) {
-		return CourseService.findAllCourseHasOrderByUserId(id);
+	public List<Course_OrderModel> findAllCourseHasOrderByUserId(@PathVariable int id) {
+		return course_OrderService.findCourseHasOrder(id);
 	}
 
 	@GetMapping("/find-by-InstructorId/{id}")

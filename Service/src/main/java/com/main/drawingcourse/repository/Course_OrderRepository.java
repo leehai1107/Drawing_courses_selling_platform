@@ -1,5 +1,7 @@
 package com.main.drawingcourse.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +23,9 @@ public interface Course_OrderRepository extends JpaRepository<Course_Order, Inte
 	  @Modifying
 	    @Query("DELETE FROM Course_Order co WHERE co.order.orderId = :orderId")
 	    void deleteByOrderId(int orderId);
+	  
+	  @Query(value = "SELECT co.* FROM course_order co INNER JOIN Courses c ON c.course_id = co.course_id INNER JOIN orders o ON co.order_id = o.order_id WHERE o.user_id = :id",
+			  nativeQuery = true)
+	  List<Course_Order> findCoursesWithOrdersForUser(@Param("id") int id);
 
 }
