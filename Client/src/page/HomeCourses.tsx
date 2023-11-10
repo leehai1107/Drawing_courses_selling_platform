@@ -28,8 +28,8 @@ export const HomeCourses = () => {
           <img className="w-4/5 m-auto mt-5 mb-10" src={course.courseImage} />
           <div className="flex justify-end">
             <div className="text-center text-xs bg-yellow-500 w-1/4">
-              {course?.levelModal !== undefined
-                ? course?.levelModal?.levelName
+              {course?.levelModel !== undefined
+                ? course?.levelModel?.levelName
                 : "CHƯA LỰA CHỌN CẤP ĐỘ"}
             </div>
           </div>

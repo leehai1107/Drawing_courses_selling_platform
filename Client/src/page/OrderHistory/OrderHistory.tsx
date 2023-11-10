@@ -15,7 +15,7 @@ const OrderHistory = () => {
   }, []);
   return (
     <>
-      <div className="pt-32 pl-20 ">
+      <div className="pt-32 pl-20 border-l h-screen">
         <div className=" w-full font-bold text-3xl">
           <div>Order History</div>
         </div>
@@ -29,7 +29,6 @@ const OrderHistory = () => {
                 <th className="px-4 py-2 text-neutral-600">Order Date</th>
                 <th className="px-4 py-2 text-neutral-600">Total</th>
                 <th className="px-4 py-2 text-neutral-600">Status</th>
-                <th className="px-4 py-2 text-neutral-600">User</th>
               </tr>
             </thead>
             <tbody>

@@ -7,6 +7,24 @@ const getAllCourse = async () => {
   return res?.data;
 };
 
+const getAllTrueCourse = async () => {
+  const res = await axios.get(`http://localhost:8088/public/course/coursestatustrue`);
+  console.log(res);
+  return res?.data;
+};
+
+const getAllFalseCourse = async () => {
+  const res = await axios.get(`http://localhost:8088/public/course/coursenotverify`);
+  console.log(res);
+  return res?.data;
+};
+
+const getCourseById = async (id:string) => {
+  const res = await axios.get(`http://localhost:8088/public/course/getcourse/${id}`);
+  console.log(res);
+  return res?.data;
+};
+
 const getAllPost = async () => {
   const res = await axios.get(`http://localhost:8088/public/post/viewallpost`);
   console.log(res);
@@ -77,6 +95,30 @@ const getUserInfo = async (userid: number) => {
   return res?.data;
 };
 
+const getAllCusInfo = async () => {
+  const res = await axios.get(
+    `http://localhost:8088/public/user/find-All-Customer`
+  );
+  console.log(res);
+  return res?.data;
+};
+
+const getAllStaffInfo = async () => {
+  const res = await axios.get(
+    `http://localhost:8088/public/user/find-All-Staff`
+  );
+  console.log(res);
+  return res?.data;
+};
+
+const getAllInsInfo = async () => {
+  const res = await axios.get(
+    `http://localhost:8088/public/user/find-All-Instructor`
+  );
+  console.log(res);
+  return res?.data;
+};
+
 const getOrderHistory = async (userid: string) => {
   const res = await axios.get(
     `http://localhost:8088/public/user/orders/${userid}`
@@ -101,9 +143,18 @@ const getCourseLevel = async () => {
   return res?.data;
 };
 
+
 const getCourseByCategory = async (categoryId: number) => {
   const res = await axios.get(
     `http://localhost:8088/public/course/find?category=${categoryId}`
+  );
+  console.log(res);
+  return res?.data;
+};
+
+const getTrueCourseByCategory = async (categoryId: number) => {
+  const res = await axios.get(
+    `http://localhost:8088/public/course/course-status-1/by-cateid/${categoryId}`
   );
   console.log(res);
   return res?.data;
@@ -126,28 +177,87 @@ const addCourse = async (data: any) => {
   return res?.data;
 };
 
+const editCourse = async (id:string, data: any) => {
+  const res:any = await axios
+    .put(`http://localhost:8088/public/course/edit/${id}`, data)
+    .catch((err) => console.log(err));
+  console.log(res);
+  return res?.data;
+};
+
+const deleteCourse = async (id:string) => {
+  const res:any = await axios
+    .delete(`http://localhost:8088/public/course/delete/${id}`)
+    .catch((err) => {console.log(err); toast("cant delete course because it has already bought by someone",{type: toast.TYPE.ERROR})});
+  console.log(res);
+  return res?.data;
+};
+
+const setTrueCourse = async (id:string) => {
+  const res:any = await axios
+    .put(`http://localhost:8088/public/course/update-status/${id}`)
+    .catch((err) => {console.log(err); toast("something wrong",{type: toast.TYPE.ERROR})});
+  console.log(res);
+  return res?.data;
+};
+
+const getLessionByCourseId = async (id: string) => {
+  const res = await axios.get(`http://localhost:8088/public/lesson/find-by-course-id/${id}`);
+  console.log(res);
+  return res?.data;
+};
+
+const editLessionByCourseId = async (data:any) => {
+  const res = await axios.put(`http://localhost:8088/public/lesson/edit`, data);
+  console.log(res);
+  return res?.data;
+};
+
 const addLession = async (data: any) => {
   const res = await axios.post(`http://localhost:8088/public/lesson/add`, data);
   console.log(res);
   return res?.data;
 };
 
+const banAccount = async (userid: number) => {
+  const res = await axios.put(`http://localhost:8088/public/user/toggle-status/${userid}`);
+  console.log(res);
+  return res?.data;
+}
+
 export const API = {
   getAllCourse,
   getAllPost,
   getPostById,
   getTop4Course,
-  payment,
-  getCourseByUser,
-  getLessionByCourse,
-  editUser,
+  getCourseById,
+  getLessionByCourseId,
   getUserInfo,
   getOrderHistory,
   getCourseCategories,
   getCourseByCategory,
-  changePassword,
   getCourseByInstructor,
   getCourseLevel,
+  getCourseByUser,
+  getLessionByCourse,
+  getTrueCourseByCategory,
+  getAllTrueCourse,
+  getAllFalseCourse,
+  getAllCusInfo,
+  getAllStaffInfo,
+  getAllInsInfo,
+
   addCourse,
   addLession,
+
+  editUser,
+  editCourse,
+  editLessionByCourseId,
+  setTrueCourse,
+  
+  deleteCourse,
+
+  payment,
+  changePassword,
+  banAccount,
 };

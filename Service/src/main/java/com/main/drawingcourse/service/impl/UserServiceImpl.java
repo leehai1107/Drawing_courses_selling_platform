@@ -203,5 +203,19 @@ public class UserServiceImpl implements IUserService {
 		}
 		return "Password has enter does not match with old password!";
 	}
+	
+	  @Override
+	public void updateUserStatus(int userId) {
+	        User user = userRepository.findById(userId).orElse(null);
+
+	        if (user != null) {
+	            // Toggle the status
+	            user.setStatus(!user.isStatus());
+	            userRepository.save(user);
+	        } else {
+	            // Handle the case where the user with the given ID is not found
+	            // You can throw an exception or handle it as per your application's requirements
+	        }
+	    }
 
 }

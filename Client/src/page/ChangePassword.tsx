@@ -34,7 +34,7 @@ const ChangePassword = () => {
       }
   }
   return (
-    <div className="pt-32 pl-20">
+    <div className="pt-32 pl-20 border border-l">
       <div className="flex justify-between items-center w-full font-bold text-3xl">
         <div>Change Password</div>
         <img

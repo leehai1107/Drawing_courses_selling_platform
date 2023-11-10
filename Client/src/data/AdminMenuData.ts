@@ -12,47 +12,47 @@ const AdminMenuData = [
     {
         icon: DashboardIcon,
         label: "DashBoard",
-        link:"/dashboard"
+        link:"/admin"
     },
     {
         icon: EventIcon,
         label: "Calendar",
-        link:"/calendar"
+        link:"/admin"
     },
     {
         icon: PersonIcon,
-        label: "Student",
-        link:"/student"
+        label: "Users",
+        link:"/admin/users"
     },
     {
         icon: SchoolIcon,
-        label: "Supervisor",
-        link:"/supervisor"
+        label: "Instructors",
+        link:"/admin/instructors"
     },
     {
         icon: TvIcon,
-        label: "News",
-        link:"/news"
+        label: "Staffs",
+        link:"/admin/staffs"
     },
     {
         icon: HourglassEmptyIcon,
         label: "Timesheet",
-        link:"/timesheet"
+        link:"/admin"
     },
     {
         icon: MailOutlineIcon,
         label: "Mail",
-        link:"/mail"
+        link:"/admin"
     },
     {
         icon: SettingsIcon,
         label: "Setting",
-        link:"/setting"
+        link:"/admin"
     },
     {
         icon: LogoutIcon,
         label: "Logout",
-        link:"/"
+        link:"/SignIn"
     },
     
 ]

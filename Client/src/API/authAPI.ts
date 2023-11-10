@@ -13,7 +13,6 @@ const loginApi = async ({
     .catch((err) => {
       console.log(err.message);
       toast("unauthenticated", {type: toast.TYPE.ERROR})
-      setTimeout(() => window.location.href = "http://localhost:5173/SignIn", 3000)
     });
   console.log(res);
   return res?.data;
@@ -25,8 +24,7 @@ const registerApi = async (data:any) => {
       .post(`http://localhost:8088/public/account/signup`, data)
       .catch((err) => {
         console.log(err.message);
-        toast("unauthenticated", {type: toast.TYPE.ERROR})
-        setTimeout(() => window.location.href = "http://localhost:5173", 3000)
+        toast("register fail", {type: toast.TYPE.ERROR})
       });
     console.log(res);
     return res?.data;
