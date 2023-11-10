@@ -38,7 +38,7 @@ const EditProfile = ()=> {
       navigate("/SignIn")
     };
 
-    return <div className="pt-32 pl-20 ">
+    return <div className="pt-32 pl-20 border border-l">
     <div className="flex justify-between items-center w-full font-bold text-3xl">
       <div>Edit profile</div>
       <img

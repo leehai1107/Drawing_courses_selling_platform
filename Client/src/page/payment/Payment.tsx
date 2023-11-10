@@ -83,6 +83,7 @@ const Payment = () => {
                 name="phone"
                 className="w-full p-2 rounded-lg"
                 placeholder="Type here"
+                value={account?.phone}
               />
             </div>
 
@@ -92,10 +93,7 @@ const Payment = () => {
                   Phương Thức Thanh Toán
                 </label>
                 <select name="payMethod" className="w-11/12 p-2 rounded-lg">
-                  <option>Momo</option>
                   <option>VNPay</option>
-                  <option>TPBank</option>
-                  <option>Visa</option>
                 </select>
               </div>
               <div className="w-1/2">
