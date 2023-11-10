@@ -57,4 +57,6 @@ public interface ICourseService {
 
 	List<ResponseCourse> findAllCourseNotVerify();
 
+	public void toggleCourseStatus(int courseId);
+
 }
