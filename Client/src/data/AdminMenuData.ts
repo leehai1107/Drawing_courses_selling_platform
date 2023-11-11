@@ -34,21 +34,21 @@ const AdminMenuData = [
         label: "Staffs",
         link:"/admin/staffs"
     },
-    {
-        icon: HourglassEmptyIcon,
-        label: "Timesheet",
-        link:"/admin"
-    },
-    {
-        icon: MailOutlineIcon,
-        label: "Mail",
-        link:"/admin"
-    },
-    {
-        icon: SettingsIcon,
-        label: "Setting",
-        link:"/admin"
-    },
+    // {
+    //     icon: HourglassEmptyIcon,
+    //     label: "Timesheet",
+    //     link:"/admin"
+    // },
+    // {
+    //     icon: MailOutlineIcon,
+    //     label: "Feedback",
+    //     link:"/admin/feedback"
+    // },
+    // {
+    //     icon: SettingsIcon,
+    //     label: "Setting",
+    //     link:"/admin"
+    // },
     {
         icon: LogoutIcon,
         label: "Logout",

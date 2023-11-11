@@ -219,11 +219,25 @@ const addLession = async (data: any) => {
   return res?.data;
 };
 
+const addFeedback = async (data: any) => {
+  const res = await axios.post(`http://localhost:8088/public/review/add`, data);
+  console.log(res);
+  return res?.data;
+};
+
 const banAccount = async (userid: number) => {
   const res = await axios.put(`http://localhost:8088/public/user/toggle-status/${userid}`);
   console.log(res);
   return res?.data;
 }
+
+const getAllFeedBack = async () => {
+  const res = await axios.get(
+    `http://localhost:8088/public/review/find-All-FeedBacks`
+  );
+  console.log(res);
+  return res?.data;
+};
 
 export const API = {
   getAllCourse,
@@ -246,9 +260,11 @@ export const API = {
   getAllCusInfo,
   getAllStaffInfo,
   getAllInsInfo,
+  getAllFeedBack,
 
   addCourse,
   addLession,
+  addFeedback,
 
   editUser,
   editCourse,

@@ -1,14 +1,13 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { CartElement, Course } from "../Type/Type";
 import { accountState, cartState } from "../atom/atom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { numberToVietnameseDong } from "../util/util";
 
 export const CourseModal = ({ course }: { course: Course | any }) => {
   const account: any = useRecoilValue(accountState);
   const [cart, setCart]: any = useRecoilState(cartState);
-  const navigate = useNavigate();
 
   const addToCart = () => {
     var cartCourse = cart.find(
@@ -18,7 +17,6 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
       toast("Course already added", { type: toast.TYPE.WARNING });
     } else {
       setCart([...cart, { Course: course, EnrollDate: new Date() }]);
-      navigate("/Cart");
     }
   };
   return (
@@ -38,9 +36,9 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
                 <div>Giá: {numberToVietnameseDong(course?.price)} </div>
               </div>
               <Link to={`/InstructorProfile/${course?.userModelRespone.id}`} className="block text-blue-500 mb-5">Giáo viên: {course?.userModelRespone.fullname} </Link>
-              <span className="p-3 bg-orange-500 text-white font-medium mr-5">
+              <Link to={`Courses/${course?.drawingCategoryModel?.drawCategoryName}/${course?.drawingCategoryModel?.drawCategoryId}`} className="p-3 bg-orange-500 text-white font-medium mr-5">
                 {course?.drawingCategoryModel?.drawCategoryName}
-              </span>
+              </Link>
               <span className="p-3 bg-orange-500 text-white font-medium">
                 {course?.levelModel?.levelName}
               </span>
