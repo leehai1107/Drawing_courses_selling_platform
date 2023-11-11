@@ -48,6 +48,7 @@ import { InstructorProfile } from "./page/InstructorProfile/InstructorProfile";
 import { instructorLoader } from "./page/InstructorProfile/InstructorLoader";
 import { FalseCourse } from "./page/FalseCourse/FalseCourse";
 import { AccountTable, InsTable, StaffsTable } from "./page/AccountManagerTable";
+import { FeedbackTable } from "./page/FeedbackTable";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="admin/users" element={<AccountTable />} />
           <Route path="admin/instructors" element={<InsTable />} />
           <Route path="admin/staffs" element={<StaffsTable />} />
+          <Route path="admin/feedback" element={<FeedbackTable />} />
         </Route>
         <Route path="/" element={<PageLayout />}>
           <Route index element={<Home />} loader={homeLoader}/>
