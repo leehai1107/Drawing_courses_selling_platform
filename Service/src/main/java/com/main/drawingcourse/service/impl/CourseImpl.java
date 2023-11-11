@@ -1,6 +1,7 @@
 package com.main.drawingcourse.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.main.drawingcourse.dto.PostModel;
@@ -306,4 +307,16 @@ public class CourseImpl implements ICourseService {
 				.collect(Collectors.toList());
 		return courseModels;
 	}
+
+	@Override
+	public void toggleCourseStatus(int courseId) {
+		Course course = courseRepository.findById(courseId).orElse(null);
+
+		if (course != null) {
+			course.setStatus(!course.isStatus());
+			courseRepository.save(course);
+		}
+	}
+
+
 }

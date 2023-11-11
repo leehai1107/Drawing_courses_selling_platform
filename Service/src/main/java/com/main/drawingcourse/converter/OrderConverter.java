@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.main.drawingcourse.dto.OrderModel;
+import com.main.drawingcourse.dto.response.OrderResponse;
 import com.main.drawingcourse.entity.Order;
 import com.main.drawingcourse.repository.UserRepository;
 
@@ -25,9 +26,7 @@ public class OrderConverter {
 		entity.setOrderStatus(orderModel.isOrder_status());
 		entity.setPrice(orderModel.getPrice());
 		entity.setUser(userRepository.getReferenceById(orderModel.getUserid()));
-		if (orderModel.getCourseOrders() != null) {
-			entity.setCourse_Orders(course_OrderConverter.convertToCourseOrderCollection(orderModel.getCourseOrders()));
-		}
+
 		return entity;
 	}
 
@@ -39,9 +38,6 @@ public class OrderConverter {
 		dto.setOrder_status(orderEntity.getOrderStatus());
 		dto.setPrice(orderEntity.getPrice());
 		dto.setUserid(orderEntity.getUser().getUserId());
-		if (orderEntity.getCourse_Orders() != null) {
-			dto.setCourseOrders(course_OrderConverter.convertToCourseOrderModelList(orderEntity.getCourse_Orders()));
-		}
 		return dto;
 	}
 
@@ -53,4 +49,28 @@ public class OrderConverter {
 		}
 		return orderModelList;
 	}
+	
+	public OrderResponse toResponse(Order orderEntity) {
+		OrderResponse dto = new OrderResponse();
+		dto.setOrder_id(orderEntity.getOrderId());
+		dto.setOrder_code(orderEntity.getOrderCode());
+		dto.setOrder_status(orderEntity.getOrderStatus());
+		dto.setPrice(orderEntity.getPrice());
+		dto.setUserid(orderEntity.getUser().getUserId());
+		return dto;
+	}
+	
+	public Order toEntityNew(OrderResponse orderModel) {
+		Order entity = new Order();
+		entity.setOrderId(orderModel.getOrder_id());
+		entity.setOrderCode(orderModel.getOrder_code());
+		entity.setOrderStatus(orderModel.isOrder_status());
+		entity.setPrice(orderModel.getPrice());
+		entity.setUser(userRepository.getReferenceById(orderModel.getUserid()));
+		
+		return entity;
+	}
+	
+	
+	
 }
