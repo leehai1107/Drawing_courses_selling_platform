@@ -16,7 +16,7 @@ const LandingPage = () => {
             <li className="mb-5">• Tìm ra sở thích phù hợp với bé </li>
           </ul>
           <div className="text-center">
-            <button className="text-white bg-orange-500 py-2 px-6">Đăng Kí</button>
+            <button className="text-white bg-orange-500 py-2 px-6">Đăng Ký</button>
           </div>
         </div>
       </div>

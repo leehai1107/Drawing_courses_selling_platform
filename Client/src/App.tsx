@@ -9,7 +9,6 @@ import "react-slideshow-image/dist/styles.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import AdminLayout from "./layout/AminLayout";
-import Admin from "./page/Admin";
 import PageLayout from "./layout/PageLayout";
 import Home from "./page/Home/Home";
 import LandingPage from "./page/LandingPage";
@@ -47,6 +46,7 @@ import { editCourseLoader } from "./page/EditCourse/editCourseLoader";
 import { InstructorProfile } from "./page/InstructorProfile/InstructorProfile";
 import { instructorLoader } from "./page/InstructorProfile/InstructorLoader";
 import { FalseCourse } from "./page/FalseCourse/FalseCourse";
+import { TrueCourse } from "./page/FalseCourse/TrueCourse";
 import { AccountTable, InsTable, StaffsTable } from "./page/AccountManagerTable";
 import { FeedbackTable } from "./page/FeedbackTable";
 
@@ -56,7 +56,7 @@ function App() {
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<AdminLayout />}>
-          <Route path="admin" element={<Admin />} />
+          <Route path="admin" element={<AccountTable />} />
           <Route path="admin/users" element={<AccountTable />} />
           <Route path="admin/instructors" element={<InsTable />} />
           <Route path="admin/staffs" element={<StaffsTable />} />
@@ -85,8 +85,9 @@ function App() {
           <Route path="CreateLession/:courseId" element={<CreateLession />}/>
           <Route path="EditCourse/:courseId" element={<EditCourse />} loader={editCourseLoader}/>
           <Route path="EditLession/:courseId" element={<EditLession />}/>
-          <Route path="InstructorProfile/:userId" element={<InstructorProfile />} loader={instructorLoader}/>FalseCourse
+          <Route path="InstructorProfile/:userId" element={<InstructorProfile />} loader={instructorLoader}/>
           <Route path="FalseCourse" element={<FalseCourse />} />
+          <Route path="TrueCourse" element={<TrueCourse />} />
         </Route>
       </Route>
     ),

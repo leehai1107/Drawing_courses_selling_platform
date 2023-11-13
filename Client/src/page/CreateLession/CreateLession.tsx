@@ -55,7 +55,7 @@ export const CreateLession = () => {
             />
             {lessions.map((lession, index) => (
               <>
-                <label className="text-sm">Tựa đề lession {index + 1}</label>
+                <label className="text-sm">Tựa đề bài học {index + 1}</label>
                 <input
                   required
                   className="p-2 w-full rounded-2xl mb-5"
@@ -63,7 +63,7 @@ export const CreateLession = () => {
                   defaultValue={lession.title}
                   onChange={(event) => setTitle(index, event.target.value)}
                 />
-                <label className="text-sm">Link lession {index + 1}</label>
+                <label className="text-sm">Link bài học {index + 1}</label>
                 <input
                   required
                   className="p-2 w-full rounded-2xl mb-5"
@@ -76,7 +76,7 @@ export const CreateLession = () => {
                     onClick={() => removeLession(lession)}
                     className="block p-2 bg-lime-600 mb-5"
                   >
-                    remove lession
+                    Xoá bài học
                   </button>
                 ) : (
                   ""
@@ -85,12 +85,12 @@ export const CreateLession = () => {
             ))}
             <br />
             <button onClick={addLession} className="p-2 mt-5 bg-lime-600">
-              add lession
+              Thêm bài học
             </button>
           </div>
           <div className="mt-10 pb-20 text-center">
             <button className="p-2 bg-orange-400 text-white">
-              Create Lession
+              Tạo bài học
             </button>
           </div>
         </Form>

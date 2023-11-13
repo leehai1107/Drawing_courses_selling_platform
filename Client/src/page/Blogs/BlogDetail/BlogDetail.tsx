@@ -23,7 +23,7 @@ const BlogDetail = () => {
             {blog.title}
           </div>
 
-          <img className="w-5/6 m-auto mb-10" src={blogImage} />
+          <img className="w-5/6 m-auto mb-10" src={blog.postImage} />
 
           <div className="text-xl">{blog.content}</div>
         </div>

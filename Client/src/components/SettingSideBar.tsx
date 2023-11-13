@@ -9,17 +9,17 @@ import OrderHistory from "../page/OrderHistory/OrderHistory";
 
 const options = [
   {
-    label: "Edit Profile",
+    label: "Chỉnh sửa thông tin",
     Icon: EditIcon,
     Link: "/Profile",
   },
   {
-    label: "Order History",
+    label: "Lịch sử mua hàng",
     Icon: ShoppingBagIcon,
     Link: "/Profile",
   },
   {
-    label: "Change Password",
+    label: "Đổi mật khẩu",
     Icon: LockIcon,
     Link: "/Profile/ChangePassword",
   },
@@ -30,13 +30,11 @@ const SettingSideBar = () => {
 
   const prop = () => {
     switch (selectedOption) {
-      case "Edit Profile":
+      case "Chỉnh sửa thông tin":
         return <EditProfile />;
-      case "Change Password":
+      case "Đổi mật khẩu":
         return <ChangePassword />;
-      case "Report":
-        return <ReportPage />;
-      case "Order History":
+      case "Lịch sử mua hàng":
         return <OrderHistory />;
       default:
         return <EditProfile />;

@@ -8,19 +8,25 @@ const getAllCourse = async () => {
 };
 
 const getAllTrueCourse = async () => {
-  const res = await axios.get(`http://localhost:8088/public/course/coursestatustrue`);
+  const res = await axios.get(
+    `http://localhost:8088/public/course/coursestatustrue`
+  );
   console.log(res);
   return res?.data;
 };
 
 const getAllFalseCourse = async () => {
-  const res = await axios.get(`http://localhost:8088/public/course/coursenotverify`);
+  const res = await axios.get(
+    `http://localhost:8088/public/course/coursenotverify`
+  );
   console.log(res);
   return res?.data;
 };
 
-const getCourseById = async (id:string) => {
-  const res = await axios.get(`http://localhost:8088/public/course/getcourse/${id}`);
+const getCourseById = async (id: string) => {
+  const res = await axios.get(
+    `http://localhost:8088/public/course/getcourse/${id}`
+  );
   console.log(res);
   return res?.data;
 };
@@ -143,7 +149,6 @@ const getCourseLevel = async () => {
   return res?.data;
 };
 
-
 const getCourseByCategory = async (categoryId: number) => {
   const res = await axios.get(
     `http://localhost:8088/public/course/find?category=${categoryId}`
@@ -170,44 +175,54 @@ const changePassword = async (data: any) => {
 };
 
 const addCourse = async (data: any) => {
-  const res:any = await axios
+  const res: any = await axios
     .post(`http://localhost:8088/public/course/addCourse`, data)
     .catch((err) => console.log(err));
   console.log(res);
   return res?.data;
 };
 
-const editCourse = async (id:string, data: any) => {
-  const res:any = await axios
+const editCourse = async (id: string, data: any) => {
+  const res: any = await axios
     .put(`http://localhost:8088/public/course/edit/${id}`, data)
     .catch((err) => console.log(err));
   console.log(res);
   return res?.data;
 };
 
-const deleteCourse = async (id:string) => {
-  const res:any = await axios
+const deleteCourse = async (id: string) => {
+  const res: any = await axios
     .delete(`http://localhost:8088/public/course/delete/${id}`)
-    .catch((err) => {console.log(err); toast("cant delete course because it has already bought by someone",{type: toast.TYPE.ERROR})});
+    .catch((err) => {
+      console.log(err);
+      toast("cant delete course because it has already bought by someone", {
+        type: toast.TYPE.ERROR,
+      });
+    });
   console.log(res);
   return res?.data;
 };
 
-const setTrueCourse = async (id:string) => {
-  const res:any = await axios
+const setTrueCourse = async (id: string) => {
+  const res: any = await axios
     .put(`http://localhost:8088/public/course/update-status/${id}`)
-    .catch((err) => {console.log(err); toast("something wrong",{type: toast.TYPE.ERROR})});
+    .catch((err) => {
+      console.log(err);
+      toast("something wrong", { type: toast.TYPE.ERROR });
+    });
   console.log(res);
   return res?.data;
 };
 
 const getLessionByCourseId = async (id: string) => {
-  const res = await axios.get(`http://localhost:8088/public/lesson/find-by-course-id/${id}`);
+  const res = await axios.get(
+    `http://localhost:8088/public/lesson/find-by-course-id/${id}`
+  );
   console.log(res);
   return res?.data;
 };
 
-const editLessionByCourseId = async (data:any) => {
+const editLessionByCourseId = async (data: any) => {
   const res = await axios.put(`http://localhost:8088/public/lesson/edit`, data);
   console.log(res);
   return res?.data;
@@ -225,15 +240,51 @@ const addFeedback = async (data: any) => {
   return res?.data;
 };
 
-const banAccount = async (userid: number) => {
-  const res = await axios.put(`http://localhost:8088/public/user/toggle-status/${userid}`);
+const addStaff = async (data: any, token: any) => {
+  // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+  const res: any = await axios
+    .post(`http://localhost:8088/public/account/add-staff`, data)
+    .catch((err) => {
+      console.log(err);
+      toast(err.message, { type: toast.TYPE.ERROR })
+    });
   console.log(res);
   return res?.data;
-}
+};
+
+const addIns = async (data: any, token: any) => {
+  // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+  const res: any = await axios
+    .post(`http://localhost:8088/public/account/add-instructor`, data)
+    .catch((err) => {
+      console.log(err);
+      toast(err.message, { type: toast.TYPE.ERROR })
+    });
+  console.log(res);
+  return res?.data;
+};
+
+const banAccount = async (userid: number) => {
+  const res = await axios.put(
+    `http://localhost:8088/public/user/toggle-status/${userid}`
+  );
+  console.log(res);
+  return res?.data;
+};
 
 const getAllFeedBack = async () => {
   const res = await axios.get(
     `http://localhost:8088/public/review/find-All-FeedBacks`
+  );
+  console.log(res);
+  return res?.data;
+};
+
+const toggleCourse = async (id: string) => {
+  const res = await axios.put(
+    `http://localhost:8088/public/course/${id}/toggle-status`
   );
   console.log(res);
   return res?.data;
@@ -265,14 +316,16 @@ export const API = {
   addCourse,
   addLession,
   addFeedback,
+  addStaff,
+  addIns,
 
   editUser,
   editCourse,
   editLessionByCourseId,
   setTrueCourse,
-  
-  deleteCourse,
 
+  deleteCourse,
+  toggleCourse,
   payment,
   changePassword,
   banAccount,

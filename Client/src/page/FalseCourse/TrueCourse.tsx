@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { StaffCourseShow } from "../../components/CourseShow";
+import { StaffCourseShowTrue } from "../../components/CourseShow";
 import { Course } from "../../Type/Type";
 import { API } from "../../API/API";
 
-export const FalseCourse = () => {
+export const TrueCourse = () => {
   const [myCourses, setMyCourses] = useState<Course[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const coursesPerPage = 3; // Adjust the number of courses per page as needed
 
   useEffect(() => {
-    getMyCourses();
+    getMyTrueCourses();
   }, [pageNumber]); // Reload courses when the page number changes
 
-  const getMyCourses = async () => {
-    const allMyCourses = await API.getAllFalseCourse();
+  const getMyTrueCourses = async () => {
+    const allMyCourses = await API.getAllTrueCourse();
     setMyCourses(allMyCourses);
   };
 
@@ -31,14 +31,14 @@ export const FalseCourse = () => {
     <>
       <div className="bg-lime-500 pt-40 pb-20 px-10">
         <div className="text-3xl font-semibold text-amber-300">
-          Khóa học chưa duyệt
+          Khóa học đã duyệt
         </div>
         <div className="mt-5 px-5 flex justify-center items-center">
           {paginatedCourses.map((mCourse: Course) => (
-            <StaffCourseShow
+            <StaffCourseShowTrue
               key={mCourse.courseId}
               course={mCourse}
-              getMyCourses={getMyCourses}
+              getMyTrueCourses={getMyTrueCourses}
             />
           ))}
         </div>

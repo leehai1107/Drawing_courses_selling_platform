@@ -19,7 +19,7 @@ const BlogsPage = () => {
                     <div className="text-4xl font-semibold">{blog.title}</div>
                     <div className="truncate text-xl">{blog.content}</div>
                 </div>
-                <div className="w-3/12"><img src={blogImage}/></div>
+                <div className="w-3/12"><img src={blog.postImage}/></div>
             </div>
             </Link>
             </>)}
