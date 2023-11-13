@@ -45,7 +45,7 @@ const SettingSideBar = () => {
     <>
         <div className="flex h-full">
           <div className="w-3/12 pt-36 px-5 flex flex-col items-center h-full">
-            <div className="text-2xl font-bold mb-10"> Settings</div>
+            <div className="text-2xl font-bold mb-10"> Cài đặt</div>
             <div className="flex flex-col justify-between font-medium text-neutral-600">
               {options.map((option) => (
                 <>
