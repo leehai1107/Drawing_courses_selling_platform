@@ -23,7 +23,7 @@ import BlogDetail from "./page/Blogs/BlogDetail/BlogDetail";
 import { loginAction } from "./page/auth/LoginPage/loginAction";
 import { registerAction } from "./page/auth/Register/registerAction";
 import { blogLoader } from "./page/Blogs/BlogLoader";
-import { homeLoader } from "./page/Home/HomeLoader";
+import { homeCourseLoader, homeLoader } from "./page/Home/HomeLoader";
 import { blogDetailLoader } from "./page/Blogs/BlogDetail/BlogDetailLoader";
 import { HomeCourses } from "./page/HomeCourses";
 import { SuccessPayment } from "./page/SuccessPayment";
@@ -49,6 +49,13 @@ import { FalseCourse } from "./page/FalseCourse/FalseCourse";
 import { TrueCourse } from "./page/FalseCourse/TrueCourse";
 import { AccountTable, InsTable, StaffsTable } from "./page/AccountManagerTable";
 import { FeedbackTable } from "./page/FeedbackTable";
+// Create a new loader function that combines both loaders
+export const combinedHomeLoader = async () => {
+  const courses = await homeLoader();
+  const bestCourses = await homeCourseLoader();
+
+  return { courses, bestCourses };
+};
 
 function App() {
 
@@ -63,7 +70,7 @@ function App() {
           <Route path="admin/feedback" element={<FeedbackTable />} />
         </Route>
         <Route path="/" element={<PageLayout />}>
-          <Route index element={<Home />} loader={homeLoader}/>
+          <Route index element={<Home />} loader={combinedHomeLoader}/>
           <Route path="LandingPage" element={<LandingPage />} />
           <Route path="Cart" element={<Cart />} />
           <Route path="Payment" element={<Payment />} />
