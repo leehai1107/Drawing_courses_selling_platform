@@ -6,21 +6,36 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { CourseModal } from "../../components/CourseModal";
 import { modalCOurseStyle } from "../../css/modalStyle";
+import ReactPaginate from "react-paginate";
 
 export const Courses = () => {
-  const courses: Course | any = useLoaderData();
+  const courses: Course[] | any = useLoaderData();
   const { category } = useParams();
   const [open, setOpen] = useState(false);
   const [modalCourse, setModalCourse]: any = useState();
+  const [pageNumber, setPageNumber] = useState(0);
+  const coursesPerPage = 3; // Adjust the number of courses per page as needed
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const pageCount = Math.ceil(courses.length / coursesPerPage);
+
+  const handlePageChange = ({ selected }: { selected: number }) => {
+    setPageNumber(selected);
+  };
+
+  const offset = pageNumber * coursesPerPage;
+  const paginatedCourses = courses.slice(offset, offset + coursesPerPage);
+
   return (
     <>
       <div className="bg-lime-400 pt-20 pb-10">
         <div className="text-7xl font-medium text-center py-10">{category}</div>
         <div className="mt-5 px-5 flex flex-wrap">
-          {courses?.map((mCourse: Course) => (
+          {paginatedCourses?.map((mCourse: Course) => (
             <div
+              key={mCourse.courseId}
               className="w-3/12 mx-10 border-4"
               onClick={() => {
                 setModalCourse(mCourse);
@@ -30,6 +45,43 @@ export const Courses = () => {
               <CourseShow course={mCourse} />
             </div>
           ))}
+        </div>
+        <div className="mt-5 flex justify-center items-center">
+          {/* Add 50px margin top */}
+          <div style={{ marginTop: "50px" }}>
+            <ReactPaginate
+              previousLabel={
+                <div className="text-center text-white pagination-btn">
+                  Previous
+                </div>
+              }
+              nextLabel={
+                <div className="text-center text-white pagination-btn">
+                  Next
+                </div>
+              }
+              breakLabel={"..."}
+              breakClassName={"break-me"}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination"}
+              pageLinkClassName={
+                "border-2 border-gray-500 rounded-full p-2 mx-1 text-gray-700"
+              }
+              activeClassName={"active"}
+              previousLinkClassName={
+                "border-2 border-gray-500 rounded-full p-2 mx-1 text-gray-700"
+              }
+              nextLinkClassName={
+                "border-2 border-gray-500 rounded-full p-2 mx-1 text-gray-700"
+              }
+              activeLinkClassName={
+                "bg-gray-500 text-white border-2 border-gray-500 rounded-full p-2 mx-1"
+              }
+            />
+          </div>
         </div>
       </div>
 
