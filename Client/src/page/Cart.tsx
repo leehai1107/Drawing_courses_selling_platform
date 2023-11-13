@@ -60,7 +60,7 @@ const Cart = () => {
                       </TableCell>
                       <TableCell align="center">{data.Course?.userModelRespone?.fullname}</TableCell>
                       <TableCell align="center">
-                        {data.EnrollDate.toDateString()}
+                        {data.EnrollDate.toLocaleDateString()}
                       </TableCell>
                       <TableCell align="center">{numberToVietnameseDong(data.Course.price)}</TableCell>
                       <TableCell align="center">

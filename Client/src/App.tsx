@@ -23,7 +23,7 @@ import BlogDetail from "./page/Blogs/BlogDetail/BlogDetail";
 import { loginAction } from "./page/auth/LoginPage/loginAction";
 import { registerAction } from "./page/auth/Register/registerAction";
 import { blogLoader } from "./page/Blogs/BlogLoader";
-import { homeCourseLoader, homeLoader } from "./page/Home/HomeLoader";
+import { beginerCourses, homeCourseLoader, homeLoader } from "./page/Home/HomeLoader";
 import { blogDetailLoader } from "./page/Blogs/BlogDetail/BlogDetailLoader";
 import { HomeCourses } from "./page/HomeCourses";
 import { SuccessPayment } from "./page/SuccessPayment";
@@ -53,8 +53,8 @@ import { FeedbackTable } from "./page/FeedbackTable";
 export const combinedHomeLoader = async () => {
   const courses = await homeLoader();
   const bestCourses = await homeCourseLoader();
-
-  return { courses, bestCourses };
+  const beginerCourse = await beginerCourses();
+  return { courses, bestCourses ,beginerCourse};
 };
 
 function App() {

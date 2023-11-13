@@ -288,6 +288,14 @@ const toggleCourse = async (id: string) => {
   return res?.data;
 };
 
+const beginerCourse = async () => {
+  const res = await axios.get(
+    `http://localhost:8088/public/course/course-status-1/by-levelid/1`
+  );
+  console.log(res);
+  return res?.data;
+};
+
 export const API = {
   getAllCourse,
   getAllPost,
@@ -321,7 +329,7 @@ export const API = {
   editCourse,
   editLessionByCourseId,
   setTrueCourse,
-
+  beginerCourse,
   deleteCourse,
   toggleCourse,
   payment,

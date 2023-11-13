@@ -9,3 +9,8 @@ export const homeCourseLoader = async()=>{
     const result = await API.getTop4Course()
     return result
 }
+
+export const beginerCourses = async()=>{
+    const result = await API.beginerCourse()
+    return result
+}
