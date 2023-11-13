@@ -57,7 +57,7 @@ export const EditLession = () => {
       <div className="bg-lime-200 pt-40">
         <Form onSubmit={submit} method="post">
           <div className="w-1/2 m-auto border border-dashed border-lime-500 px-10 py-14 rounded-2xl max-h-screen overflow-y-scroll">
-            <label className="text-sm">Tổng số lessions</label>
+            <label className="text-sm">Tổng số bài học</label>
             <input
               className="p-2 w-full rounded-2xl mb-5"
               defaultValue={1}
@@ -67,7 +67,7 @@ export const EditLession = () => {
             />
             {lessions.map((lession:any, index:number) => (
               <>
-                <label className="text-sm">Tựa đề lession {index + 1}</label>
+                <label className="text-sm">Tựa đề bài học {index + 1}</label>
                 <input
                   required
                   className="p-2 w-full rounded-2xl mb-5"
@@ -75,7 +75,7 @@ export const EditLession = () => {
                   defaultValue={lession.title}
                   onChange={(event) => setTitle(index, event.target.value)}
                 />
-                <label className="text-sm">Link lession {index + 1}</label>
+                <label className="text-sm">Link bài học {index + 1}</label>
                 <input
                   required
                   className="p-2 w-full rounded-2xl mb-5"
@@ -88,7 +88,7 @@ export const EditLession = () => {
                     onClick={() => removeLession(lession)}
                     className="block p-2 bg-lime-600 mb-5"
                   >
-                    remove lession
+                    Xoá bài học
                   </button>
                 ) : (
                   ""
@@ -97,12 +97,12 @@ export const EditLession = () => {
             ))}
             <br />
             <button onClick={addLession} className="p-2 mt-5 bg-lime-600">
-              add lession
+              Thêm bài học
             </button>
           </div>
           <div className="mt-10 pb-20 text-center">
             <button className="p-2 bg-orange-400 text-white">
-              Edit Lession
+              Sửa bài học
             </button>
           </div>
         </Form>

@@ -6,9 +6,10 @@ import { Box, Modal } from "@mui/material";
 import { modalCOurseStyle } from "../css/modalStyle";
 import ReportPage from "../page/ReportPage";
 
-export const MyCourseShow = ({ course }: { course: Course | any }) => {
+export const MyCourseShow = ({ mcourse }: { mcourse: any }) => {
   const [open, setOpen] = useState(false);
   const [modalCourse, setModalCourse]: any = useState();
+  const [course, setCourse]: any = useState(mcourse.course);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const MyCourseShow = ({ course }: { course: Course | any }) => {
           Học
         </Link>
       </div>
-      {/* <div className="text-center my-5">
+      <div className="text-center my-5">
         <button>
           <button
             onClick={() => {
@@ -54,9 +55,9 @@ export const MyCourseShow = ({ course }: { course: Course | any }) => {
             Feedback
           </button>
         </button>
-      </div> */}
+      </div>
 
-      {/* <div>
+      <div>
         <Modal
           open={open}
           onClose={handleClose}
@@ -67,10 +68,11 @@ export const MyCourseShow = ({ course }: { course: Course | any }) => {
             <ReportPage
               courseId={modalCourse?.courseId}
               handleClose={handleClose}
+              order={mcourse.order}
             />
           </Box>
         </Modal>
-      </div> */}
+      </div>
     </div>
   );
 };
@@ -107,7 +109,7 @@ export const InstructorCourseShow = ({
           to={`/EditCourse/${course.courseId}`}
           className="p-2 bg-green-700 text-white mt-10"
         >
-          Edit Course
+          Chỉnh sửa khoá học
         </Link>
         <div>
           <button
@@ -117,7 +119,7 @@ export const InstructorCourseShow = ({
             }}
             className="p-2 px-6 bg-green-700 text-white mt-10"
           >
-            Delete
+            Xoá khoá học
           </button>
         </div>
       </div>
@@ -165,6 +167,53 @@ export const StaffCourseShow = ({
             className="p-2 px-6 bg-green-700 text-white mt-10"
           >
             Phê Duyệt
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const StaffCourseShowTrue = ({
+  course,
+  getMyTrueCourses,
+}: {
+  course: Course | any;
+  getMyTrueCourses: any;
+}) => {
+  const navigate = useNavigate();
+  return (
+    <div className="w-3/12 mx-10 border-4 mb-5">
+      <div
+        onClick={() => navigate(`/Lessions/${course.courseId}`)}
+        className="border-b-4 border-black"
+      >
+        <img
+          className="w-4/5 h-40 m-auto mt-5 mb-10"
+          src={course.courseImage}
+        />
+        <div className="flex justify-end">
+          <div className="text-center text-xs bg-yellow-500 w-1/4">
+            {course?.levelModel !== undefined
+              ? course?.levelModel?.levelName
+              : "CHƯA LỰA CHỌN CẤP ĐỘ"}
+          </div>
+        </div>
+      </div>
+      <div className="text-center text-3xl font-normal py-3 px-5 truncate">
+        {course?.title}
+      </div>
+
+      <div className="text-center my-5">
+        <div>
+          <button
+            onClick={async () => {
+              await API.toggleCourse(course.courseId);
+              await getMyTrueCourses();
+            }}
+            className="p-2 px-6 bg-green-700 text-white mt-10"
+          >
+            Thu hồi
           </button>
         </div>
       </div>

@@ -40,7 +40,7 @@ const EditProfile = ()=> {
 
     return <div className="pt-32 pl-20 border border-l">
     <div className="flex justify-between items-center w-full font-bold text-3xl">
-      <div>Edit profile</div>
+      <div>Chỉnh sửa thông tin cá nhân</div>
       <img
         className="rounded-full w-2/12"
         src="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg"
@@ -48,7 +48,7 @@ const EditProfile = ()=> {
     </div>
     <Form method="post" onSubmit={(event) => submitFrm(event)} className="mt-10 mb-36 font-bold">
           <div className="mb-3">
-          <label>UserName</label>
+          <label>Tên đăng nhập</label>
           <input name="username" required className="block p-2 w-full border" value={account?.username}/>
           </div>
           <div className="mb-3">
@@ -56,11 +56,11 @@ const EditProfile = ()=> {
           <input name="email" required type="email" className="block p-2 w-full border" defaultValue={account?.email}/>
           </div>
           <div className="mb-3">
-          <label>Date of Birth</label> 
+          <label>Ngày tháng năm sinh</label> 
           <input name="dob" type="date" className="block p-2 w-full border" defaultValue={account?.dob}/>
           </div>
           <div className="mb-3">
-          <label>Phone</label>
+          <label>Số điện thoại</label>
           <input name="phone" required type="tel" className="block p-2 w-full border" defaultValue={account?.phone}/>
           </div>
           <div className="flex justify-between px-20 mt-10"><span onClick={() => navigate("/")} className="text-orange-400 border border-orange-400 py-2 px-5">Cancel</span><button type="submit" className="bg-orange-400 text-white py-2 px-5">Save</button></div>

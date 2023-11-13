@@ -76,6 +76,14 @@ const HomeNavbar = () => {
               >
                 Duyệt khóa học
               </Link>
+             
+              <Link
+                className="font-semibold mr-10 hover:text-yellow-500"
+                to={"/TrueCourse"}
+              >
+                Khóa học đã duyệt
+              </Link>
+              
             </>
           ) : account?.rolename === "ADMIN" ? (
             <>
@@ -107,7 +115,7 @@ const HomeNavbar = () => {
                 onClick={logout}
                 className="mx-5 border-2 border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-white font-semibold rounded-full py-2 px-10"
               >
-                <div>Logout</div>
+                <div>Đăng xuất</div>
               </div>
             </>
           ) : (
@@ -116,14 +124,14 @@ const HomeNavbar = () => {
                 to={"/SignIn"}
                 className="ml-5 block hover:bg-black bg-white hover:text-white font-semibold rounded-full py-2 px-5"
               >
-                Login
+                Đăng nhập
               </Link>
 
               <Link
                 to={"/signUp"}
                 className="mx-5 block border-2 border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-white font-semibold rounded-full py-2 px-10"
               >
-                Đăng Ký Học
+                Đăng ký học ngay
               </Link>
             </>
           )}

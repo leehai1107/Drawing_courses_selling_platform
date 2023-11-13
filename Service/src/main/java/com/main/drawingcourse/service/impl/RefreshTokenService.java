@@ -13,7 +13,7 @@ import com.main.drawingcourse.repository.UserRepository;
 
 @Service
 public class RefreshTokenService {
-	public static final long JWT_TOKEN_VALIDITY = 1000 * 60 * 3;// 3m
+	public static final long JWT_TOKEN_VALIDITY = 1000 * 60 * 60;// 60m
 
 	@Autowired
 	private RefreshTokenRepository refreshTokenRepository;

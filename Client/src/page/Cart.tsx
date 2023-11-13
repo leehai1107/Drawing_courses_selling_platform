@@ -11,6 +11,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { accountState, cartState } from "../atom/atom";
 import { CartElement, Course } from "../Type/Type";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { getTotalInCart, numberToVietnameseDong } from "../util/util";
 
 const Cart = () => {
   const account: any = useRecoilValue(accountState);
@@ -39,7 +40,7 @@ const Cart = () => {
                     <TableCell align="right">Level</TableCell>
                     <TableCell align="right">Giáo Viên</TableCell>
                     <TableCell align="right">Ngày đăng ký</TableCell>
-                    <TableCell align="right">Giá tiền&nbsp;($)</TableCell>
+                    <TableCell align="right">Giá tiền&nbsp;(vnđ)</TableCell>
                     <TableCell align="right"></TableCell>
                   </TableRow>
                 </TableHead>
@@ -61,7 +62,7 @@ const Cart = () => {
                       <TableCell align="right">
                         {data.EnrollDate.toDateString()}
                       </TableCell>
-                      <TableCell align="right">{data.Course.price}</TableCell>
+                      <TableCell align="right">{numberToVietnameseDong(data.Course.price)}</TableCell>
                       <TableCell align="right">
                         <div onClick={() => removeFromCart(data.Course)}>
                           <RemoveIcon />
@@ -69,6 +70,20 @@ const Cart = () => {
                       </TableCell>
                     </TableRow>
                   ))}
+                    <TableRow
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                      </TableCell>
+                      <TableCell align="right">
+                      </TableCell>
+                      <TableCell align="right"></TableCell>
+                      <TableCell align="right">
+                      </TableCell>
+                      <TableCell align="right">{numberToVietnameseDong(getTotalInCart(cart))}</TableCell>
+                      <TableCell align="right">
+                      </TableCell>
+                    </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>

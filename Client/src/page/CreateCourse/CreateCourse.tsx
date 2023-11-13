@@ -91,7 +91,7 @@ export const CreateCourse = () => {
           </div>
           <div className="mt-10 pb-20 text-center">
             <button className="p-2 bg-orange-400 text-white">
-              Create Course
+              Tạo khoá học
             </button>
           </div>
         </Form>

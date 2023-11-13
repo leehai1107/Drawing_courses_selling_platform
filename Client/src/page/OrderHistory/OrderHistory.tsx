@@ -9,6 +9,7 @@ const OrderHistory = () => {
   useEffect(() => {
     const callBack = async () => {
       const oh = await API.getOrderHistory(account?.userid);
+      console.log("Order History", oh);
       setHistory(oh);
     };
     callBack();
@@ -17,18 +18,18 @@ const OrderHistory = () => {
     <>
       <div className="pt-32 pl-20 border-l h-screen">
         <div className=" w-full font-bold text-3xl">
-          <div>Order History</div>
+          <div>Lịch sử mua hàng</div>
         </div>
 
         <div className="mt-12">
           <table className="table-auto">
             <thead>
               <tr>
-                <th className="px-4 py-2 text-neutral-600">Order Id</th>
-                <th className="px-4 py-2 text-neutral-600">Order Code</th>
-                <th className="px-4 py-2 text-neutral-600">Order Date</th>
-                <th className="px-4 py-2 text-neutral-600">Total</th>
-                <th className="px-4 py-2 text-neutral-600">Status</th>
+                <th className="px-4 py-2 text-neutral-600">ID đơn hàng</th>
+                <th className="px-4 py-2 text-neutral-600">Mã đơn hàng</th>
+                <th className="px-4 py-2 text-neutral-600">Ngày tạo</th>
+                <th className="px-4 py-2 text-neutral-600">Đơn giá</th>
+                <th className="px-4 py-2 text-neutral-600">Trạng thái</th>
               </tr>
             </thead>
             <tbody>
@@ -44,10 +45,10 @@ const OrderHistory = () => {
                     {oh.order_date}
                   </td>
                   <td className="px-4 py-2 text-neutral-600 font-medium">
-                    {oh.price}
+                    {oh.price} vnđ
                   </td>
                   <td className="px-4 py-2 text-neutral-600 font-medium">
-                    {oh.status}
+                    {oh.order_status?"Đã thanh toán":"Đã huỷ"}
                   </td>
                 </tr>
               ))}

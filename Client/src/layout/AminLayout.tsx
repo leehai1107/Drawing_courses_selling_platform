@@ -11,8 +11,8 @@ const AdminLayout = () => {
         </div>
         <div className="col-span-1 col-start-1 row-start-2 self-end bg-white rounded-2xl p-5 mb-5">
           <div className="flex flex-col text-center">
-            <div className="font-medium">CAMIOCA</div>
-            <div className="text-neutral-400">Version: 1.0.0.11</div>
+            <div className="font-medium">MỸ THUẬT BỤI</div>
+            <div className="text-neutral-400">Version: 1.0.0</div>
           </div>
         </div>
         <div className="col-span-5 mx-5 rounded-2xl p-5">

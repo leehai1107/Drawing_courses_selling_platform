@@ -1,3 +1,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 5px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #15803d; /* Set the background color to green */
+}
+
+.pagination a.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination-btn {
+  width: 80px;
+}
+
+/* Add this CSS to your styles or in your component */
+
+.pagination-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  width: 100px;
+  height: 50px;
+  border: 1px solid #4caf50;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-button:hover {
+  background-color: #45a049;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #ddd;
+  color: #666;
+}
+

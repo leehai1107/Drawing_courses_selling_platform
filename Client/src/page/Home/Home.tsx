@@ -75,26 +75,26 @@ const Home = () => {
           style={{ right: "45%", bottom: "10%" }}
           className="absolute bg-lime-600 text-white px-3 py-4 font-normal text-xl rounded-sm"
         >
-          Đăng ký học thử
+          Đăng ký học ngay
         </Link>
       </div>
-      <div className="text-7xl font-medium text-center py-10">
+      <div className="text-6xl font-bold text-center py-10">
         KHÓA HỌC CHO BÉ
       </div>
-      <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
+      <div className="text-4xl font-bold text-yellow-500 px-10 mt-10 mb-10">
         BÁN CHẠY NHẤT
       </div>
       <div className="slide-container">
         <Slide>{SlideShow(courses.slice(3))}</Slide>
       </div>
-      <div className="text-4xl font-medium text-yellow-500 px-10 mt-10 mb-10">
+      <div className="text-4xl font-bold text-yellow-500 px-10 mt-10 mb-10">
         CHO BÉ BẮT ĐẦU
       </div>
       <div className="slide-container">
         <Slide>{SlideShow(courses.slice(3))}</Slide>
       </div>
-      <div className="text-5xl font-serif text-center px-10 mt-10 mb-10">
-        Đội ngũ giáo viên
+      <div className="text-5xl font-bold text-center px-10 mt-10 mb-10">
+        Đội Ngũ Giáo Viên
       </div>
       <div className="text-xl font-sans text-center px-10 mt-10 mb-10">
         Các họa sĩ trẻ, nhiệt tình và nhiều kinh nghiệm giảng dạy học viện không

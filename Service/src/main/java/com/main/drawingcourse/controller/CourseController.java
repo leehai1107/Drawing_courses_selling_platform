@@ -171,7 +171,7 @@ public class CourseController {
 		return CourseService.findAllCourseNotVerify();
 	}
 
-	@PatchMapping("/{id}/toggle-status")
+	@PutMapping("/{id}/toggle-status")
 	public ResponseEntity<String> toggleCourseStatus(@PathVariable int id) {
 		CourseService.toggleCourseStatus(id);
 		return ResponseEntity.ok("Course status toggled successfully");

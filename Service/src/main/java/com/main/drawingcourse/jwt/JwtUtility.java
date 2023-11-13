@@ -21,7 +21,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtility {
 	public static final String SECRETKEY = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
-	public static final long JWT_TOKEN_VALIDITY = 1000 * 60 * 3;// 3m
+	public static final long JWT_TOKEN_VALIDITY = 1000 * 60 * 60;// 60m
 
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);

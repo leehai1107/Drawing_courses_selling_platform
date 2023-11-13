@@ -9,20 +9,20 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const AdminMenuData = [
-    {
-        icon: DashboardIcon,
-        label: "DashBoard",
-        link:"/admin"
-    },
-    {
-        icon: EventIcon,
-        label: "Calendar",
-        link:"/admin"
-    },
+    // {
+    //     icon: DashboardIcon,
+    //     label: "DashBoard",
+    //     link:"/admin"
+    // },
+    // {
+    //     icon: EventIcon,
+    //     label: "Calendar",
+    //     link:"/admin"
+    // },
     {
         icon: PersonIcon,
         label: "Users",
-        link:"/admin/users"
+        link:"/admin"
     },
     {
         icon: SchoolIcon,
@@ -39,11 +39,11 @@ const AdminMenuData = [
     //     label: "Timesheet",
     //     link:"/admin"
     // },
-    // {
-    //     icon: MailOutlineIcon,
-    //     label: "Feedback",
-    //     link:"/admin/feedback"
-    // },
+    {
+        icon: MailOutlineIcon,
+        label: "Feedback",
+        link:"/admin/feedback"
+    },
     // {
     //     icon: SettingsIcon,
     //     label: "Setting",
