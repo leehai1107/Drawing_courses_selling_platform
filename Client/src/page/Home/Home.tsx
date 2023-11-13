@@ -15,7 +15,10 @@ const Home = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const courses: Course | any = useLoaderData();
+ // Use combinedHomeLoader to get both sets of data
+ const { courses, bestCourses }:Course|any = useLoaderData();
+ console.log(courses);
+  
 
   const CourseShow = (course: Course) => {
     return (
@@ -66,6 +69,7 @@ const Home = () => {
 
     return slides;
   };
+  
   return (
     <>
       <div>
@@ -85,13 +89,13 @@ const Home = () => {
         BÁN CHẠY NHẤT
       </div>
       <div className="slide-container">
-        <Slide>{SlideShow(courses.slice(3))}</Slide>
+        <Slide>{SlideShow(bestCourses)}</Slide>
       </div>
       <div className="text-4xl font-bold text-yellow-500 px-10 mt-10 mb-10">
         CHO BÉ BẮT ĐẦU
       </div>
       <div className="slide-container">
-        <Slide>{SlideShow(courses.slice(3))}</Slide>
+        <Slide>{SlideShow(courses)}</Slide>
       </div>
       <div className="text-5xl font-bold text-center px-10 mt-10 mb-10">
         Đội Ngũ Giáo Viên

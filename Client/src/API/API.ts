@@ -11,7 +11,7 @@ const getAllTrueCourse = async () => {
   const res = await axios.get(
     `http://localhost:8088/public/course/coursestatustrue`
   );
-  console.log(res);
+
   return res?.data;
 };
 
@@ -19,7 +19,7 @@ const getAllFalseCourse = async () => {
   const res = await axios.get(
     `http://localhost:8088/public/course/coursenotverify`
   );
-  console.log(res);
+
   return res?.data;
 };
 
@@ -27,13 +27,11 @@ const getCourseById = async (id: string) => {
   const res = await axios.get(
     `http://localhost:8088/public/course/getcourse/${id}`
   );
-  console.log(res);
   return res?.data;
 };
 
 const getAllPost = async () => {
   const res = await axios.get(`http://localhost:8088/public/post/viewallpost`);
-  console.log(res);
   return res?.data;
 };
 
