@@ -64,6 +64,7 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange, callback 
 
   return (
     <>
+    
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -102,7 +103,7 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange, callback 
         </Table>
       </TableContainer>
       
-      {/* Pagination Controls */}
+           {/* Pagination Controls */}
       <div className="pagination-buttons">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
@@ -111,6 +112,9 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange, callback 
         >
           Previous
         </button>
+        <span className="pagination-info" style={{ margin: "0 50px" }}>
+    Page {currentPage} of {Math.ceil(rows.length / itemsPerPage)}
+  </span>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={paginatedRows.length < itemsPerPage}

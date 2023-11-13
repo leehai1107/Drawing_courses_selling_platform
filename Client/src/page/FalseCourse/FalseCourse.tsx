@@ -57,7 +57,9 @@ export const FalseCourse = () => {
             activeClassName={"active"}
             previousLinkClassName={"border-2 border-gray-500 rounded-full p-2 mx-1 text-gray-700"}
             nextLinkClassName={"border-2 border-gray-500 rounded-full p-2 mx-1 text-gray-700"}
-            activeLinkClassName={"bg-gray-500 text-white border-2 border-gray-500 rounded-full p-2 mx-1"}
+            activeLinkClassName={
+              `bg-blue-500 text-white border-2 border-blue-500 rounded-full p-2 mx-1`
+            }
           />
         </div>
       </div>

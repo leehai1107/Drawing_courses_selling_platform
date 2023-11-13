@@ -94,6 +94,9 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange }: any) =>
         >
           Previous
         </button>
+        <span className="pagination-info" style={{ margin: "0 50px" }}>
+    Page {currentPage} of {Math.ceil(rows.length / itemsPerPage)}
+  </span>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={paginatedRows.length < itemsPerPage}

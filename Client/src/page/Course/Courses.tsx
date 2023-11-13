@@ -60,6 +60,7 @@ export const Courses = () => {
                   Sau
                 </div>
               }
+              
               breakLabel={"..."}
               breakClassName={"break-me"}
               pageCount={pageCount}
@@ -78,7 +79,7 @@ export const Courses = () => {
                 "border-2 border-gray-500 rounded-full p-2 mx-1 text-gray-700"
               }
               activeLinkClassName={
-                "bg-gray-500 text-white border-2 border-gray-500 rounded-full p-2 mx-1"
+                `bg-blue-500 text-white border-2 border-blue-500 rounded-full p-2 mx-1`
               }
             />
           </div>
