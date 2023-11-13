@@ -59,4 +59,6 @@ public interface ICourseService {
 
 	public void toggleCourseStatus(int courseId);
 
+	List<ResponseCourse> findCourseByInstructorIDFlase(int instructorId);
+
 }

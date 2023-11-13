@@ -49,6 +49,8 @@ import { FalseCourse } from "./page/FalseCourse/FalseCourse";
 import { TrueCourse } from "./page/FalseCourse/TrueCourse";
 import { AccountTable, InsTable, StaffsTable } from "./page/AccountManagerTable";
 import { FeedbackTable } from "./page/FeedbackTable";
+import { InstructorCoursesFalse } from "./page/InstructorCourses/InstructorCoursesFalse";
+import { instructorCourseLoaderFalse } from "./page/InstructorCourses/instructorCourseFalse";
 // Create a new loader function that combines both loaders
 export const combinedHomeLoader = async () => {
   const courses = await homeLoader();
@@ -85,6 +87,7 @@ function App() {
           <Route path="info-student" element={<SuccessPayment />}/>
           <Route path="MyCourses/:userid" element={<MyCourses />} loader={myCourseLoader}/>
           <Route path="InstructorCourses/:userid" element={<InstructorCourses />} loader={instructorCourseLoader}/>
+          <Route path="InstructorCoursesFalse/:userid" element={<InstructorCoursesFalse />} loader={instructorCourseLoaderFalse}/>
           <Route path="Lessions/:courseid" element={<Lessions />} loader={lessionLoader}/>
           <Route path="CourseCategories" element={<CourseCategories />} loader={courseCategoriesLoader}/>
           <Route path="Courses/:category/:categoryId" element={<Courses />} loader={coursesLoader}/>

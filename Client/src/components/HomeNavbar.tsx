@@ -62,12 +62,22 @@ const HomeNavbar = () => {
               </Link>
             </>
           ) : account?.rolename === "INSTRUCTOR" ? (
+            <>
             <Link
               className="font-semibold mr-10 hover:text-yellow-500"
               to={`/InstructorCourses/${account?.userid}`}
             >
               Khóa học đã tạo
             </Link>
+            <Link
+              className="font-semibold mr-10 hover:text-yellow-500"
+              to={`/InstructorCoursesFalse/${account?.userid}`}
+            >
+              Khóa học chờ duyệt
+            </Link>
+            </>
+            
+            
           ) : account?.rolename === "STAFF" ? (
             <>
               <Link

@@ -77,6 +77,14 @@ const getCourseByInstructor = async (userid: string) => {
   return res?.data;
 };
 
+const getCourseByInstructorFalse = async (userid: string) => {
+  const res = await axios.get(
+    `http://localhost:8088/public/course/find-by-InstructorIdFalse/${userid}`
+  );
+  console.log(res);
+  return res?.data;
+};
+
 const getLessionByCourse = async (courseid: string) => {
   const res = await axios.get(
     `http://localhost:8088/public/lesson/find-by-course-id/${courseid}`
@@ -318,7 +326,7 @@ export const API = {
   getAllStaffInfo,
   getAllInsInfo,
   getAllFeedBack,
-
+  getCourseByInstructorFalse,
   addCourse,
   addLession,
   addFeedback,

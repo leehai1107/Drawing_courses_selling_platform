@@ -16,6 +16,9 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 	@Query(value = "select * from courses where instructor_id = :id", nativeQuery = true)
 	List<Course> findAllCoursesByInstructorId(@Param("id") int id);
+	
+	@Query(value = "select * from courses where instructor_id = :id AND status = 0", nativeQuery = true)
+	List<Course> findAllCoursesByInstructorIdFlase(@Param("id") int id);
 
 	@Query(value = "SELECT * FROM COURSES c WHERE c.title = :title AND c.instructor_id = :id", nativeQuery = true)
 	Course findCoursesByTitleAndInstructorID(@Param("title") String title, @Param("id") int id);

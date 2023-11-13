@@ -115,6 +115,16 @@ public class CourseImpl implements ICourseService {
 		return courseModels;
 
 	}
+	
+	@Override
+	public List<ResponseCourse> findCourseByInstructorIDFlase(int instructorId) {
+		List<Course> courseEntities = courseRepository.findAllCoursesByInstructorIdFlase(instructorId);
+		List<ResponseCourse> courseModels = courseEntities.stream().map(courseConverter::toResponse)
+				.collect(Collectors.toList());
+
+		return courseModels;
+
+	}
 
 	@Override
 
