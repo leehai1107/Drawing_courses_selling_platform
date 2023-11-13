@@ -16,7 +16,7 @@ const Home = () => {
   const handleClose = () => setOpen(false);
 
  // Use combinedHomeLoader to get both sets of data
- const { courses, bestCourses }:Course|any = useLoaderData();
+ const { courses, bestCourses,beginerCourse  }:Course|any = useLoaderData();
  console.log(courses);
   
 
@@ -93,6 +93,12 @@ const Home = () => {
       </div>
       <div className="text-4xl font-bold text-yellow-500 px-10 mt-10 mb-10">
         CHO BÉ BẮT ĐẦU
+      </div>
+      <div className="slide-container">
+        <Slide>{SlideShow(beginerCourse)}</Slide>
+      </div>
+      <div className="text-4xl font-bold text-yellow-500 px-10 mt-10 mb-10">
+        KHOÁ HỌC TIÊU BIỂU
       </div>
       <div className="slide-container">
         <Slide>{SlideShow(courses)}</Slide>
