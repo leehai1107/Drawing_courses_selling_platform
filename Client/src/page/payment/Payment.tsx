@@ -52,7 +52,7 @@ const Payment = () => {
         <div className="m-auto w-2/5 mb-20">
           <Form onSubmit={(event) => submitFrm(event)} method="post">
             <div className="mb-14">
-              <label className="mb-2 text-sm opacity-70 block">User name</label>
+              <label className="mb-2 text-sm opacity-70 block">Tên đăng nhập</label>
               <input
                 required
                 name="username"
@@ -75,7 +75,7 @@ const Payment = () => {
 
             <div className="mb-14">
               <label className="mb-2 text-sm opacity-70 block">
-                Phone number
+                Số điện thoại
               </label>
               <input
                 required
