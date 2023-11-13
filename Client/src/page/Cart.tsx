@@ -37,11 +37,11 @@ const Cart = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Tên Khóa Học</TableCell>
-                    <TableCell align="right">Level</TableCell>
-                    <TableCell align="right">Giáo Viên</TableCell>
-                    <TableCell align="right">Ngày đăng ký</TableCell>
-                    <TableCell align="right">Giá tiền&nbsp;(vnđ)</TableCell>
-                    <TableCell align="right"></TableCell>
+                    <TableCell align="center">Level</TableCell>
+                    <TableCell align="center">Giáo Viên</TableCell>
+                    <TableCell align="center">Ngày đăng ký</TableCell>
+                    <TableCell align="center">Giá tiền&nbsp;(vnđ)</TableCell>
+                    <TableCell align="center"></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -53,17 +53,17 @@ const Cart = () => {
                       <TableCell component="th" scope="row">
                         {data.Course.title}
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                         {data?.Course?.levelModel === undefined
                           ? "CHƯA LỰA CHỌN CẤP ĐỘ"
                           : data.Course.levelModel?.levelName}
                       </TableCell>
-                      <TableCell align="right">{data.Course?.userModelRespone?.fullname}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">{data.Course?.userModelRespone?.fullname}</TableCell>
+                      <TableCell align="center">
                         {data.EnrollDate.toDateString()}
                       </TableCell>
-                      <TableCell align="right">{numberToVietnameseDong(data.Course.price)}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">{numberToVietnameseDong(data.Course.price)}</TableCell>
+                      <TableCell align="center">
                         <div onClick={() => removeFromCart(data.Course)}>
                           <RemoveIcon />
                         </div>
@@ -75,13 +75,13 @@ const Cart = () => {
                     >
                       <TableCell component="th" scope="row">
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                       </TableCell>
-                      <TableCell align="right"></TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center"></TableCell>
+                      <TableCell align="center">
                       </TableCell>
-                      <TableCell align="right">{numberToVietnameseDong(getTotalInCart(cart))}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">Thành tiền: {numberToVietnameseDong(getTotalInCart(cart))}</TableCell>
+                      <TableCell align="center">
                       </TableCell>
                     </TableRow>
                 </TableBody>

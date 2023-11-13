@@ -52,12 +52,12 @@ export const Courses = () => {
             <ReactPaginate
               previousLabel={
                 <div className="text-center text-white pagination-btn">
-                  Previous
+                  Trước
                 </div>
               }
               nextLabel={
                 <div className="text-center text-white pagination-btn">
-                  Next
+                  Sau
                 </div>
               }
               breakLabel={"..."}
