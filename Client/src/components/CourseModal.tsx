@@ -50,7 +50,7 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
             <div className="mt-10">
               <div className="flex mb-5 justify-between">
                 <div>Tổng bài học: {course?.lession_count} </div>
-                <div>Giá: {numberToVietnameseDong(course?.price)} </div>
+                <div className="font-bold text-red-500">Giá: {numberToVietnameseDong(course?.price)} </div>
               </div>
               <Link
                 to={`/InstructorProfile/${course?.userModelRespone.id}`}
