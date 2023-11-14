@@ -45,7 +45,7 @@ export const CreateLession = () => {
       <div className="bg-lime-200 pt-40">
         <Form onSubmit={submit} method="post">
           <div className="w-1/2 m-auto border border-dashed border-lime-500 px-10 py-14 rounded-2xl max-h-screen overflow-y-scroll">
-            <label className="text-sm">Tổng số lessions</label>
+            <label className="text-sm">Tổng số bài học</label>
             <input
               className="p-2 w-full rounded-2xl mb-5"
               defaultValue={1}
@@ -59,7 +59,7 @@ export const CreateLession = () => {
                 <input
                   required
                   className="p-2 w-full rounded-2xl mb-5"
-                  placeholder="tựa đề"
+                  placeholder="Tựa đề"
                   defaultValue={lession.title}
                   onChange={(event) => setTitle(index, event.target.value)}
                 />
@@ -67,7 +67,7 @@ export const CreateLession = () => {
                 <input
                   required
                   className="p-2 w-full rounded-2xl mb-5"
-                  placeholder="link lession"
+                  placeholder="Link bài học"
                   defaultValue={lession.videoUrl}
                   onChange={(event) => setUrl(index, event.target.value)}
                 />
