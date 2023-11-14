@@ -188,7 +188,7 @@ const getTrueCourseByLevel = async (levelid: number) => {
 };
 
 const changePassword = async (data: any) => {
-  const res = await axios.put(
+  const res = await axios.post(
     `http://localhost:8088/public/account/change-password`,
     data
   );
@@ -217,7 +217,7 @@ const deleteCourse = async (id: string) => {
     .delete(`http://localhost:8088/public/course/delete/${id}`)
     .catch((err) => {
       console.log(err);
-      toast("cant delete course because it has already bought by someone", {
+      toast("Không thể xoá vì khoá học đã có người mua!", {
         type: toast.TYPE.ERROR,
       });
     });
@@ -319,6 +319,8 @@ const beginerCourse = async () => {
   console.log(res);
   return res?.data;
 };
+
+
 
 export const API = {
   getAllCourse,

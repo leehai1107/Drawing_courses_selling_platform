@@ -60,7 +60,7 @@ export const CreateCourse = () => {
             />
             <div className="flex mb-5">
               <div className="w-1/2 mr-5">
-                <label className="text-sm">Level</label>
+                <label className="text-sm">Trình độ</label>
                 <select name="levelId" className="p-2 w-full rounded-2xl">
                   {levels?.map((level: levelModel) => (
                     <option value={level.levelId}>{level.levelName}</option>
@@ -68,7 +68,7 @@ export const CreateCourse = () => {
                 </select>
               </div>
               <div className="w-1/2">
-                <label className="text-sm">Category</label>
+                <label className="text-sm">Thể loại</label>
                 <select
                   name="drawCategoryId"
                   className="p-2 w-full rounded-2xl"
