@@ -21,17 +21,17 @@ const AdminMenuData = [
     // },
     {
         icon: PersonIcon,
-        label: "Users",
+        label: "Người dùng",
         link:"/admin"
     },
     {
         icon: SchoolIcon,
-        label: "Instructors",
+        label: "Giáo viên",
         link:"/admin/instructors"
     },
     {
         icon: TvIcon,
-        label: "Staffs",
+        label: "Nhân viên",
         link:"/admin/staffs"
     },
     // {
@@ -51,7 +51,7 @@ const AdminMenuData = [
     // },
     {
         icon: LogoutIcon,
-        label: "Logout",
+        label: "Đăng xuất",
         link:"/SignIn"
     },
     
