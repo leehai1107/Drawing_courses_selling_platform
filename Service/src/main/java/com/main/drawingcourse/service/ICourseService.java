@@ -61,4 +61,6 @@ public interface ICourseService {
 
 	List<ResponseCourse> findCourseByInstructorIDFlase(int instructorId);
 
+	List<ResponseCourse> findCourseByInstructorIDTrue(int instructorId);
+
 }

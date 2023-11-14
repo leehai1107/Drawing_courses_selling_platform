@@ -97,6 +97,11 @@ public class CourseController {
 	public List<ResponseCourse> getCoursesByInstructorIdFalse(@PathVariable int id) {
 		return CourseService.findCourseByInstructorIDFlase(id);
 	}
+	
+	@GetMapping("/find-by-InstructorIdTrue/{id}")
+	public List<ResponseCourse> getCoursesByInstructorIdTrue(@PathVariable int id) {
+		return CourseService.findCourseByInstructorIDTrue(id);
+	}
 
 	@GetMapping(value = "/find-Course-Of-Instructor-By-UserName")
 	public List<ResponseCourse> findAllCourseOfInstructorByUserName(@RequestParam("name") String name) {

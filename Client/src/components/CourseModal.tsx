@@ -20,7 +20,7 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
     callback();
   }, []);
 
- const addToCart = () => {
+  const addToCart = () => {
     var cartCourse = cart.find(
       (c: CartElement) => c?.Course.courseId === course.courseId
     );
@@ -50,7 +50,9 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
             <div className="mt-10">
               <div className="flex mb-5 justify-between">
                 <div>Tổng bài học: {course?.lession_count} </div>
-                <div className="font-bold text-red-500">Giá: {numberToVietnameseDong(course?.price)} </div>
+                <div className="font-bold text-red-500">
+                  Giá: {numberToVietnameseDong(course?.price)}{" "}
+                </div>
               </div>
               <Link
                 to={`/InstructorProfile/${course?.userModelRespone.id}`}
@@ -59,11 +61,12 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
                 Giáo viên: {course?.userModelRespone.fullname}{" "}
               </Link>
               <Link
-                to={`Courses/${course?.drawingCategoryModel?.drawCategoryName}/${course?.drawingCategoryModel?.drawCategoryId}`}
+                to={`/Courses/${course?.drawingCategoryModel?.drawCategoryName}/${course?.drawingCategoryModel?.drawCategoryId}`}
                 className="p-3 bg-orange-500 text-white font-medium mr-5"
               >
                 {course?.drawingCategoryModel?.drawCategoryName}
               </Link>
+
               <span className="p-3 bg-orange-500 text-white font-medium">
                 {course?.levelModel?.levelName}
               </span>
@@ -71,7 +74,10 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
           </div>
         </div>
         <div className="text-center mt-10">
-          {account?.rolename === "CUSTOMER" ? ( myCourse.some((mc: any) => mc.course.courseId === course.courseId) ? (
+          {account?.rolename === "CUSTOMER" ? (
+            myCourse.some(
+              (mc: any) => mc.course.courseId === course.courseId
+            ) ? (
               <button className="py-2 px-5 border border-yellow-400 rounded-full text-yellow-500 font-medium hover:text-white hover:bg-yellow-500">
                 Đã Đăng Ký
               </button>
