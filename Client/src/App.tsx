@@ -44,19 +44,28 @@ import { EditCourse } from "./page/EditCourse/EditCourse";
 import { EditLession } from "./page/EditLession/EditLession";
 import { editCourseLoader } from "./page/EditCourse/editCourseLoader";
 import { InstructorProfile } from "./page/InstructorProfile/InstructorProfile";
-import { instructorLoader } from "./page/InstructorProfile/InstructorLoader";
+import { instructorCourseLoaderTrue, instructorLoader } from "./page/InstructorProfile/InstructorLoader";
 import { FalseCourse } from "./page/FalseCourse/FalseCourse";
 import { TrueCourse } from "./page/FalseCourse/TrueCourse";
 import { AccountTable, InsTable, StaffsTable } from "./page/AccountManagerTable";
 import { FeedbackTable } from "./page/FeedbackTable";
 import { InstructorCoursesFalse } from "./page/InstructorCourses/InstructorCoursesFalse";
 import { instructorCourseLoaderFalse } from "./page/InstructorCourses/instructorCourseFalse";
+import { Course } from "./Type/Type";
+import { API } from "./API/API";
 // Create a new loader function that combines both loaders
 export const combinedHomeLoader = async () => {
   const courses = await homeLoader();
   const bestCourses = await homeCourseLoader();
   const beginerCourse = await beginerCourses();
   return { courses, bestCourses ,beginerCourse};
+};
+
+export const combinedInstrcutorProfileLoader = async ({ params }: { params: any }) => {
+  const instructor:any = await API.getUserInfo(params.userId);
+  const courses: Course[] = await API.getCourseByInstructorTrue(params.userId);
+
+  return { instructor, courses };
 };
 
 function App() {
@@ -95,7 +104,7 @@ function App() {
           <Route path="CreateLession/:courseId" element={<CreateLession />}/>
           <Route path="EditCourse/:courseId" element={<EditCourse />} loader={editCourseLoader}/>
           <Route path="EditLession/:courseId" element={<EditLession />}/>
-          <Route path="InstructorProfile/:userId" element={<InstructorProfile />} loader={instructorLoader}/>
+          <Route path="InstructorProfile/:userId" element={<InstructorProfile />} loader={combinedInstrcutorProfileLoader}/>
           <Route path="FalseCourse" element={<FalseCourse />} />
           <Route path="TrueCourse" element={<TrueCourse />} />
         </Route>

@@ -17,7 +17,7 @@ const Home = () => {
 
  // Use combinedHomeLoader to get both sets of data
  const { courses, bestCourses,beginerCourse  }:Course|any = useLoaderData();
- console.log(courses);
+
   
 
   const CourseShow = (course: Course) => {
