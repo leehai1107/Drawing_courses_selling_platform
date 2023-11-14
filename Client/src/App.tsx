@@ -34,7 +34,7 @@ import { lessionLoader } from "./page/lessions/LessionsLoader";
 import { CourseCategories } from "./page/CourseCategory/CourseCategories";
 import { courseCategoriesLoader } from "./page/CourseCategory/courseCategoriesLoader";
 import { Courses } from "./page/Course/Courses";
-import { coursesLoader } from "./page/Course/coursesLoader";
+import { coursesBylevelLoader, coursesLoader } from "./page/Course/coursesLoader";
 import { InstructorCourses } from "./page/InstructorCourses/InstructorCourses";
 import { instructorCourseLoader } from "./page/InstructorCourses/instructorCoursesLoader";
 import { CreateCourse } from "./page/CreateCourse/CreateCourse";
@@ -53,6 +53,7 @@ import { InstructorCoursesFalse } from "./page/InstructorCourses/InstructorCours
 import { instructorCourseLoaderFalse } from "./page/InstructorCourses/instructorCourseFalse";
 import { Course } from "./Type/Type";
 import { API } from "./API/API";
+import { CoursesByLevel } from "./page/Course/CoursesByLevel";
 // Create a new loader function that combines both loaders
 export const combinedHomeLoader = async () => {
   const courses = await homeLoader();
@@ -100,6 +101,7 @@ function App() {
           <Route path="Lessions/:courseid" element={<Lessions />} loader={lessionLoader}/>
           <Route path="CourseCategories" element={<CourseCategories />} loader={courseCategoriesLoader}/>
           <Route path="Courses/:category/:categoryId" element={<Courses />} loader={coursesLoader}/>
+          <Route path="CoursesLevel/:level/:levelid" element={<CoursesByLevel />} loader={coursesBylevelLoader}/>
           <Route path="createCourse" element={<CreateCourse />} loader={createCourseLoader}/>
           <Route path="CreateLession/:courseId" element={<CreateLession />}/>
           <Route path="EditCourse/:courseId" element={<EditCourse />} loader={editCourseLoader}/>

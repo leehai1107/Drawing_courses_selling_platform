@@ -179,6 +179,14 @@ const getTrueCourseByCategory = async (categoryId: number) => {
   return res?.data;
 };
 
+const getTrueCourseByLevel = async (levelid: number) => {
+  const res = await axios.get(
+    `http://localhost:8088/public/course/course-status-1/by-levelid/${levelid}`
+  );
+  console.log(res);
+  return res?.data;
+};
+
 const changePassword = async (data: any) => {
   const res = await axios.put(
     `http://localhost:8088/public/account/change-password`,
@@ -351,4 +359,5 @@ export const API = {
   payment,
   changePassword,
   banAccount,
+  getTrueCourseByLevel,
 };

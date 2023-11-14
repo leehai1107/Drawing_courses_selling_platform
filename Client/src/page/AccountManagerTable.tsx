@@ -188,7 +188,7 @@ export const StaffsTable = () => {
         onClick={handleOpen}
         className="p-2 text-white bg-blue-500 rounded-xl mb-3"
       >
-        Tạo nhân viên
+        Thêm nhân viên
       </button>
       <RowTable
         rows={rows}
@@ -241,7 +241,7 @@ export const InsTable = () => {
         onClick={handleOpen}
         className="p-2 text-white bg-blue-500 rounded-xl mb-3"
       >
-        Tạo giáo viên
+        Thêm giáo viên
       </button>
       <RowTable
         rows={rows}

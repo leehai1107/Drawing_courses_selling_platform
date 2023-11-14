@@ -23,22 +23,22 @@ const Cart = () => {
 
     setCart(removeCourse);
   };
-  console.log("cart",cart);
+
   return (
     <>
       <div className="bg-lime-300 pt-40 font-medium">
-        <div className="w-2/3 m-auto bg-white border-2 mb-10 border-black">
-          <div className="text-center mb-14">
+        <div className="w-4/5 m-auto bg-white border-2 mb-10 border-black">
+          <div className="text-center mb-14 text-xl">
             Giỏ hàng <ShoppingCart />
           </div>
           <div className="m-auto w-4/5 mb-20">
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} style={{ whiteSpace: 'nowrap' }}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Tên Khóa Học</TableCell>
-                    <TableCell align="center">Level</TableCell>
-                    <TableCell align="center">Giáo Viên</TableCell>
+                    <TableCell align="center">Trình độ</TableCell>
+                    <TableCell align="center">Giáo viên</TableCell>
                     <TableCell align="center">Ngày đăng ký</TableCell>
                     <TableCell align="center">Giá tiền&nbsp;(vnđ)</TableCell>
                     <TableCell align="center"></TableCell>
@@ -70,24 +70,14 @@ const Cart = () => {
                       </TableCell>
                     </TableRow>
                   ))}
-                    <TableRow
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                      </TableCell>
-                      <TableCell align="center">
-                      </TableCell>
-                      <TableCell align="center"></TableCell>
-                      <TableCell align="center">
-                      </TableCell>
-                      <TableCell align="center">Thành tiền: {numberToVietnameseDong(getTotalInCart(cart))}</TableCell>
-                      <TableCell align="center">
-                      </TableCell>
-                    </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
+            <div className="text-right mb-2 mt-5 font-bold">
+          Thành tiền: {numberToVietnameseDong(getTotalInCart(cart))}
           </div>
+          </div>
+          
         </div>
         <div className="text-center">
           {cart.length < 1 || !account ? (

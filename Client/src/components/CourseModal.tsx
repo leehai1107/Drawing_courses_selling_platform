@@ -67,9 +67,12 @@ export const CourseModal = ({ course }: { course: Course | any }) => {
                 {course?.drawingCategoryModel?.drawCategoryName}
               </Link>
 
-              <span className="p-3 bg-orange-500 text-white font-medium">
+              <Link
+                to={`/CoursesLevel/${course?.levelModel?.levelName}/${course?.levelModel?.levelId}`}
+                className="p-3 bg-orange-500 text-white font-medium mr-5"
+              >
                 {course?.levelModel?.levelName}
-              </span>
+              </Link>
             </div>
           </div>
         </div>
