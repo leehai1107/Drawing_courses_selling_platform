@@ -36,14 +36,14 @@ function createData({
     phone,
     dob,
     status: status ? (
-      <span className="text-green-500">activate</span>
+      <span className="text-green-500">Hoạt động</span>
     ) : (
-      <span className="text-red-500">banned</span>
+      <span className="text-red-500">Bị chặn</span>
     ),
     action: status ? (
-      <button className="bg-red-500 p-2 text-white rounded-lg">ban</button>
+      <button className="bg-red-500 p-2 text-white rounded-lg">Chặn</button>
     ) : (
-      <button className="bg-green-500 p-2 text-white rounded-lg">unban</button>
+      <button className="bg-green-500 p-2 text-white rounded-lg">Bỏ chặn</button>
     ),
   };
 }
@@ -70,13 +70,13 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange, callback 
           <TableHead>
             <TableRow>
               <TableCell># User</TableCell>
-              <TableCell align="center">User Name</TableCell>
-              <TableCell align="center">Full Name</TableCell>
+              <TableCell align="center">Tên đăng nhập</TableCell>
+              <TableCell align="center">Họ và Tên</TableCell>
               <TableCell align="center">Email</TableCell>
-              <TableCell align="center">Phone</TableCell>
-              <TableCell align="center">Dob</TableCell>
-              <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Action</TableCell>
+              <TableCell align="center">Số điện thoại</TableCell>
+              <TableCell align="center">Ngày tháng năm sinh</TableCell>
+              <TableCell align="center">Trạng thái</TableCell>
+              <TableCell align="center">Hành động</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -110,17 +110,17 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange, callback 
           disabled={currentPage === 1}
           className="pagination-button"
         >
-          Previous
+          Trước
         </button>
         <span className="pagination-info" style={{ margin: "0 50px" }}>
-    Page {currentPage} of {Math.ceil(rows.length / itemsPerPage)}
+    Trang {currentPage} trên {Math.ceil(rows.length / itemsPerPage)}
   </span>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={paginatedRows.length < itemsPerPage}
           className="pagination-button"
         >
-          Next
+          Sau
         </button>
       </div>
     </>
@@ -188,7 +188,7 @@ export const StaffsTable = () => {
         onClick={handleOpen}
         className="p-2 text-white bg-blue-500 rounded-xl mb-3"
       >
-        Create Staff
+        Tạo nhân viên
       </button>
       <RowTable
         rows={rows}
@@ -241,7 +241,7 @@ export const InsTable = () => {
         onClick={handleOpen}
         className="p-2 text-white bg-blue-500 rounded-xl mb-3"
       >
-        Create Instructor
+        Tạo giáo viên
       </button>
       <RowTable
         rows={rows}

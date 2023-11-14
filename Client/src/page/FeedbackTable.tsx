@@ -42,9 +42,9 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange }: any) =>
           <TableHead>
             <TableRow>
               <TableCell># Feedback</TableCell>
-              <TableCell align="right">Course</TableCell>
-              <TableCell align="right">Comment</TableCell>
-              <TableCell align="right">Date</TableCell>
+              <TableCell align="center">Tên khoá học</TableCell>
+              <TableCell align="center">Nội dung</TableCell>
+              <TableCell align="center">Ngày gửi</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -56,19 +56,19 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange }: any) =>
                 <TableCell component="th" scope="row">
                   {row.ReviewId}
                 </TableCell>
-                <TableCell align="right">{row.Course}</TableCell>
+                <TableCell align="center">{row.Course}</TableCell>
                 <TableCell
                   onClick={() => {
                     setReview(row);
                     handleOpen();
                   }}
-                  align="right"
+                  align="center"
                   className="truncate"
                   sx={{ overflow: "hidden" }}
                 >
                   {row.Comment}
                 </TableCell>
-                <TableCell align="right">{row.Date}</TableCell>
+                <TableCell align="center">{row.Date}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -92,17 +92,17 @@ const RowTable = ({ rows, currentPage, itemsPerPage, handlePageChange }: any) =>
           disabled={currentPage === 1}
           className="pagination-button"
         >
-          Previous
+          Trước
         </button>
         <span className="pagination-info" style={{ margin: "0 50px" }}>
-    Page {currentPage} of {Math.ceil(rows.length / itemsPerPage)}
+    Trang {currentPage} trên {Math.ceil(rows.length / itemsPerPage)}
   </span>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={paginatedRows.length < itemsPerPage}
           className="pagination-button"
         >
-          Next
+          Sau
         </button>
       </div>
     </>
