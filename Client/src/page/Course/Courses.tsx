@@ -32,7 +32,7 @@ export const Courses = () => {
     <>
       <div className="bg-lime-400 pt-20 pb-10">
         <div className="text-7xl font-medium text-center py-10">{category}</div>
-        <div className="mt-5 px-5 flex flex-wrap">
+        <div className="mt-5 px-5 flex justify-center items-center">
           {paginatedCourses?.map((mCourse: Course) => (
             <div
               key={mCourse.courseId}

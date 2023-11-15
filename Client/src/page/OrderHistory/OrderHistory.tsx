@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { API } from "../../API/API";
 import { useRecoilValue } from "recoil";
 import { accountState } from "../../atom/atom";
+import { numberToVietnameseDong } from "../../util/util";
 
 const OrderHistory = () => {
   const account: any = useRecoilValue(accountState);
@@ -45,7 +46,7 @@ const OrderHistory = () => {
                     {oh.order_date}
                   </td>
                   <td className="px-4 py-2 text-neutral-600 font-medium">
-                    {oh.price} vnđ
+                  {numberToVietnameseDong(oh.price)}
                   </td>
                   <td className="px-4 py-2 text-neutral-600 font-medium">
                     {oh.order_status?"Đã thanh toán":"Đã huỷ"}
