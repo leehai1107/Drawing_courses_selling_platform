@@ -230,9 +230,11 @@ const setTrueCourse = async (id: string) => {
     .put(`http://localhost:8088/public/course/update-status/${id}`)
     .catch((err) => {
       console.log(err);
-      toast("something wrong", { type: toast.TYPE.ERROR });
+      toast("Không thành công", { type: toast.TYPE.ERROR });
     });
-  console.log(res);
+    toast("Đã duyệt khoá học", {
+      type: toast.TYPE.SUCCESS,
+    });
   return res?.data;
 };
 
@@ -258,7 +260,6 @@ const addLession = async (data: any) => {
 
 const addFeedback = async (data: any) => {
   const res = await axios.post(`http://localhost:8088/public/review/add`, data);
-  console.log(res);
   return res?.data;
 };
 
@@ -271,7 +272,9 @@ const addStaff = async (data: any, token: any) => {
       console.log(err);
       toast(err.message, { type: toast.TYPE.ERROR })
     });
-  console.log(res);
+    toast("Đã thêm nhân viên", {
+      type: toast.TYPE.SUCCESS,
+    });
   return res?.data;
 };
 
@@ -284,7 +287,9 @@ const addIns = async (data: any, token: any) => {
       console.log(err);
       toast(err.message, { type: toast.TYPE.ERROR })
     });
-  console.log(res);
+    toast("Đã thêm giáo viên", {
+      type: toast.TYPE.SUCCESS,
+    });
   return res?.data;
 };
 
@@ -292,7 +297,9 @@ const banAccount = async (userid: number) => {
   const res = await axios.put(
     `http://localhost:8088/public/user/toggle-status/${userid}`
   );
-  console.log(res);
+  toast("Đã thay đổi", {
+    type: toast.TYPE.SUCCESS,
+  });
   return res?.data;
 };
 
@@ -308,7 +315,9 @@ const toggleCourse = async (id: string) => {
   const res = await axios.put(
     `http://localhost:8088/public/course/${id}/toggle-status`
   );
-  console.log(res);
+  toast("Đã thu hồi khoá học", {
+    type: toast.TYPE.SUCCESS,
+  });
   return res?.data;
 };
 
